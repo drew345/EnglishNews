@@ -11,4 +11,5 @@ outputs/
 inputs/
 tmp/
 .lavish/
+.local/
 EnglishNews-handoff-*.zip

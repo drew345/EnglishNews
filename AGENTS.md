@@ -4,7 +4,7 @@ Last updated: 2026-09-13
 
 ## Purpose and boundaries
 
-English News is a planned companion to Korean News for Korean-native speakers practicing English through the same news stories. Application implementation has not started; isolated development worktrees and environments are ready.
+English News is a companion prototype for Korean-native speakers practicing English through the same news stories. One historical story now produces written lessons, speech/audio, video and Korean publication sidecars in isolated development worktrees. Daily integration has not started. See SESSION_LOG.md and development/README.md for the current sample and commands.
 
 Read this file and SESSION_LOG.md first when resuming. FEASIBILITY.md holds the detailed code inventory, architecture, risks and phased plan; do not duplicate it into additional plan files.
 
@@ -16,7 +16,8 @@ Read this file and SESSION_LOG.md first when resuming. FEASIBILITY.md holds the 
 - Example: household → household → 가구 → A group of people who live together. → household → household.
 - The earlier five-part vocabulary sequence was an assistant error and is superseded. The original code repeats its Korean target word twice at each end; preserve that pattern with English as target.
 - Reuse selected vocabulary initially; English equivalents may be gloss phrases. Add a distinct short English explanation without overwriting the Korean definition.
-- English full review; separate YouTube channel with Korean titles/descriptions. Actual channel identity, series branding and speech speeds/voice remain open.
+- English full review; separate YouTube channel with Korean titles/descriptions. Andrew confirmed Alloy, English 0.88 and Korean sentences 1.07 for the initial sample; vocabulary blocks and review use 0.88. Channel identity and final branding remain open.
+- English repetition is assembled from individual audio clips: sentence twice; vocabulary gloss twice, Korean word, English explanation, gloss twice. The first model-directed repetition sample omitted a final word, so v2 makes the repetition count deterministic. This does not change Korean News speech behavior.
 - Independent English vocabulary selection rules and study tips come later.
 
 ## Development approach

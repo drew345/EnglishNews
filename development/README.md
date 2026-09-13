@@ -28,8 +28,9 @@ is explicitly selected by the development launcher and also retains the
 expected sibling folder name. Render commands must use development input and
 output paths. No server or worker is started by setup.
 
-No credentials or production `.env` files were copied. Live generation setup
-is deferred until the prototype needs it. Offline tests can run now.
+No credentials or production `.env` files were copied. The prototype can read
+the existing key using an explicit `--env-file` argument; it keeps the key in
+process memory. Offline tests need no credentials.
 
 ## Dependencies and baseline
 
@@ -59,3 +60,42 @@ carry development branches or these ignored artifacts. Before a device move,
 commit/push development changes and recreate the worktrees/environments on the
 other device. Baseline media needs separate transport if it is needed there.
 Do not add worktrees as independent repositories to routine sync.
+
+## One-story prototype
+
+The current review sample is `20260913_english_s1_e4644bf4a9`: source story 1,
+four body sentences, 18 existing vocabulary entries, and an English full review.
+The EnglishNews `output/runs/<id>/` folder contains the structured historical
+bundle, cached explanations, written lesson, speech plan/script, segment audio,
+assembled MP3, run metadata and audio QA. The sibling Video Lab
+`outputs/<id>/` contains the MP4, Korean title/description/thumbnail and QA frames.
+One-story samples intentionally omit YouTube chapters (which need three entries).
+
+From this EnglishNews worktree, using its `.venv/Scripts/python.exe`:
+
+```powershell
+.venv/Scripts/python.exe -X utf8 -m english_news.prototype --baseline .local/baselines/20260913_122823_97cda690 --env-file C:/AI/Codex/Projects/korean-news/.env --audio
+.venv/Scripts/python.exe -X utf8 -m english_news.render output/runs/20260913_english_s1_e4644bf4a9
+.venv/Scripts/python.exe -X utf8 -m unittest discover tests
+.venv/Scripts/python.exe -X utf8 development/check_korean_baseline.py
+.venv/Scripts/python.exe -X utf8 development/check_sample.py output/runs/20260913_english_s1_e4644bf4a9
+```
+
+This is an explicit local historical importer, not a live export hook or daily
+worker integration. It rejects mismatched Korean review content before making
+API requests. New runs use content/profile identities and cache explanations;
+speech transport resumes validated segment requests. Each vocabulary entry
+synthesizes its English gloss, Korean word and English explanation separately,
+then assembles indices `[0, 0, 1, 2, 0, 0]`. English sentence audio is duplicated
+in software too. This avoids model omissions of repeated speech.
+
+Alloy, English 0.88 and Korean sentences 1.07 were confirmed for this sample;
+vocabulary blocks and the English review use 0.88. Branding is provisional.
+The initial v1 diagnostic sample (`e60a7d8774`) is superseded: one checked
+vocabulary clip omitted its last repetition. Use the v2 sample above.
+
+Three inherited glossary entries are flagged in `vocabulary-review.md`:
+Baudeogi as “traditional performer,” “to occupy” for winning a prize, and
+“souvenir” as part of a store name. They are preserved for this agreed initial
+inversion and need review before publication. No channel is configured and no
+publication, watcher, production cleanup or daily workflow integration runs here.

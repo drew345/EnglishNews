@@ -1,5 +1,14 @@
 # English News — session log
 
+## 2026-09-13 — ASUS isolated development setup
+
+- Andrew explicitly authorized worktrees after confirming that the desktop-icon workflow through video upload must be preserved. Verified the four relevant repositories were clean on main and their heads matched GitHub; EnglishNews is enrolled in CodexSync. No Start/End sync was run.
+- Created `C:/AI/Codex/Worktrees/english-news/{EnglishNews,korean-news,KoreanLessonVideoLab}` on `codex/english-news-prototype`, with separate virtual environments. Original Korean News, Video Lab and core folders/environments/shortcuts remain untouched. No shared-core worktree was needed.
+- Production core is editable at commit `1d3e870`; development installs that exact commit non-editably. Production package versions are captured in the development EnglishNews dependency locks. All three environments pass `pip check`.
+- Preserved today's completed run `20260913_122823_97cda690`, staged input, and video output under the development EnglishNews `.local/baselines/` folder: 168 copied files, 108.1 MiB, SHA-256 verified. Earlier videos from September 3, September 2 and August 31 are also present. Frozen manifests retain original path strings and must be remapped in separate working fixtures before replay.
+- Existing test suites pass in the new environments: Korean News 270, Video Lab 25 (295 total). Development API launcher path check passes; it selects port 8010 and excludes cleanup/staging/upload workers. No live generation, new render or upload was performed; no credentials copied.
+- Next: continue in the EnglishNews development worktree, establish a remapped one-story fixture and implement the structured export/English prototype. Setup records are local; worktree folders, environments and frozen media do not travel through normal main-branch sync. Preserve development branches explicitly before another device move.
+
 ## 2026-09-13 — repository publication and sync enrollment
 
 - On GRAM14-2023, Andrew supplied the empty drew345/EnglishNews GitHub repository and authorized initializing this folder, publishing the planning files, and adding it to routine sync.

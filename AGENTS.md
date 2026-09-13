@@ -4,7 +4,7 @@ Last updated: 2026-09-13
 
 ## Purpose and boundaries
 
-English News is a planned companion to Korean News for Korean-native speakers practicing English through the same news stories. Application implementation has not started; isolated development worktrees and environments are ready.
+English News is a companion prototype for Korean-native speakers practicing English through the same news stories. A one-story written/audio/video sample is implemented in the isolated development worktrees; this main folder keeps the planning/handoff record. Continue in `C:/AI/Codex/Worktrees/english-news/EnglishNews` and read its current SESSION_LOG.md. Daily integration has not started.
 
 Read this file and SESSION_LOG.md first when resuming. FEASIBILITY.md holds the detailed code inventory, architecture, risks and phased plan; do not duplicate it into additional plan files.
 

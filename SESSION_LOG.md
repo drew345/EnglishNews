@@ -1,5 +1,11 @@
 # English News — session log
 
+## 2026-09-13 — prototype ready in development worktrees
+
+- Andrew authorized the first frozen-story prototype and confirmed Alloy, English 0.88 and Korean sentences 1.07. Current review sample is `20260913_english_s1_e4644bf4a9` in the EnglishNews and Video Lab development output folders. It includes written lessons, assembled audio and a roughly 7m23s video; no upload or daily integration ran.
+- Detailed implementation, audio repetition repair, QA and open review items are recorded in `C:/AI/Codex/Worktrees/english-news/EnglishNews/SESSION_LOG.md` and `development/README.md`. Continue there, not in this main planning checkout.
+- 305 tests passed; eight Korean rendering/metadata artifacts remained byte-identical to the frozen baseline. Production Korean code, environments and desktop shortcut remain unchanged. Full user listening/review is next. Commits and generated media remain local.
+
 ## 2026-09-13 — ASUS isolated development setup
 
 - Andrew explicitly authorized worktrees after confirming that the desktop-icon workflow through video upload must be preserved. Verified the four relevant repositories were clean on main and their heads matched GitHub; EnglishNews is enrolled in CodexSync. No Start/End sync was run.

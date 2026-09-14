@@ -1,5 +1,10 @@
 # English News — session log
 
+## 2026-09-14 — first two English vocabulary filters ready
+
+- Development now filters whole-word “name” glosses and exact country-name/alias glosses before explanations/audio. 16 tests pass; offline September 14 check removes one entry (31 → 30). No LLM calls or media generation. Andrew requires text-only effectiveness checks.
+- Deferred three rules: generic place descriptions, matching against actual English sentences, grammatical variants. Full details in development SESSION_LOG.md; next incoming media run uses the first two automatically.
+
 ## 2026-09-14 — manual upload; simplified English vocabulary filtering next
 
 - Andrew reports uploading today's English video manually and will review it on YouTube. No URL/visibility supplied; automatic uploads remain disabled.

@@ -2,6 +2,13 @@
 
 ## Routine three-story run (Windows ASUS)
 
+Vocabulary update: the command now removes English glosses containing whole-word
+“name” or exactly matching the checked-in country-name/alias list before
+explanation/speech generation. See vocabulary-filter.json in each new output.
+Generic place descriptions, sentence-occurrence checks and grammatical variants
+are saved for next time. Effectiveness checks for these rules are text-only:
+do not run this media-building command merely to test a vocabulary change.
+
 Work in `C:/AI/Codex/Worktrees/english-news/EnglishNews`. Andrew runs the original
 Korean News desktop icon first, then tells the assistant the new run is ready.
 Use only that next incoming run. Do not regenerate an earlier reviewed video

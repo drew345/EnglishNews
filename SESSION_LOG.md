@@ -1,5 +1,11 @@
 # English News — session log
 
+## 2026-09-14 — first two vocabulary filters implemented
+
+- Implemented only the first two approved rules: whole-word “name” in the English gloss, and whole-gloss country-name/common-alias matches (case/spacing/outer punctuation normalized). Vendored a fixed ISO country/territory name list and explicit common aliases; no runtime network dependency. Applied in both full-run and one-story entry points before explanation enrichment or speech; source stays unchanged, stable IDs preserved, and vocabulary-filter.json records removals. Empty vocabulary skips the explanation request and vocabulary labels.
+- Saved the bottom three proposed rules for next time: generic place descriptions (e.g. Southeast Asian country), actual occurrence in the matching English sentence, and grammatical variations/lemmatization. No independent English ranking system.
+- All 16 English tests pass. Offline check of the September 14 text removes exactly the 이재명 / “a politician's name” entry (31 → 30); the generic country gloss remains intentionally pending. No LLM calls, audio or video generated. Andrew explicitly requires text-only effectiveness checks. Next incoming run automatically uses these filters; previously uploaded video untouched.
+
 ## 2026-09-14 — manual upload and next vocabulary task
 
 - Andrew reports manually uploading today's three-story English video (`20260914_english_all_7bffe0766f`) and will listen/watch on YouTube. URL and visibility were not supplied or independently verified. This supersedes the earlier local-only status for that video; automatic publication remains disabled.

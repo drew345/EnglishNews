@@ -10,6 +10,7 @@ import shutil
 import sys
 
 from .lesson import digest, import_story, make_plan, validate_explanations, vocab_entries, write_json, written_lesson
+from .vocabulary import filter_vocabulary, VERSION as VOCAB_FILTER_VERSION
 
 ROOT = Path(__file__).resolve().parents[1]
 NEWS = ROOT.parent / 'korean-news'
@@ -35,6 +36,9 @@ def client_from_existing_key(env_file: Path | None):
 
 def enrich(lesson, path, client, model):
     identity = digest(dict(lesson=lesson, model=model, prompt=PROMPT_VERSION))
+    if not vocab_entries(lesson):
+        write_json(path, dict(identity=identity, model=model, prompt_version=PROMPT_VERSION, result={'entries': []}))
+        return {}
     if path.exists():
         cached = json.loads(path.read_text(encoding='utf-8'))
         if cached.get('identity') == identity:
@@ -71,12 +75,15 @@ def main():
     source_run = original['run_id']
     source_text = (baseline / 'source' / f'{source_run[:8]}-news-written.txt').read_text(encoding='utf-8')
     lesson = import_story(source_text, source_run, args.story)
+    lesson, filter_report = filter_vocabulary(lesson)
     profile = dict(version='english-prototype-v3-korean-labels-compact-text', voice=args.voice,
+                   vocabulary_filter=VOCAB_FILTER_VERSION,
                    target_speed=args.target_speed, native_speed=args.native_speed)
     identity = digest(dict(lesson=lesson, profile=profile, explanation_model=args.model, explanation_prompt=PROMPT_VERSION))
     run_id = f'{source_run[:8]}_english_s{args.story}_{identity[:10]}'
     output = ROOT / 'output/runs' / run_id
     output.mkdir(parents=True, exist_ok=True)
+    write_json(output / 'vocabulary-filter.json', filter_report)
     write_json(output / 'lesson-bundle.json', dict(content_sha256=digest(lesson), lesson=lesson))
     write_json(output / 'lesson-bundle.ready.json', dict(schema_version=1, content_sha256=digest(lesson)))
     client = client_from_existing_key(args.env_file)

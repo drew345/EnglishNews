@@ -12,6 +12,7 @@ from contextlib import contextmanager
 
 from .lesson import digest, import_story, make_plan, vocab_entries, write_json, written_lesson
 from .prototype import ROOT, NEWS, INSTRUCTIONS, PROMPT_VERSION, client_from_existing_key, enrich
+from .vocabulary import filter_vocabulary, VERSION as VOCAB_FILTER_VERSION
 
 VERSION = 'english-full-run-v1'
 CHANNEL = 'UCPvS_o6ypGR8-aA0P2pgtdA'
@@ -93,13 +94,17 @@ def run(source, staged, env_file, render=True):
     source_run = original['run_id']
     text = (baseline / 'source' / f'{source_run[:8]}-news-written.txt').read_text(encoding='utf-8')
     lessons = [import_story(text, source_run, i) for i in range(1, len(original['stories']) + 1)]
+    filtered = [filter_vocabulary(lesson) for lesson in lessons]
+    lessons = [lesson for lesson, report in filtered]
     if len(lessons) != 3:
         raise ValueError('This workflow expects exactly three stories')
     profile = dict(version=VERSION, voice='alloy', target_speed=.88, native_speed=1.07,
+                   vocabulary_filter=VOCAB_FILTER_VERSION,
                    explanation_model='gpt-5.6-luna', explanation_prompt=PROMPT_VERSION)
     identity = digest(dict(lessons=lessons, profile=profile, inputs=json.loads((baseline / 'manifest.json').read_text(encoding='utf-8'))))
     output = ROOT / 'output/runs' / f'{source_run[:8]}_english_all_{identity[:10]}'
     output.mkdir(parents=True, exist_ok=True)
+    write_json(output / 'vocabulary-filter.json', dict(stories=[report for lesson, report in filtered]))
     state = output / 'workflow-status.json'
     write_json(state, dict(status='building_audio', source_run_id=source_run, publication_enabled=False))
     print(f'English output: {output}', flush=True)

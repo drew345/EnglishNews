@@ -1,5 +1,9 @@
 # English News — session log
 
+## 2026-09-14 — Korean country names included in English filter
+
+- Added exact country-name matching on Korean vocabulary words as requested. Last source's text-only check now removes 태국 and 이재명 (31 → 29); 17 tests pass. No LLM calls or media generated. The other three proposed rules remain deferred; implementation and details are in the development worktree.
+
 ## 2026-09-14 — first two English vocabulary filters ready
 
 - Development now filters whole-word “name” glosses and exact country-name/alias glosses before explanations/audio. 16 tests pass; offline September 14 check removes one entry (31 → 30). No LLM calls or media generation. Andrew requires text-only effectiveness checks.

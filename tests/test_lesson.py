@@ -33,14 +33,17 @@ class LessonTests(unittest.TestCase):
 
     def test_exact_vocabulary_and_sentence_sequence(self):
         plan = make_plan(self.lesson, self.explanations)
-        self.assertEqual(plan[0]['text'], '가족들은 집을 공유한다.')
-        self.assertEqual(plan[1]['text'].splitlines(), ['Families share a home.'] * 2)
-        self.assertEqual(plan[2]['text'], '각 가구에는 집이 있다.')
-        self.assertEqual(plan[3]['text'].splitlines(), ['household.', 'household.', '가구.',
+        self.assertEqual(plan[0]['text'], '헤드라인 1.')
+        self.assertEqual(plan[1]['text'], '가족들은 집을 공유한다.')
+        self.assertEqual(plan[2]['text'].splitlines(), ['Families share a home.'] * 2)
+        self.assertEqual(plan[3]['text'], '각 가구에는 집이 있다.')
+        self.assertEqual(plan[4]['text'], '어휘.')
+        self.assertEqual(plan[5]['text'].splitlines(), ['household.', 'household.', '가구.',
                          'A group of people who live together.', 'household.', 'household.'])
-        self.assertEqual(plan[4]['text'].splitlines(), ['Each household has a home.'] * 2)
-        self.assertEqual(plan[-1]['text'], 'Full review.\nFamilies share a home.\nEach household has a home.')
-        self.assertEqual([u['speed'] for u in plan], [1.07, .88, 1.07, .88, .88, .88])
+        self.assertEqual(plan[6]['text'].splitlines(), ['Each household has a home.'] * 2)
+        self.assertEqual(plan[-2]['text'], '전체 요약.')
+        self.assertEqual(plan[-1]['text'], 'Families share a home.\nEach household has a home.')
+        self.assertEqual([u['speed'] for u in plan], [1.07, 1.07, .88, 1.07, 1.07, .88, .88, 1.07, .88])
 
     def test_source_definitions_are_preserved(self):
         original = copy.deepcopy(self.lesson)
@@ -48,16 +51,34 @@ class LessonTests(unittest.TestCase):
         make_plan(self.lesson, self.explanations)
         self.assertEqual(self.lesson, original)
         self.assertEqual(self.lesson['sentences'][0]['vocab'][0]['ko_def'], '함께 사는 사람들')
-        self.assertIn('## 영어 전체 복습', written)
+        self.assertIn('## 전체 요약', written)
         self.assertLess(written.index('각 가구'), written.index('- household'))
 
     def test_audio_assembly_guarantees_all_repetitions(self):
         for unit in make_plan(self.lesson, self.explanations):
             segments, order = segment_plan(unit)
             self.assertEqual('\n'.join(segments[i] for i in order), unit['text'])
-        segments, order = segment_plan(make_plan(self.lesson, self.explanations)[3])
+        segments, order = segment_plan(make_plan(self.lesson, self.explanations)[5])
         self.assertEqual(len(segments), 3)
         self.assertEqual(order, [0, 0, 1, 2, 0, 0])
+
+    def test_written_blocks_match_korean_spacing_and_colons(self):
+        self.lesson['sentences'] *= 2
+        text = written_lesson(self.lesson, self.explanations)
+        block = ('각 가구에는 집이 있다.\n### 어휘:\n'
+                 '- household: 가구: A group of people who live together.\n\n'
+                 'Each household has a home.\n\n')
+        self.assertIn(block + block, text)
+        self.assertNotIn('—', text)
+
+    def test_labels_follow_story_number_and_nonempty_vocab_sections(self):
+        self.lesson['source_story_number'] = 3
+        self.lesson['sentences'].append(dict(en='People live here.', natural_ko='사람들이 여기에 산다.', vocab=[]))
+        plan = make_plan(self.lesson, self.explanations)
+        self.assertEqual(plan[0]['text'], '헤드라인 3.')
+        self.assertIn('## 헤드라인 3', written_lesson(self.lesson, self.explanations))
+        self.assertEqual(sum(u['text'] == '어휘.' for u in plan), 1)
+        self.assertEqual(sum(u['text'] == '전체 요약.' for u in plan), 1)
 
     def test_import_rejects_misalignment(self):
         with self.assertRaises(ValueError):

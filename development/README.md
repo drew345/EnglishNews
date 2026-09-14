@@ -63,7 +63,7 @@ Do not add worktrees as independent repositories to routine sync.
 
 ## One-story prototype
 
-The current review sample is `20260913_english_s1_e4644bf4a9`: source story 1,
+The previously reviewed sample is `20260913_english_s1_e4644bf4a9`: source story 1,
 four body sentences, 18 existing vocabulary entries, and an English full review.
 The EnglishNews `output/runs/<id>/` folder contains the structured historical
 bundle, cached explanations, written lesson, speech plan/script, segment audio,
@@ -74,8 +74,8 @@ One-story samples intentionally omit YouTube chapters (which need three entries)
 From this EnglishNews worktree, using its `.venv/Scripts/python.exe`:
 
 ```powershell
-.venv/Scripts/python.exe -X utf8 -m english_news.prototype --baseline .local/baselines/20260913_122823_97cda690 --env-file C:/AI/Codex/Projects/korean-news/.env --audio
-.venv/Scripts/python.exe -X utf8 -m english_news.render output/runs/20260913_english_s1_e4644bf4a9
+.venv/Scripts/python.exe -X utf8 -m english_news.prototype --baseline .local/baselines/NEW_RUN_ID --env-file C:/AI/Codex/Projects/korean-news/.env --audio
+.venv/Scripts/python.exe -X utf8 -m english_news.render output/runs/NEW_ENGLISH_RUN_ID
 .venv/Scripts/python.exe -X utf8 -m unittest discover tests
 .venv/Scripts/python.exe -X utf8 development/check_korean_baseline.py
 .venv/Scripts/python.exe -X utf8 development/check_sample.py output/runs/20260913_english_s1_e4644bf4a9
@@ -88,6 +88,11 @@ speech transport resumes validated segment requests. Each vocabulary entry
 synthesizes its English gloss, Korean word and English explanation separately,
 then assembles indices `[0, 0, 1, 2, 0, 0]`. English sentence audio is duplicated
 in software too. This avoids model omissions of repeated speech.
+
+As of September 14, always use the next incoming run for new samples. Replace
+the NEW_RUN_ID placeholders above only after receiving that run. Do not rerender
+old samples unless Andrew explicitly requests it. The interrupted old-run v3
+render `20260913_english_s1_a50ff43638` is not a review deliverable.
 
 Alloy, English 0.88 and Korean sentences 1.07 were confirmed for this sample;
 vocabulary blocks and the English review use 0.88. Branding is provisional.

@@ -91,28 +91,32 @@ def make_plan(lesson: dict, explanations: dict, *, target_speed=.88, native_spee
     def add(name, text, speed):
         units.append(dict(name=name, text=text, speed=speed))
     h = lesson['headline']
+    add('headline_label', f"헤드라인 {lesson['source_story_number']}.", native_speed)
     add('headline_ko', h['natural_ko'], native_speed)
     add('headline_en', '\n'.join([h['en']] * 2), target_speed)
     for i, body in enumerate(lesson['sentences'], 1):
         add(f'body{i}_ko', body['natural_ko'], native_speed)
+        if body['vocab']:
+            add(f'body{i}_vocab_label', '어휘.', native_speed)
         for v in body['vocab']:
             gloss = sentence(v['en_def'])
             add(v['id'], '\n'.join([gloss, gloss, sentence(v['word']),
                 sentence(explanations[v['id']]['en_explanation']), gloss, gloss]), target_speed)
         add(f'body{i}_en', '\n'.join([body['en']] * 2), target_speed)
-    add('review_en', 'Full review.\n' + '\n'.join([h['en']] + [s['en'] for s in lesson['sentences']]), target_speed)
+    add('review_label', '전체 요약.', native_speed)
+    add('review_en', '\n'.join([h['en']] + [s['en'] for s in lesson['sentences']]), target_speed)
     return units
 
 
 def written_lesson(lesson: dict, explanations: dict) -> str:
     h = lesson['headline']
-    lines = ['## 뉴스 1', '', h['natural_ko'], h['en'], '', '## 문장별 영어 학습', '']
+    lines = [f"## 헤드라인 {lesson['source_story_number']}", '', h['natural_ko'], h['en'], '', '## 문장별 영어 학습', '']
     for body in lesson['sentences']:
-        lines.extend([body['natural_ko'], ''])
+        lines.append(body['natural_ko'])
         if body['vocab']:
-            lines.append('### 어휘')
+            lines.append('### 어휘:')
         for v in body['vocab']:
-            lines.extend([f"- {v['en_def']} — {v['word']}", explanations[v['id']]['en_explanation']])
+            lines.append(f"- {v['en_def']}: {v['word']}: {explanations[v['id']]['en_explanation']}")
         lines.extend(['', body['en'], ''])
-    lines.extend(['## 영어 전체 복습', '', h['en'], '', ' '.join(s['en'] for s in lesson['sentences']), ''])
+    lines.extend(['## 전체 요약', '', h['en'], '', ' '.join(s['en'] for s in lesson['sentences']), ''])
     return '\n'.join(lines)

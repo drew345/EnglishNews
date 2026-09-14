@@ -1,5 +1,13 @@
 # English News — session log
 
+## 2026-09-14 — section labels, written formatting, and next-run-only rule
+
+- Andrew watched the first sample and requested spoken Korean headline numbering, `어휘` before vocabulary, and `전체 요약` before the final English reading. Implemented separate native-speed label units and removed spoken “Full review.” Story numbering now also drives the written heading.
+- Written blocks now follow the Korean source spacing: native sentence immediately followed by the vocabulary heading, one colon-separated logical line per vocabulary entry, then a blank line before the English sentence and between blocks. Removed em-dash separators. English video vocabulary rows use the existing 34px vocabulary style while sentence text stays 44px; long rows can wrap naturally.
+- All 307 tests passed (9 EnglishNews, 270 Korean News, 28 Video Lab). Eight Korean deterministic baseline artifacts remain byte-identical. No production code or desktop workflow changed.
+- Began rebuilding the old source before Andrew clarified that every revision must use the next incoming run. New labels/audio were generated locally, but the video render was interrupted immediately after that clarification; no matching rendering processes remain. The partial `20260913_english_s1_a50ff43638` is not a review deliverable. Do not resume it.
+- Standing rule: never remake old videos unless explicitly asked. Keep these code changes ready and wait for the next news run. Frozen historical artifacts may still support offline regression checks. No upload took place.
+
 ## 2026-09-13 — first written/audio/video prototype
 
 - Built the independent English-side historical importer, schema-v1 bundle/ready marker, cached batched explanation enrichment, written/speech plans and audio assembly. Used source story 1 from today's frozen run: 4 body sentences and 18 unchanged vocabulary entries. This imports the saved written format; live structured export and daily worker integration remain future work.

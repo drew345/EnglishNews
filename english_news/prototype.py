@@ -71,7 +71,7 @@ def main():
     source_run = original['run_id']
     source_text = (baseline / 'source' / f'{source_run[:8]}-news-written.txt').read_text(encoding='utf-8')
     lesson = import_story(source_text, source_run, args.story)
-    profile = dict(version='english-prototype-v2-assembled-repetitions', voice=args.voice,
+    profile = dict(version='english-prototype-v3-korean-labels-compact-text', voice=args.voice,
                    target_speed=args.target_speed, native_speed=args.native_speed)
     identity = digest(dict(lesson=lesson, profile=profile, explanation_model=args.model, explanation_prompt=PROMPT_VERSION))
     run_id = f'{source_run[:8]}_english_s{args.story}_{identity[:10]}'

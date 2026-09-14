@@ -1,5 +1,10 @@
 # English News — session log
 
+## 2026-09-14 — new channel created
+
+- Verified new channel 뉴스로 배우는 영어, `@SteadyLanternEnglish`, ID `UCPvS_o6ypGR8-aA0P2pgtdA`, under the existing Steady Lantern account. Original Korean channel unchanged.
+- Matching 영어 icon saved in development EnglishNews assets/channel/. Upload is pending Chrome extension file-URL permission; instructions were given to Andrew. Full details in development SESSION_LOG.md and assets/channel/README.md. Automatic video publication remains disabled.
+
 ## 2026-09-14 — feedback implemented; wait for next run
 
 - Added Korean spoken section labels and compact colon-separated written vocabulary in the development worktrees; 307 tests pass. Details are in the development EnglishNews SESSION_LOG.md.

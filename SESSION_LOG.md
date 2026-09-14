@@ -1,5 +1,10 @@
 # English News — session log
 
+## 2026-09-14 — full English video and repeatable local workflow
+
+- Today's Korean run `20260914_105639_ba258775` now has a three-story English review video, `20260914_english_all_7bffe0766f` (~16m38s), with Korean upload materials. Continue in the development worktree; its development/README.md begins with the one-command runbook and checks for lighter-model handoff. No upload or automatic integration; Andrew reviews first.
+- English channel description and enlarged icon v2 published. Korean channel renamed Learn Korean Through the News / @SteadyLanternKorean. Details and preserved assets/descriptions are in development assets/channel/. Production code and desktop workflow remain untouched.
+
 ## 2026-09-14 — English channel icon applied
 
 - Uploaded and published the matching 영어 profile icon after Chrome file-URL access was enabled. Verified the icon and “All changes saved” in English channel Studio. This supersedes the earlier pending-upload note; public avatar propagation may lag. No video publication or Korean channel changes.

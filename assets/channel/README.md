@@ -19,11 +19,10 @@ tool, using a screenshot of the existing Korean channel icon as reference.
 The image uses the same navy/cream/gold card-and-audio-wave motif, with 영어
 instead of 한국어. The original generated image is retained under Codex Home.
 
-The icon has NOT been applied yet. Chrome's file chooser rejected setFiles
-because file URL access is not enabled for the ChatGPT extension. User was
-given the official instructions to enable that setting. Resume on the English
-channel's YouTube Studio Profile customization page, upload this PNG as the
-Picture, inspect the crop and publish the profile change.
+The icon was uploaded, cropped and published on 2026-09-14 after Andrew enabled
+file URL access for the ChatGPT Chrome extension. YouTube Studio displayed the
+correct 영어 icon and confirmed “All changes saved.” The public channel avatar
+still showed its cached default immediately afterward; propagation may lag.
 
 Final generation prompt:
 

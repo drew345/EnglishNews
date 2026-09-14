@@ -1,5 +1,9 @@
 # English News — session log
 
+## 2026-09-14 — channel icon published
+
+- After Andrew enabled Chrome extension file-URL access, uploaded assets/channel/english-channel-icon-v1.png to the English channel, accepted its circular crop, and published the profile change. Studio showed the correct icon and confirmed “All changes saved.” Public avatar was still cached immediately afterward. No video upload or Korean channel changes.
+
 ## 2026-09-14 — English YouTube channel and matching icon
 
 - Andrew selected 뉴스로 배우는 영어 and authorized channel creation, including the final Terms confirmation. Verified the created channel at `UCPvS_o6ypGR8-aA0P2pgtdA`, handle `@SteadyLanternEnglish`, managed by the same Steady Lantern account as Korean Listening Lessons. Existing channel name remains unchanged; the proposed Korean rename was only discussed.

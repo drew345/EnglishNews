@@ -1,5 +1,12 @@
 # English News — session log
 
+## 2026-09-14 — manual upload and next vocabulary task
+
+- Andrew reports manually uploading today's three-story English video (`20260914_english_all_7bffe0766f`) and will listen/watch on YouTube. URL and visibility were not supplied or independently verified. This supersedes the earlier local-only status for that video; automatic publication remains disabled.
+- Next priority: refine the simplified reuse-and-invert vocabulary method for English learners, preferably with deterministic software and no additional LLM selection call. Do not build an independent English vocabulary ranking/selection system yet; that remains a possible later phase.
+- Proposed starting constraint from Andrew: the English study word/phrase must actually occur in the English story text. Reject unsuitable descriptive glosses such as “a politician's name” paired with 이재명; do not treat a definition/category label as a study term. Reuse existing Korean vocabulary candidates, then validate or filter their English side.
+- Work out matching details before implementation: case/punctuation normalization, whole-word/phrase boundaries, sentence-local versus story-wide checks, and handling infinitive “to” or inflected forms. Strict matching may omit useful entries (e.g. “to hire” versus “hiring”); do not silently relax the occurrence requirement. Exact occurrence is a useful filter, not proof of a correct translation or useful vocabulary item. Report omissions for review. No implementation or media regeneration in this memory update; evaluate future changes on the next incoming run.
+
 ## 2026-09-14 — complete three-story workflow and review video
 
 - Andrew authorized today's full three-story English video, Korean upload materials, and a repeatable local command; review before upload. Source is completed Korean run `20260914_105639_ba258775`; English output is `20260914_english_all_7bffe0766f`. Do not rebuild yesterday's sample.

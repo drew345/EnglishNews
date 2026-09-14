@@ -19,6 +19,7 @@ Read this file and SESSION_LOG.md first when resuming. FEASIBILITY.md holds the 
 - English full review; separate YouTube channel with Korean titles/descriptions. Andrew confirmed Alloy, English 0.88 and Korean sentences 1.07 for the initial sample; vocabulary blocks and review use 0.88. Channel identity and final branding remain open.
 - English repetition is assembled from individual audio clips: sentence twice; vocabulary gloss twice, Korean word, English explanation, gloss twice. The first model-directed repetition sample omitted a final word, so v2 makes the repetition count deterministic. This does not change Korean News speech behavior.
 - Independent English vocabulary selection rules and study tips come later.
+- Next vocabulary task (2026-09-14): refine reuse/inversion first, preferably with deterministic English-text occurrence checks and no extra LLM selection call. English study terms must come from the actual English story; descriptive glosses such as “a politician's name” must not become study terms. Matching/filtering details remain to be designed. A full separate English selection/ranking pipeline is deferred. Preserve Korean production vocabulary rules.
 - Routine builds use `development/make-english-news.ps1 -SourceRun <new Korean run ID>` in this worktree. Read the runbook first. Require ready_for_review plus audio/video QA and an upload-package.json; show the result for Andrew's review. Never upload automatically. Valid cached speech and completed renders support resuming an interrupted current run.
 
 ## Development approach

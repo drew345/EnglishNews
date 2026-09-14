@@ -1,5 +1,10 @@
 # English News — session log
 
+## 2026-09-14 — Korean country-name check added
+
+- Andrew requested matching the Korean side too, specifically 태국 with the English gloss “Southeast Asian country.” Added exact normalized matching against the Korean vocabulary word (`word`), using a checked-in CLDR country/territory list restricted to ISO codes plus common aliases. Local data, no runtime network or LLM calls; source narrative and ko_def are not filtered. Filter profile now name-country-v2-korean.
+- 17 tests pass. Text-only check of the last source removes 태국 and 이재명 (31 → 29 total), preserving compounds such as 태국인/한국어. No audio/video generation. Generic-description filtering, sentence occurrence and grammatical variants remain deferred. Exact homographs remain a limitation (e.g. 수단 can be a country or an ordinary noun).
+
 ## 2026-09-14 — first two vocabulary filters implemented
 
 - Implemented only the first two approved rules: whole-word “name” in the English gloss, and whole-gloss country-name/common-alias matches (case/spacing/outer punctuation normalized). Vendored a fixed ISO country/territory name list and explicit common aliases; no runtime network dependency. Applied in both full-run and one-story entry points before explanation enrichment or speech; source stays unchanged, stable IDs preserved, and vocabulary-filter.json records removals. Empty vocabulary skips the explanation request and vocabulary labels.

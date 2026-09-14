@@ -1,11 +1,11 @@
-"""Two conservative, offline filters over existing English vocabulary glosses."""
+"""Offline name-gloss and bilingual country-name vocabulary filters."""
 from copy import deepcopy
 import json
 from pathlib import Path
 import re
 import unicodedata
 
-VERSION = 'name-country-v1'
+VERSION = 'name-country-v2-korean'
 
 
 def normalize(text):
@@ -24,11 +24,19 @@ COUNTRIES = frozenset(normalize(name) for name in
     + ALIASES.replace('\n', '').split('|'))
 
 
-def exclusion_reason(gloss):
+KOREAN_ALIASES = '호주|터키|남한|조선민주주의인민공화국|중화인민공화국|중화민국|사우디|코소보'
+KOREAN_COUNTRIES = frozenset(normalize(name) for name in
+    json.loads(Path(__file__).with_name('country_names_ko.json').read_text(encoding='utf-8-sig'))
+    + KOREAN_ALIASES.split('|'))
+
+
+def exclusion_reason(gloss, korean_word=''):
     if re.search(r'\bname\b', unicodedata.normalize('NFKC', gloss), re.IGNORECASE):
         return 'english_gloss_contains_name'
     if normalize(gloss) in COUNTRIES:
         return 'english_gloss_is_country'
+    if normalize(korean_word) in KOREAN_COUNTRIES:
+        return 'korean_word_is_country'
     return None
 
 
@@ -39,7 +47,7 @@ def filter_vocabulary(lesson):
     for sentence in filtered['sentences']:
         kept = []
         for entry in sentence['vocab']:
-            reason = exclusion_reason(entry['en_def'])
+            reason = exclusion_reason(entry['en_def'], entry['word'])
             if reason:
                 removed.append(dict(entry, reason=reason))
             else:

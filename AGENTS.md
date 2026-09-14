@@ -21,6 +21,7 @@ Read this file and SESSION_LOG.md first when resuming. FEASIBILITY.md holds the 
 - Independent English vocabulary selection rules and study tips come later.
 - Vocabulary filters implemented: reject English glosses containing whole-word “name” (case-insensitive), and whole-gloss matches against the local country-name/alias list. Applied before explanations and speech; vocabulary-filter.json audits removals. No extra LLM calls. Deferred next: generic place descriptions, occurrence in the matching English sentence, and grammatical-variation matching. Full separate English selection/ranking remains deferred; preserve Korean production vocabulary rules.
 - Vocabulary effectiveness checks must be offline/text-only: no audio or video generation. Andrew explicitly reinforced this on 2026-09-14.
+- Country filtering also checks the Korean vocabulary word against a fixed Korean country-name/alias list (e.g. 태국, 한국, 호주). This catches generic English glosses attached to country names without implementing the deferred generic-description filter. Exact word only; no substring/particle matching.
 - Routine builds use `development/make-english-news.ps1 -SourceRun <new Korean run ID>` in this worktree. Read the runbook first. Require ready_for_review plus audio/video QA and an upload-package.json; show the result for Andrew's review. Never upload automatically. Valid cached speech and completed renders support resuming an interrupted current run.
 
 ## Development approach

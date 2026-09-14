@@ -5,6 +5,8 @@
 Vocabulary update: the command now removes English glosses containing whole-word
 “name” or exactly matching the checked-in country-name/alias list before
 explanation/speech generation. See vocabulary-filter.json in each new output.
+The country check also matches the Korean vocabulary word, so 태국 is removed
+even when the English gloss is “Southeast Asian country.”
 Generic place descriptions, sentence-occurrence checks and grammatical variants
 are saved for next time. Effectiveness checks for these rules are text-only:
 do not run this media-building command merely to test a vocabulary change.

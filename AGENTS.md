@@ -4,7 +4,7 @@ Last updated: 2026-09-13
 
 ## Purpose and boundaries
 
-English News is a companion prototype for Korean-native speakers practicing English through the same news stories. One historical story now produces written lessons, speech/audio, video and Korean publication sidecars in isolated development worktrees. Daily integration has not started. See SESSION_LOG.md and development/README.md for the current sample and commands.
+English News is a companion for Korean-native speakers practicing English through the same news stories. An explicit completed Korean run now produces all three English stories, speech/audio, video and Korean publication sidecars in isolated development worktrees. Routine command and lighter-model handoff instructions are at the top of development/README.md. Automatic daily triggering and upload are not enabled.
 
 Read this file and SESSION_LOG.md first when resuming. FEASIBILITY.md holds the detailed code inventory, architecture, risks and phased plan; do not duplicate it into additional plan files.
 
@@ -19,6 +19,7 @@ Read this file and SESSION_LOG.md first when resuming. FEASIBILITY.md holds the 
 - English full review; separate YouTube channel with Korean titles/descriptions. Andrew confirmed Alloy, English 0.88 and Korean sentences 1.07 for the initial sample; vocabulary blocks and review use 0.88. Channel identity and final branding remain open.
 - English repetition is assembled from individual audio clips: sentence twice; vocabulary gloss twice, Korean word, English explanation, gloss twice. The first model-directed repetition sample omitted a final word, so v2 makes the repetition count deterministic. This does not change Korean News speech behavior.
 - Independent English vocabulary selection rules and study tips come later.
+- Routine builds use `development/make-english-news.ps1 -SourceRun <new Korean run ID>` in this worktree. Read the runbook first. Require ready_for_review plus audio/video QA and an upload-package.json; show the result for Andrew's review. Never upload automatically. Valid cached speech and completed renders support resuming an interrupted current run.
 
 ## Development approach
 

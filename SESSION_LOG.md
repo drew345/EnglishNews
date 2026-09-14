@@ -1,5 +1,15 @@
 # English News — session log
 
+## 2026-09-14 — complete three-story workflow and review video
+
+- Andrew authorized today's full three-story English video, Korean upload materials, and a repeatable local command; review before upload. Source is completed Korean run `20260914_105639_ba258775`; English output is `20260914_english_all_7bffe0766f`. Do not rebuild yesterday's sample.
+- Added workflow.py and development/make-english-news.ps1: verified input snapshots, cached batched explanations and deterministic speech, full-story assembly/timestamps, local render, audio/video QA, checksummed upload-package.json, disabled publication, and process lock. The top of development/README.md is the operating guide for a lighter Codex model. No production code or desktop workflow changed.
+- Generated 3 stories, 31 vocabulary entries, 80 speech units; audio 987.384s and video 998.33s (~16m38s). English renderer now scrolls each story over its own audio interval, resets at the matching card transition, uses compact vocabulary lines and holds the final text through the tail. Korean regression artifacts remain byte-identical.
+- Structural audio/full MP3 decode and full MP4 audio/video decode passed; start, story-two transition and final-review frames inspected. Sample ASR preserved sentence/review content; repetition can be collapsed by ASR (story-two headline is duplicated by assembly); Yong Hye-in name pronunciation needs human listening. Additional inherited vocabulary concerns include generic country/name glosses and 이의원 spacing; the new explanation for historical reflection is awkward. These are review items, not silent source corrections. No upload occurred.
+- Channel work completed: Korean channel is now Learn Korean Through the News / @SteadyLanternKorean, with description opening updated. English description published and enlarged icon v2 published; original descriptions and image versions preserved in assets/channel/.
+- Final validation: 13 English workflow tests and 29 renderer tests pass. Full command exited 0, then resumed in about 7 seconds with the completed video reused after input/code/video hash checks. Inspected middle vocabulary frames and thumbnail. Detailed listening caveats are in the run's review-notes.md and transcription-qa.json. Lighter-model operation remains to be tested on the next incoming run.
+
+
 ## 2026-09-14 — channel icon published
 
 - After Andrew enabled Chrome extension file-URL access, uploaded assets/channel/english-channel-icon-v1.png to the English channel, accepted its circular crop, and published the profile change. Studio showed the correct icon and confirmed “All changes saved.” Public avatar was still cached immediately afterward. No video upload or Korean channel changes.

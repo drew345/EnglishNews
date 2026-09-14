@@ -25,7 +25,7 @@ args = p.parse_args()
 run = args.run.resolve()
 metadata = json.loads((run / 'run.json').read_text(encoding='utf-8'))
 plan = json.loads((run / 'speech-plan.json').read_text(encoding='utf-8'))['units']
-requests = metadata['stories'][0]['audio_requests']
+requests = [request for story in metadata['stories'] for request in story['audio_requests']]
 assert len(requests) == len(plan)
 checks = []
 for unit, request in zip(plan, requests):
@@ -57,5 +57,7 @@ if args.transcribe:
         return dict(name=unit['name'], expected=unit['text'], transcript=transcript)
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
         report['transcription_samples'] = list(executor.map(check, [(u, r) for u, r in zip(plan, requests) if u['name'] in selected]))
+    write_json(run / 'transcription-qa.json', dict(samples=report['transcription_samples'],
+               note='Human review required: ASR may normalize names or collapse repetitions.'))
 write_json(run / 'audio-qa.json', report)
-print(json.dumps(report, ensure_ascii=False, indent=2))
+print(f'Audio QA passed: {len(checks)} speech units; {duration:.3f} seconds; full decode passed.')

@@ -41,6 +41,11 @@ Resolve siblings relative to the local Projects directory: korean-news (source p
 
 ## Portability status
 
+English YouTube channel created 2026-09-14: `뉴스로 배우는 영어`,
+`@SteadyLanternEnglish`, ID `UCPvS_o6ypGR8-aA0P2pgtdA`. Same Steady Lantern
+account as the existing Korean channel. See `assets/channel/README.md` for
+identity and icon status. Creation does not enable automatic publication.
+
 Repository: https://github.com/drew345/EnglishNews.git, branch main. Andrew authorized repository initialization/publication and routine-sync enrollment on 2026-09-13. CodexSync/github-sync.json is the authoritative membership list; MindHub keeps a pointer only. Verify published repository and coordination state when resuming. The local handoff ZIP is ignored by Git; the Markdown source files are the portable record.
 
 The user plans End sync on LG Gram 14 and Start sync on ASUS separately. This memory-save request did not run either operation. Ordinary resumption or a device mention must not trigger sync automatically.

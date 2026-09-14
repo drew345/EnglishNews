@@ -1,5 +1,11 @@
 # English News — session log
 
+## 2026-09-14 — English YouTube channel and matching icon
+
+- Andrew selected 뉴스로 배우는 영어 and authorized channel creation, including the final Terms confirmation. Verified the created channel at `UCPvS_o6ypGR8-aA0P2pgtdA`, handle `@SteadyLanternEnglish`, managed by the same Steady Lantern account as Korean Listening Lessons. Existing channel name remains unchanged; the proposed Korean rename was only discussed.
+- Created and saved a matching 영어 icon at `assets/channel/english-channel-icon-v1.png` using built-in ImageGen and the existing 한국어 channel avatar as reference. Prompt and channel details are in assets/channel/README.md.
+- Icon upload is pending: Chrome fileChooser.setFiles returned Not allowed. Official troubleshooting requires user to enable Allow access to file URLs for the ChatGPT browser extension. English channel Studio Profile page is prepared; resume upload/crop/publish after that setting is enabled. No video publication or workflow integration occurred.
+
 ## 2026-09-14 — section labels, written formatting, and next-run-only rule
 
 - Andrew watched the first sample and requested spoken Korean headline numbering, `어휘` before vocabulary, and `전체 요약` before the final English reading. Implemented separate native-speed label units and removed spoken “Full review.” Story numbering now also drives the written heading.

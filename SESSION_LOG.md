@@ -1,5 +1,9 @@
 # English News — session log
 
+## 2026-09-14 — English channel icon applied
+
+- Uploaded and published the matching 영어 profile icon after Chrome file-URL access was enabled. Verified the icon and “All changes saved” in English channel Studio. This supersedes the earlier pending-upload note; public avatar propagation may lag. No video publication or Korean channel changes.
+
 ## 2026-09-14 — new channel created
 
 - Verified new channel 뉴스로 배우는 영어, `@SteadyLanternEnglish`, ID `UCPvS_o6ypGR8-aA0P2pgtdA`, under the existing Steady Lantern account. Original Korean channel unchanged.

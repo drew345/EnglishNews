@@ -1,5 +1,10 @@
 # English News — session log
 
+## 2026-09-14 — feedback implemented; wait for next run
+
+- Added Korean spoken section labels and compact colon-separated written vocabulary in the development worktrees; 307 tests pass. Details are in the development EnglishNews SESSION_LOG.md.
+- Andrew clarified that all revisions must use the next incoming news run. Interrupted the in-progress old-video render and recorded the durable rule in both AGENTS.md files. Do not resume the partial old sample; wait for the new source run. No publication or production workflow changes.
+
 ## 2026-09-13 — prototype ready in development worktrees
 
 - Andrew authorized the first frozen-story prototype and confirmed Alloy, English 0.88 and Korean sentences 1.07. Current review sample is `20260913_english_s1_e4644bf4a9` in the EnglishNews and Video Lab development output folders. It includes written lessons, assembled audio and a roughly 7m23s video; no upload or daily integration ran.

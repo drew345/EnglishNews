@@ -1,5 +1,10 @@
 # English News — session log
 
+## 2026-09-14 — manual upload; simplified English vocabulary filtering next
+
+- Andrew reports uploading today's English video manually and will review it on YouTube. No URL/visibility supplied; automatic uploads remain disabled.
+- Next task is improving the existing vocabulary inversion shortcut: preferably use software to require the English study word/phrase to occur in the actual English story, removing descriptive placeholders such as “a politician's name.” Reuse existing candidates and defer a complete independent English vocabulary selector. Detailed decisions/open matching questions are in development SESSION_LOG.md. Record only for now; do not remake the uploaded video.
+
 ## 2026-09-14 — full English video and repeatable local workflow
 
 - Today's Korean run `20260914_105639_ba258775` now has a three-story English review video, `20260914_english_all_7bffe0766f` (~16m38s), with Korean upload materials. Continue in the development worktree; its development/README.md begins with the one-command runbook and checks for lighter-model handoff. No upload or automatic integration; Andrew reviews first.

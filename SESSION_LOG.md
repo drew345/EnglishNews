@@ -1,5 +1,10 @@
 # English News — session log
 
+## 2026-09-15 — current three-story English run
+
+- Used only completed Korean source run `20260915_093053_5331ab39` from today's desktop run. The development wrapper produced `20260915_english_all_c646177154` with three stories, 45 retained vocabulary entries, 96 speech units, 1,233.984 seconds of audio, and a 1,244.92-second MP4. Audio and video full-decode QA passed; `workflow-status.json` is `ready_for_review`.
+- Korean upload sidecars and thumbnail were generated for `뉴스로 배우는 영어` / `@SteadyLanternEnglish`; publication remains disabled and no upload occurred. Reviewed start, story-two transition, end frame, and thumbnail. Four vocabulary review notes remain in `vocabulary-review.md`; no pending filtering rules were changed.
+
 ## 2026-09-14 — Korean country-name check added
 
 - Andrew requested matching the Korean side too, specifically 태국 with the English gloss “Southeast Asian country.” Added exact normalized matching against the Korean vocabulary word (`word`), using a checked-in CLDR country/territory list restricted to ISO codes plus common aliases. Local data, no runtime network or LLM calls; source narrative and ko_def are not filtered. Filter profile now name-country-v2-korean.

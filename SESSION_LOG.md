@@ -4,6 +4,7 @@
 
 - Used only completed Korean source run `20260916_100859_a58b7f57`. The development wrapper produced `20260916_english_all_c646f6b591` with three stories, 36 retained vocabulary entries, 87 speech units, and 1,095.432 seconds of audio. Audio and video full-decode QA passed; the MP4 is 1,106.42 seconds and `workflow-status.json` is `ready_for_review`.
 - Korean title, description, chapters, and thumbnail were generated for `뉴스로 배우는 영어` / `@SteadyLanternEnglish`; publication remains disabled and no upload occurred. Reviewed opening, story-two transition, final frame, and thumbnail. Three vocabulary review notes remain in `vocabulary-review.md`; no pending filtering rules were changed.
+- Andrew wants these kept for near-term collaborative review: Story 1 `손현록` and `아가` are proper-name fragments that should not be general vocabulary, and `organizing` / `주최` is awkward for the event-host meaning.
 
 ## 2026-09-15 — current three-story English run
 

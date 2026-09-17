@@ -1,5 +1,10 @@
 # English News — session log
 
+## 2026-09-17 — current three-story English run
+
+- Used only completed Korean source run `20260917_131934_7cc6cd2b`. The development wrapper produced `20260917_english_all_3e8527728d` with three stories, 36 retained vocabulary entries, 87 speech units, and 1,096.440 seconds of audio. Audio and video full-decode QA passed; the MP4 is 1,107.33 seconds and `workflow-status.json` is `ready_for_review`.
+- Korean title, description, chapters, and thumbnail were generated for `뉴스로 배우는 영어` / `@SteadyLanternEnglish`; publication remains disabled and no upload occurred. Reviewed opening, story-two transition, final frame, and thumbnail. Three vocabulary review notes remain in `vocabulary-review.md`: `국가유산청` is an institution name, `historical` is imprecise for `역대 최대`, and `김도임` is a proper name. No pending filtering rules were changed.
+
 ## 2026-09-16 — current three-story English run
 
 - Used only completed Korean source run `20260916_100859_a58b7f57`. The development wrapper produced `20260916_english_all_c646f6b591` with three stories, 36 retained vocabulary entries, 87 speech units, and 1,095.432 seconds of audio. Audio and video full-decode QA passed; the MP4 is 1,106.42 seconds and `workflow-status.json` is `ready_for_review`.

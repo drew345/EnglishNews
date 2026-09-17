@@ -1,5 +1,11 @@
 # English News — session log
 
+## 2026-09-17 — prototype branches published for Seoul transfer
+
+- Published the EnglishNews planning `main` records and created matching GitHub `codex/english-news-prototype` branches for EnglishNews, korean-news, and KoreanLessonVideoLab. Each development worktree now tracks its remote branch; production branches were not merged or changed.
+- Verified production anchors remained korean-news `main` `93efff6` and Video Lab `main` `1151bc0`. Development anchors before this handoff note were EnglishNews `a6324ed`, korean-news `4be82ed`, and Video Lab `c8a8b60`. Validation passed: 17 English workflow tests, 29 renderer tests, both `pip check`, and Git content checks.
+- Next: run normal End Session Sync on the ASUS tomorrow. In Seoul, run Start Session Sync, then fetch the three prototype branches and recreate their linked worktrees and virtual environments. Generated media, caches, baselines, and credentials are intentionally outside Git.
+
 ## 2026-09-17 — current three-story English run
 
 - Used only completed Korean source run `20260917_131934_7cc6cd2b`. The development wrapper produced `20260917_english_all_3e8527728d` with three stories, 36 retained vocabulary entries, 87 speech units, and 1,096.440 seconds of audio. Audio and video full-decode QA passed; the MP4 is 1,107.33 seconds and `workflow-status.json` is `ready_for_review`.

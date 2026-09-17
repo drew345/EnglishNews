@@ -1,5 +1,11 @@
 # English News — session log
 
+## 2026-09-17 — prototype branches published for Seoul transfer
+
+- Published the local EnglishNews `main` records and created GitHub branch `codex/english-news-prototype` in EnglishNews, korean-news, and KoreanLessonVideoLab. Each development worktree now tracks its matching remote branch; no development branch was merged into production.
+- Verified Korean News production `main` remained `93efff6` and Video Lab production `main` remained `1151bc0`. Published development anchors were EnglishNews `a6324ed` before this handoff note, korean-news `4be82ed`, and Video Lab `c8a8b60`. English workflow tests (17) and renderer tests (29) passed; both development environments passed `pip check`.
+- Travel sequence: run the normal End Session Sync on the ASUS tomorrow; in Seoul, run Start Session Sync for routine `main` branches, then fetch `codex/english-news-prototype` in the three repositories and recreate the linked worktrees and virtual environments. Generated media, caches, baselines, and credentials remain outside Git.
+
 ## 2026-09-14 — Korean country names included in English filter
 
 - Added exact country-name matching on Korean vocabulary words as requested. Last source's text-only check now removes 태국 and 이재명 (31 → 29); 17 tests pass. No LLM calls or media generated. The other three proposed rules remain deferred; implementation and details are in the development worktree.

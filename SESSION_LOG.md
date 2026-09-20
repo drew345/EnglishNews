@@ -1,5 +1,13 @@
 # English News — session log
 
+## 2026-09-20 — first video from independent English vocabulary
+
+- Andrew authorized proceeding directly to video from the latest reviewed script, with audio generated/checked within the build. He expects to spot-check rather than listen to the entire lesson. This authorizes media for the current September 20 preparation, not main adoption or upload.
+- Built output/runs/20260920_english_all_2cea76ad88 from text-review/20260920_english_text_69271a0759a5 and matching production-staged story images. The media TTS script is byte-identical to the reviewed script. Vocabulary 1/6/5, 57 speech units; Alloy; English 0.8976, Korean sentences/labels 1.07, Korean vocabulary 0.88.
+- Combined audio 685.848 seconds; MP4 696.83 seconds (11:37). Audio unit/text/speed/repetition-assembly and full decode checks passed; full video/audio decode and duration checks passed. workflow-status ready_for_review; upload-package awaiting_user_review, publication disabled. No code edits, new selection, production changes, upload or merge.
+- Visually inspected thumbnail, opening, story 2/3 starts, three middle frames including vocabulary, and final review/tail. Layout and story cards are clear in sampled frames. Did not claim full listening review. Opened video/20260920-english-news-lesson.mp4 for Andrew.
+- Suggested spot-checks: 00:08 opening English headline; 05:38 supports himself vocabulary; 10:45 final English full review. Next: user feedback on pace/pronunciation and presentation. Periodic vocabulary reviews may inspect accumulated selection records when Andrew asks; no scheduled automation was requested or created.
+
 ## 2026-09-20 — familiar vocabulary exclusions and audience learning-value check
 
 - Andrew approved the TTS format, reaffirmed that up to, start over and tourism are too basic for the intended audience, and authorized the proposed software/prompt adjustment. Audience: Korean adults with substantial existing English vocabulary. Keep the single-word cutoff at 3,500; no cutoff increase was authorized or made.

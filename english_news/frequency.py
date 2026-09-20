@@ -2,7 +2,7 @@
 from importlib.metadata import version
 from wordfreq import top_n_list
 
-VERSION = 'wordfreq-3.1.1-en-top6000-surface-or-lemma-v1'
+VERSION = 'wordfreq-3.1.1-en-top6000-dictionary-lemma-v2'
 
 
 class EnglishFrequency:
@@ -16,4 +16,4 @@ class EnglishFrequency:
         known = [v for v in values if v is not None]
         return dict(surface_rank=values[0], lemma_rank=values[1],
                     rank=min(known) if known else None,
-                    rank_basis='surface-token rank; more common of surface and contextual lemma')
+                    rank_basis='surface-token rank; more common of surface and dictionary-verified base')

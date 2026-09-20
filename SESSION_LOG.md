@@ -1,5 +1,16 @@
 # English News — session log
 
+## 2026-09-20 — software eligibility safeguards and revised current-run draft
+
+- Andrew approved software solutions for the three flagged choices, an optional separate easy/rank overlay, and contextual vetoes within the existing definition call. He explicitly authorized rerunning text selection on the same current run; no need to wait for another news run for this revision.
+- Selector v3 now uses LemmInflect 0.2.3 dictionary-only morphology with inflection round-trip validation. Hopes resolves to hope (346) and is excluded normally, without an override. Ambiguous or unknown inflected forms are omitted/audited; base/surface tokens and intact compounds are retained as such. spaCy grammatical/entity annotations still apply and can have errors.
+- phrase-reference.json is a deliberately limited EnglishNews-authored positive inventory: fixed expressions, inflected verb expressions, bounded reflexive patterns, and cover + determiner/modifier + cost/expense patterns. Arbitrary adjacent words are never offered as eligible phrases. Medal opportunity and deserves time are excluded by this general rule. Useful exact-source phrases such as start over, supports himself and cover its operating costs survive. No per-phrase blacklist entries.
+- easy-overrides.json starts empty and supports easy and rank_overrides; CLI overrides accept the same fields. Rules remain separate from wordfreq data. Rule contents/versions affect cache identity. Include cannot bypass easy exclusions, uncertain morphology or phrase eligibility. The LLM cannot mutate the files or original ranks.
+- The same selection/definition response now requires context_appropriate and learning_unit_appropriate booleans. False is enforced as a veto. No additional model-review call; only eligible IDs are sent. Rejections and dictionary/phrase evidence stay in local audits.
+- Validation: all 45 English tests pass, covering regular/irregular forms, ambiguity, unknown forms, phrase variations/boundaries, excluded IDs, overrides, and semantic vetoes without list mutation. The three targeted exclusions were confirmed before API calls. Existing Korean/renderer code is unchanged in this revision.
+- Actual fresh model output from 20260920_095703_18b0b84b is output/text-review/20260920_english_text_26d4238eef86: 6/7/11 items. All sentence pairs unchanged; no manual selection additions/removals. vocabulary-review.md is the short review; written.txt is the full lesson; responses/provenance are saved alongside. This supersedes the earlier 8dd66a2a4a8a draft for review. No new audio/video, upload, production edit or main merge.
+- Next: Andrew reviews this revised text. Phrase coverage is intentionally conservative; contextual usefulness and Korean borrowing familiarity still involve the existing model call. Do not claim fully deterministic pedagogical judgment or require a daily user-maintained exception list. Media/adoption await review.
+
 ## 2026-09-20 — first live independent vocabulary draft, text review pending
 
 - Andrew completed the regular production run 20260920_095703_18b0b84b (three stories, selected indexes 7/4/1). Used its English/Korean sentence pairs unchanged through the documented legacy-written adapter; Korean vocabulary did not enter selection. No independent prose rewrite, audio/video, upload or production edit.

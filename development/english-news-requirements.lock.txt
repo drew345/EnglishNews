@@ -26,6 +26,7 @@ jinja2==3.1.6
 jiter==0.15.0
 korean-news-media @ git+https://github.com/drew345/korean-news.git@925c9dd102dd64c9e38c841e95f16777bd8ec019
 langcodes==3.5.1
+lemminflect==0.2.3
 locate==1.1.1
 markdown-it-py==4.2.0
 markupsafe==3.0.3

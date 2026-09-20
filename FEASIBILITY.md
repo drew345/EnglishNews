@@ -4,6 +4,14 @@ Date: 2026-09-13. Scope: preliminary code and dependency assessment; no producti
 
 ## Revised direction — 2026-09-20
 
+### Software eligibility revision — authorized and implemented 2026-09-20
+
+Following review of the first live draft, Andrew approved stronger deterministic selection rules and a text-only rerun of the same current lesson. Selector v3 replaces unreliable inflection guesses with pinned dictionary round-trip validation, and broad phrase windows with a positive expression/pattern reference. Unknown/ambiguous inflections and unrecognized phrases are omitted and audited. A separate optional easy/rank overlay is implemented and starts empty; no frequency data was edited and no individual exception was needed for hopes.
+
+The existing selection/definition call includes mandatory contextual and learning-unit vetoes, with no extra review call. Only eligible IDs are sent; model output cannot override software exclusions or modify permanent lists. This is conservative software eligibility plus contextual judgment, not a claim that software can decide all learner usefulness. Detailed maintenance rules and commands are in development/README.md.
+
+All 45 English tests pass. The fresh current-run draft is `output/text-review/20260920_english_text_26d4238eef86`, with 6/7/11 items and unchanged sentence pairs. Hopes, medal opportunity and deserves time are excluded before the model. No manual selection edits, new media or production changes. Review that draft before media/adoption. Earlier execution counts and first-run observations below are historical checkpoints.
+
 ### Executable milestones — authorized 2026-09-20
 
 Andrew authorized implementation in the existing three worktrees, keeping production unchanged until review. Initial English cutoff is configurable at 3,500, with a soft target 8–12. No main merge, media regeneration, automatic publishing or new worktree is part of this execution.

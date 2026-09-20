@@ -84,7 +84,8 @@ def prepare_lessons(lessons, output_root, *, config=SelectionConfig(), model='gp
             reports.append(analysis)
             prepared.append(lesson)
             continue
-        payload = dict(lesson=lesson, analysis=analysis)
+        # Excluded spans stay in the local audit, never in the model's choices.
+        payload = dict(lesson=lesson, analysis={k: v for k, v in analysis.items() if k != 'rejected'})
         selection = model_response(SELECTION_INSTRUCTIONS, payload, model, cache,
             lambda r: apply_selection(lesson, analysis, r, config, run_counts=dict(counts)),
             client=client, replay=replay.get('selection'))
@@ -157,7 +158,7 @@ def main():
     parser.add_argument('--source-run-id')
     parser.add_argument('--output-root', type=Path, default=Path('output/text-review'))
     parser.add_argument('--cutoff', type=int, default=3500)
-    parser.add_argument('--overrides', type=Path, help='JSON include/exclude lemma arrays')
+    parser.add_argument('--overrides', type=Path, help='JSON include/exclude/easy arrays and rank_overrides object')
     parser.add_argument('--rewrite', action='store_true')
     parser.add_argument('--candidates-only', action='store_true')
     parser.add_argument('--responses', type=Path, help='Offline reviewed model-response fixtures by story number')
@@ -175,7 +176,9 @@ def main():
         count = len(re.findall(r'^## Headline \d+\s*$', text, re.M))
         lessons = [import_story(text, args.source_run_id, i) for i in range(1, count + 1)]
     overrides = json.loads(args.overrides.read_text(encoding='utf-8')) if args.overrides else {}
-    config = SelectionConfig(cutoff=args.cutoff, include=tuple(overrides.get('include', [])), exclude=tuple(overrides.get('exclude', [])))
+    config = SelectionConfig(cutoff=args.cutoff, include=tuple(overrides.get('include', [])),
+        exclude=tuple(overrides.get('exclude', [])), easy=tuple(overrides.get('easy', [])),
+        rank_overrides=tuple(overrides.get('rank_overrides', {}).items()))
     responses = json.loads(args.responses.read_text(encoding='utf-8')) if args.responses else None
     client = None
     if args.allow_model and not args.candidates_only:

@@ -115,7 +115,7 @@ def write_prepared(payload, output_root):
         write_json(output / f'story-{number:02d}-selection.json', report)
         if not candidates_only:
             explanations = {v['id']: dict(en_explanation=v['en_explanation'], review_note='') for v in vocab_entries(lesson)}
-            blocks.append(written_lesson(lesson, explanations))
+            blocks.append(written_lesson(lesson, explanations, headline_label=payload['profile'].get('speech', {}).get('headline_label', '헤드라인')))
             plans.extend(prepared_plan(lesson, payload['profile']))
     if not candidates_only:
         (output / 'written.txt').write_text('\n---\n\n'.join(blocks), encoding='utf-8')
@@ -155,7 +155,7 @@ def load_prepared(path):
                 if payload['profile'].get('definitions') == DEFINITION_VERSION:
                     validate_definition(v['en_explanation'], v['target'], v['lemma'])
         explanations = {v['id']: dict(en_explanation=v['en_explanation'], review_note='') for v in entries}
-        blocks.append(written_lesson(lesson, explanations))
+        blocks.append(written_lesson(lesson, explanations, headline_label=payload['profile'].get('speech', {}).get('headline_label', '헤드라인')))
         plans.extend(prepared_plan(lesson, payload['profile']))
     # Media must use exactly the text and speech plan that were presented for review.
     if (path / 'written.txt').read_text(encoding='utf-8') != '\n---\n\n'.join(blocks):

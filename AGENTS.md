@@ -35,7 +35,7 @@ Read this file and SESSION_LOG.md first when resuming. FEASIBILITY.md holds the 
 ## Development approach
 
 - Always use the next incoming Korean News run for each new English sample or revision. Andrew explicitly said not to remake old videos (2026-09-14). Code changes and offline checks may proceed while waiting; do not synthesize or render an earlier run unless he specifically asks. Old frozen artifacts remain regression evidence only.
-- Spoken section labels are Korean: `헤드라인 N`, `어휘` before each nonempty vocabulary section, and `전체 요약` before the English full-story reading. Written vocabulary uses a single logical line `- English gloss: Korean word: English explanation`; match Korean lesson block spacing and use no em-dash separators.
+- Spoken/written headline labels are English `Headline N`, using the ordinary English speed. `어휘` before nonempty vocabulary sections and `전체 요약` before the full-story reading remain Korean. This September 20 review correction supersedes the all-Korean-label prototype. Written vocabulary uses a single logical line `- English gloss: Korean word: English explanation`; natural wrapping is allowed and video vocabulary must use the same 44px size as body text. English wrapping now matches the Korean renderer's budget to avoid the extra blank strip beside the card.
 
 - Preserve the daily Korean News workflow. Recommended integration is a versioned structured lesson export feeding an independent English worker and audience-configurable Video Lab.
 - English selection and contextual explanations share the English-side request. Optional composition has a separate grounding check. No English model request is added to Korean generation.

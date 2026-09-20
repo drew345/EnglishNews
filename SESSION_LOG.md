@@ -1,5 +1,13 @@
 # English News — session log
 
+## 2026-09-20 — video review corrections: labels, vocabulary size and width
+
+- Andrew requested English Headline N instead of Korean 헤드라인 N. After learning it is a separate audio call, he clarified that it should use the ordinary English speed (0.8976), not a special Korean-speed exception. Written and spoken labels now follow the saved speech profile; historical reviews keep their original labels. Korean 어휘/전체 요약 remain unchanged.
+- Latest label-only text preparation: output/text-review/20260920_english_text_8da79538915d/speech-script.txt. Source sentences, selected vocabulary, glosses and definitions are unchanged. Existing MP4 2cea76ad88 still has the old labels/layout; do not claim this fix has been synthesized or rendered into a full video.
+- Compared September 20 production Korean screenshots with current English frames as requested. Excess buffer is in the English video across both languages: English wrap measurement 1,160px versus Korean 1,580px. Vocabulary was separately hardcoded at 34px versus body 44px, not dynamically shrunk because of definition length. Updated the existing Video Lab worktree to use Korean's wrapping budget and 44px vocabulary/body with natural wrapping.
+- Five layout-only FFmpeg stills generated using previous audio times and new labels. Visually checked opening, vocabulary in stories 1/2/3, and ending; readable and no card overlap in sampled frames. Opened .local/qa/20260920-readable-vocabulary/vocabulary-story-2.png for review. Full audio/video not regenerated. All 54 English and 30 renderer tests pass; September 20 Korean ASS byte-identical to production.
+- Pentathlon was present in the earlier draft, but the latest model response explicitly rejected it as specialist_term (story 1 candidate s1.b2.19-29). It was not a TTS omission or an easy-list exclusion. Explained the cause; no vocabulary reselection or restoration made. Possible next discussion: distinguish story-relevant specialized terms from dispensable specialist trivia without weakening familiar-word filtering.
+
 ## 2026-09-20 — first video from independent English vocabulary
 
 - Andrew authorized proceeding directly to video from the latest reviewed script, with audio generated/checked within the build. He expects to spot-check rather than listen to the entire lesson. This authorizes media for the current September 20 preparation, not main adoption or upload.

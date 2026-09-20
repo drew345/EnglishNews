@@ -125,7 +125,7 @@ def run(prepared_path, staged, env_file, render=True):
             plan = prepared_plan(lesson, prepared['profile'])
             write_json(folder / 'lesson-bundle.json', dict(content_sha256=digest(lesson), lesson=lesson))
             write_json(folder / 'speech-plan.json', dict(profile=profile, units=plan))
-            block = written_lesson(lesson, explanations)
+            block = written_lesson(lesson, explanations, headline_label=prepared['profile'].get('speech', {}).get('headline_label', '헤드라인'))
             written_path = folder / 'written.txt'
             written_path.write_text(block, encoding='utf-8')
             print(f'Story {i}: {len(plan)} speech units, {len(vocab_entries(lesson))} vocabulary entries', flush=True)

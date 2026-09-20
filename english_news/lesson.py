@@ -101,7 +101,8 @@ def native_gloss(vocab):
     return vocab['ko_gloss'] if 'ko_gloss' in vocab else vocab['word']
 
 
-CURRENT_SPEECH_PROFILE = dict(target_speed=.8976, native_speed=1.07, vocab_native_speed=.88)
+CURRENT_SPEECH_PROFILE = dict(target_speed=.8976, native_speed=1.07, vocab_native_speed=.88,
+                              headline_label='Headline')
 
 
 def prepared_plan(lesson, profile):
@@ -116,7 +117,7 @@ def speech_script(plan):
 
 
 def make_plan(lesson: dict, explanations: dict, *, target_speed=.88, native_speed=1.07,
-              vocab_native_speed=None) -> list[dict]:
+              vocab_native_speed=None, headline_label='헤드라인') -> list[dict]:
     rates = [target_speed, native_speed] + ([] if vocab_native_speed is None else [vocab_native_speed])
     if any(type(s) not in (int, float) or not .25 <= s <= 4 for s in rates):
         raise ValueError('Invalid speech speed')
@@ -124,7 +125,8 @@ def make_plan(lesson: dict, explanations: dict, *, target_speed=.88, native_spee
     def add(name, text, speed):
         units.append(dict(name=name, text=text, speed=speed))
     h = lesson['headline']
-    add('headline_label', f"헤드라인 {lesson['source_story_number']}.", native_speed)
+    add('headline_label', f"{headline_label} {lesson['source_story_number']}.",
+        target_speed if headline_label == 'Headline' else native_speed)
     add('headline_ko', h['natural_ko'], native_speed)
     add('headline_en', '\n'.join([h['en']] * 2), target_speed)
     for i, body in enumerate(lesson['sentences'], 1):
@@ -144,9 +146,9 @@ def make_plan(lesson: dict, explanations: dict, *, target_speed=.88, native_spee
     return units
 
 
-def written_lesson(lesson: dict, explanations: dict) -> str:
+def written_lesson(lesson: dict, explanations: dict, *, headline_label='헤드라인') -> str:
     h = lesson['headline']
-    lines = [f"## 헤드라인 {lesson['source_story_number']}", '', h['natural_ko'], h['en'], '', '## 문장별 영어 학습', '']
+    lines = [f"## {headline_label} {lesson['source_story_number']}", '', h['natural_ko'], h['en'], '', '## 문장별 영어 학습', '']
     for body in lesson['sentences']:
         lines.append(body['natural_ko'])
         if body['vocab']:

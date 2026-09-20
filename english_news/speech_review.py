@@ -12,7 +12,7 @@ def prepare_speech_review(prepared_path, output_root):
     revised = deepcopy(original)
     revised['profile']['speech'] = dict(CURRENT_SPEECH_PROFILE)
     revised['speech_revision'] = dict(parent_content_sha256=digest(original),
-                                    text_unchanged=True)
+                                    lesson_content_unchanged=True)
     output = write_prepared(revised, output_root)
     load_prepared(output)
     return output

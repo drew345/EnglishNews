@@ -25,7 +25,10 @@ class SpeechReviewTests(unittest.TestCase):
             speeds = unit.get('segment_speeds', [unit['speed']] * len(texts))
             for text, speed in zip(texts, speeds):
                 expected.append((text, speed))
-                if text == '통근자들.':
+                if unit['name'] == 'headline_label':
+                    self.assertEqual(text, 'Headline 1.')
+                    self.assertEqual(speed, .8976)
+                elif text == '통근자들.':
                     self.assertEqual(speed, .88)
                 elif any('\uac00' <= c <= '\ud7a3' for c in text):
                     self.assertEqual(speed, 1.07)
@@ -57,7 +60,8 @@ class SpeechReviewTests(unittest.TestCase):
             revised_path = prepare_speech_review(old, root)
             revised = load_prepared(revised_path)
             self.assertEqual(revised['lessons'], historical['lessons'])
-            self.assertEqual((revised_path / 'written.txt').read_bytes(), (old / 'written.txt').read_bytes())
+            self.assertEqual((revised_path / 'written.txt').read_text(encoding='utf-8'),
+                             (old / 'written.txt').read_text(encoding='utf-8').replace('## 헤드라인 1', '## Headline 1'))
             self.assertEqual((old / 'speech-plan.json').read_bytes(), original_bytes)
             plan = prepared_plan(revised['lessons'][0], revised['profile'])
             script = revised_path / 'speech-script.txt'

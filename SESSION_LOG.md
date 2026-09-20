@@ -1,5 +1,11 @@
 # English News — session log
 
+## 2026-09-20 — final continuous-scroll video rebuilt for upload
+
+- Andrew explicitly requested another same-run rebuild as the final upload candidate. Re-rendered output/runs/20260920_english_all_3446bd4d60/video/20260920-english-news-lesson.mp4 using the continuous-scroll renderer (Video Lab 6ed258a). Reused approved speech and images; combined MP3 SHA-256 unchanged. No new model/speech calls or vocabulary changes.
+- Final MP4 is 698.17 seconds (11:38), SHA-256 d7a266a82befc32871788b0357239758f21f291ad8d5175aea9cf76bae9afdba. Full picture/sound decode and duration checks passed. Inspected actual frames immediately before/at both story transitions and ending: previous summary remains above the next headline, with no text reset. Prior approved 44px text and margins retained.
+- Refreshed upload-package hashes and checked Korean title, description, chapters and thumbnail for @SteadyLanternEnglish. Status ready_for_review; upload package retains awaiting_user_review and publication disabled. Final file replaces the previous MP4 at the same path. Ready for supervised/manual upload; no upload, production edit or main merge performed.
+
 ## 2026-09-20 — rebuilt video accepted for readability; continuous scroll corrected
 
 - Completed the user-requested rebuild at output/runs/20260920_english_all_3446bd4d60 from text preparation 8da79538915d: English Headline labels at ordinary English speed, 44px vocabulary/body, wider text column. MP4 698.17 seconds; audio/video decode and preparation checks passed, ready_for_review with publication disabled. Vocabulary remains 1/6/5; pentathlon remains omitted. Andrew approved size, spacing and margins after viewing.

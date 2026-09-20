@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -154,6 +155,7 @@ def run(prepared_path, staged, env_file, render=True):
         (output / 'speech-script.txt').write_text(speech_script(plans), encoding='utf-8')
         (output / 'vocabulary-review.md').write_text('# Vocabulary review before upload\n\n' + '\n'.join(notes) + '\n', encoding='utf-8')
         write_json(output / 'run.json', dict(run_id=output.name, source_run_id=source_run, audience='english',
+                   prepared_run_id=Path(prepared_path).name, origin_device=os.environ.get('COMPUTERNAME', 'unknown'),
                    audience_settings=audience_settings,
                    status='completed', profile=profile, combined_audio_path=str(combined), combined_written_path=str(written),
                    stories=timeline(stories), video_story_images=images,
@@ -170,6 +172,8 @@ def run(prepared_path, staged, env_file, render=True):
         write_json(state, dict(status='failed', error=str(exc), publication_enabled=False,
                               resume='Run the same command again; valid speech segments and explanations are cached.'))
         raise
+    from .runtime import archive_history
+    archive_history('archive_run', output)
     print(f'READY FOR REVIEW: {output}', flush=True)
     return output
 

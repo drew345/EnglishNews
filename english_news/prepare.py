@@ -122,6 +122,8 @@ def write_prepared(payload, output_root):
         write_json(output / 'speech-plan.json', dict(units=plans))
         (output / 'speech-script.txt').write_text(speech_script(plans), encoding='utf-8')
     write_json(output / 'preparation.json', dict(content_sha256=identity, content=payload))
+    from .runtime import archive_history
+    archive_history('archive_preparation', output)
     return output
 
 

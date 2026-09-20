@@ -8,6 +8,8 @@ English News is a companion for Korean-native speakers practicing English throug
 
 Read this file and SESSION_LOG.md first when resuming. FEASIBILITY.md holds the detailed code inventory, architecture, risks and phased plan; do not duplicate it into additional plan files.
 
+NewsHistory: the canonical preparation/media writers archive written lessons and English vocabulary audits via C:/AI/Codex/Projects/NewsHistory. Its AGENTS.md owns storage and retention; no automatic expiry. Monthly review uses combined history, not only this computer’s output folders.
+
 ## Current direction — 2026-09-20
 
 - Immediate handoff: September 20 video 20260920_english_all_3446bd4d60 is published at https://www.youtube.com/watch?v=s5nbFctXMOA; comments navigation completed. Tomorrow Andrew will complete the regular production Korean News run first, then return here. Use that new run, reuse settled settings to reduce steps, and preserve his Public/Publish handoff. No unattended publication or daily trigger is enabled. Future videos should keep scrolling after speech ends; a 4–5-second tail is acceptable. This ending-motion change is recorded but not implemented.

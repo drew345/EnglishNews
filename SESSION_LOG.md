@@ -1,5 +1,12 @@
 # English News — session log
 
+
+## 2026-09-20 — Portable NewsHistory exports
+
+- Added optional archive hooks to the canonical text-preparation writer and completed English media workflow. Preserve written lessons, actual English vocabulary and selection/rejection reports in sibling Projects/NewsHistory's shared archive implementation; record preparation/run origin and link final runs to preparation IDs.
+- Archive uses an external local outbox, excludes media and source articles, and has no automatic expiry. Historical reviews and media-run text on this computer were backfilled. Other machines contribute on their next End after receiving the new sync support. Code remains on the existing prototype branch; no English main adoption or media rebuild occurred.
+- All 54 English tests pass. NewsHistory/AGENTS.md owns archive details; CodexSync owns routine coverage. Monthly review should read the combined archive and pending local outbox.
+
 ## 2026-09-20 — end-of-day handoff; next incoming run tomorrow
 
 - Andrew is finished for today. Tomorrow he will first complete his normal Korean News generation using the existing production workflow, then return to this chat. Use that new completed run for the next English lesson; do not reuse or rebuild today's published video.

@@ -28,16 +28,22 @@ def model_response(instructions, payload, model, cache_root, validator, *, clien
         return saved['response']
     if client is None:
         raise ValueError('No validated cached response. Use --responses for offline replay or --allow-model for a new run.')
+    messages = [{'role': 'system', 'content': instructions},
+                {'role': 'user', 'content': json.dumps(payload, ensure_ascii=False)}]
     for attempt in range(2):
         response = client.chat.completions.create(model=model, response_format={'type': 'json_object'},
-            messages=[{'role': 'system', 'content': instructions},
-                      {'role': 'user', 'content': json.dumps(payload, ensure_ascii=False)}])
+            messages=deepcopy(messages))
         try:
             value = json.loads(response.choices[0].message.content)
             validator(value)
-        except (ValueError, KeyError, TypeError):
+        except (ValueError, KeyError, TypeError) as exc:
+            raw = response.choices[0].message.content
+            write_json(Path(cache_root) / 'invalid' / f'{identity}-{digest(raw)[:12]}.json',
+                       dict(identity=identity, raw_response=raw, validation_error=str(exc)))
             if attempt == 1:
                 raise
+            messages.extend([{'role': 'assistant', 'content': raw or ''},
+                             {'role': 'user', 'content': f'Validation failed: {exc}. Return the complete corrected JSON. Use only supplied IDs, do not repeat IDs across items and rejections, and use only the allowed rejection reasons.'}])
             continue
         write_json(path, dict(identity=identity, response=value, response_sha256=digest(value)))
         return value

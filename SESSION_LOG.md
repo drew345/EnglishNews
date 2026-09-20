@@ -1,5 +1,13 @@
 # English News — session log
 
+## 2026-09-20 — first live independent vocabulary draft, text review pending
+
+- Andrew completed the regular production run 20260920_095703_18b0b84b (three stories, selected indexes 7/4/1). Used its English/Korean sentence pairs unchanged through the documented legacy-written adapter; Korean vocabulary did not enter selection. No independent prose rewrite, audio/video, upload or production edit.
+- Actual gpt-5.6-luna API selection produced the review draft at output/text-review/20260920_english_text_8dd66a2a4a8a. Counts: 7 Asian Games, 6 former-idol restart, 10 Hangang Bus. vocabulary-review.md is the short review; written.txt is the complete lesson; model-responses.json and review-provenance.json retain response origins. Source sentence-pair equality and load_prepared validation pass.
+- First live pass exposed overly long transparent phrases and validation retries without correction feedback. Added generic shortest-useful-item guidance, reflexive phrase endings (supports himself), explicit retry feedback and retained invalid-response diagnostics. A model rejection of an already software-excluded word is now retained as supplemental audit, never allowed back into selection; unknown IDs still fail. Thirty-six English tests pass, including new retry/rejection/reflexive cases. No real media was made by tests.
+- Replayed the actual returned responses after validating the redundant-rejection fix, without manual additions/removals. Three choices are flagged for Andrew: hopes (too basic), medal opportunity (transparent combination), deserves time (awkward phrase/gloss). This is a draft, not approval for media. General method issues remain: the NLP model incorrectly lemmatized hopes as hop (rank 3629) instead of hope (346), and the selector still admitted a transparent phrase despite the tightened guidance. Do not create per-word exceptions to hide these issues.
+- Next: have Andrew review the short vocabulary list, starting with story 1. Discuss the flagged choices and address general morphology/phrase-selection behavior before media. Production main and normal desktop workflow remain unchanged; all work stays in the existing development branch.
+
 ## 2026-09-20 — independent English vocabulary implemented in development
 
 - Completed the authorized implementation milestones in FEASIBILITY.md, using the existing three worktrees. English selection starts with English source candidates; inherited Korean vocabulary is discarded. English frequency cutoff 3,500; phrases, lemmas, names/geography/grammar gates, meaning-aware borrowing checks, manual overrides, deduplication and contextual definitions. The 8–12 target is soft, with review flags and no padding.

@@ -101,6 +101,9 @@ class PreparationTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             value = model_response('Review', {'text': 'one'}, 'model', directory, validate_grounding, client=client)
             self.assertEqual(client.chat.completions.create.call_count, 2)
+            correction = client.chat.completions.create.call_args_list[1].kwargs['messages'][-1]
+            self.assertIn('Validation failed:', correction['content'])
+            self.assertEqual(len(list((Path(directory) / 'invalid').glob('*.json'))), 1)
             self.assertEqual(value, model_response('Review', {'text': 'one'}, 'model', directory, validate_grounding))
             with self.assertRaisesRegex(ValueError, 'No validated'):
                 model_response('Review', {'text': 'changed'}, 'model', directory, validate_grounding)

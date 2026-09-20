@@ -43,6 +43,10 @@ class SelectionTests(unittest.TestCase):
         self.assertFalse(any(c['target'] == 'conscious' for c in report['candidates']))
         self.assertTrue(self.candidate(report, 'in spite of')['phrase'])
 
+    def test_reflexive_expression_is_available_without_trailing_preposition(self):
+        report = analyze(lesson('He supports himself with four part-time jobs.'))
+        self.assertTrue(self.candidate(report, 'supports himself')['phrase'])
+
     def test_common_forms_and_normalized_overrides(self):
         source = lesson('Workers expanded local services.')
         config = SelectionConfig(include=(' LOCAL ',), exclude=('Expand',))
@@ -78,6 +82,18 @@ class SelectionTests(unittest.TestCase):
         changed['sentences'][0]['en'] = 'Changed input'
         with self.assertRaises(ValueError):
             apply_selection(changed, report, {'items': [row]})
+
+    def test_redundant_rejection_is_audited_but_cannot_reintroduce_excluded_word(self):
+        source = lesson('Officials expand local services.')
+        report = analyze(source)
+        gated = next(c for c in report['rejected'] if c['target'] == 'local')
+        selected, audit = apply_selection(source, report, {'items': [], 'rejections': [dict(id=gated['id'], reason='not_useful')]})
+        self.assertEqual(vocab_entries(selected), [])
+        self.assertEqual(audit['supplemental_rejections'][0]['id'], gated['id'])
+        with self.assertRaises(ValueError):
+            apply_selection(source, report, {'items': [item(gated)]})
+        with self.assertRaises(ValueError):
+            apply_selection(source, report, {'items': [], 'rejections': [dict(id='invented', reason='not_useful')]})
 
     def test_no_padding_overlap_or_inherited_vocabulary_and_exact_speech(self):
         source = lesson('Commuters take part in community events.')

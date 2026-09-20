@@ -1,12 +1,16 @@
 # English News — agent context
 
-Last updated: 2026-09-13
+Last updated: 2026-09-20
 
 ## Purpose and boundaries
 
 English News is a companion prototype for Korean-native speakers practicing English through the same news stories. A one-story written/audio/video sample is implemented in the isolated development worktrees; this main folder keeps the planning/handoff record. Continue in `C:/AI/Codex/Worktrees/english-news/EnglishNews` and read its current SESSION_LOG.md. Daily integration has not started.
 
 Read this file and SESSION_LOG.md first when resuming. FEASIBILITY.md holds the detailed code inventory, architecture, risks and phased plan; do not duplicate it into additional plan files.
+
+## Current direction — 2026-09-20
+
+Andrew now wants independent English vocabulary selection from actual English lesson words/phrases, using English frequency data, with a soft 8–12 items per story and familiar-loanword exclusions. The same three stories share facts but may use independently natural wording. This supersedes earlier deferrals of independent selection; implementation has not started. Lasting English-specific behavior belongs in EnglishNews, with one maintained implementation for shared media machinery and no permanent dependency on experimental worktrees/branches. Continue in the existing development checkout; its AGENTS.md, FEASIBILITY.md and SESSION_LOG.md hold the detailed decisions, proposed stages and retirement criteria. Initial cutoff 3,500 remains a recommendation, not a confirmed setting.
 
 ## Settled first-cut requirements
 

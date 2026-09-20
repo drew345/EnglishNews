@@ -1,5 +1,15 @@
 # English News — session log
 
+## 2026-09-20 — pre-implementation backup scope
+
+- Andrew requested a GitHub checkpoint before implementation. Reviewed EnglishNews main/prototype documentation and verified published Korean News, Video Lab and core baselines; loanwords local main is already contained in its newer automated remote history. Detailed checkpoint anchors and proposed safe Korean News handoff are in the development SESSION_LOG.md / FEASIBILITY.md.
+- Recommended continued work in the existing prototype branches/worktrees, with optional handoff and Korean regression checks before reviewed main adoption. This checkpoint contains planning/run records only, not a feature merge, media backup or whole-workspace sync.
+
+## 2026-09-20 — vocabulary redesign and lasting project foundation
+
+- Andrew wants direct English vocabulary selection, words plus useful phrases, English frequency data, soft 8–12 items per story and familiar-loanword exclusions; both audiences share facts but may use different wording. English-specific behavior should settle in EnglishNews without copied shared code or permanent experimental worktree dependencies.
+- Detailed investigation and proposed branching, ownership and worktree retirement stages are recorded in the development worktree's FEASIBILITY.md and latest SESSION_LOG.md. Current Korean cutoff is 3,000; proposed English 3,500 remains unconfirmed. Documentation only: no implementation, media, merge, worktree removal or sync occurred.
+
 ## 2026-09-17 — prototype branches published for Seoul transfer
 
 - Published the local EnglishNews `main` records and created GitHub branch `codex/english-news-prototype` in EnglishNews, korean-news, and KoreanLessonVideoLab. Each development worktree now tracks its matching remote branch; no development branch was merged into production.

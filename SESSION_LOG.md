@@ -1,5 +1,13 @@
 # English News — session log
 
+## 2026-09-20 — written lesson approved; TTS review and English speed increase
+
+- Andrew approved the shortened-definition lesson and requested the exact TTS script before audio. He also requested English 2% faster. This turn prepares text/settings only; no synthesis, rendering or production adoption.
+- English rate is now 0.8976 (= 0.88 × 1.02) for headline/body repetitions, vocabulary terms, English explanations and full review. Korean sentences/labels remain 1.07; Korean vocabulary glosses remain 0.88. Vocabulary clip speeds are now explicit so the English adjustment does not accelerate Korean glosses. Alloy remains the voice.
+- Current review: output/text-review/20260920_english_text_644487168a57/speech-script.txt. Contains only spoken text with every repetition, generated from the same structured plan media consumes: 73 units, 24 vocabulary blocks, 6/7/11 items. All lessons and selection audits exactly match approved 69f2def3b90e. Earlier review files retain their original text/settings.
+- Preparations now persist speech settings and emit speech-script.txt before media. Both plan and script are checked when loading; media uses those saved settings. `python -m english_news.speech_review --prepared-run ...` creates a new script/settings review without model calls. Historical preparations without settings retain their original 0.88 rates.
+- Validation: 52 offline tests pass, including English-only rate changes at the actual mocked transport boundary, unchanged Korean rates/repetitions, prior-review preservation and script-tamper detection. No paid speech/model calls. Next: Andrew reviews this TTS file, then the next proposed step is audio generation/listening review.
+
 ## 2026-09-20 — concise English definitions implemented and refreshed
 
 - Andrew approved prompt/code changes after comparison: Korean definition averages on September 18/19/20 were 3.6/3.9/4.1 spaced units; English averages were 8.2/8.4/10.1 words. These units are not directly comparable across languages. Korean core requests one dictionary phrase with soft anti-circularity guidance; the English prompt had drifted to 6–18 words with a permissive 30-word validator.

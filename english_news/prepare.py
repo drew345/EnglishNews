@@ -8,7 +8,8 @@ import re
 
 from .content import (load_content_run, content_lesson, apply_composition, validate_grounding,
                       COMPOSITION_INSTRUCTIONS, GROUNDING_INSTRUCTIONS)
-from .lesson import digest, write_json, written_lesson, make_plan, vocab_entries, import_story
+from .lesson import (digest, write_json, written_lesson, prepared_plan, speech_script,
+                     CURRENT_SPEECH_PROFILE, vocab_entries, import_story)
 from .selection import analyze, apply_selection, SelectionConfig, SELECTION_INSTRUCTIONS, VERSION
 from .definitions import VERSION as DEFINITION_VERSION, validate_definition
 
@@ -94,7 +95,8 @@ def prepare_lessons(lessons, output_root, *, config=SelectionConfig(), model='gp
         prepared.append(lesson)
         reports.append(report)
     profile = dict(version=PREPARATION_VERSION, selector=VERSION, config=asdict(config), model=model,
-                   rewrite=rewrite, candidates_only=candidates_only, definitions=DEFINITION_VERSION)
+                   rewrite=rewrite, candidates_only=candidates_only, definitions=DEFINITION_VERSION,
+                   speech=dict(CURRENT_SPEECH_PROFILE))
     payload = dict(source_run_id=source_run, lessons=prepared, reports=reports, profile=profile,
                    status='candidates_only' if candidates_only else 'text_ready_for_review', publication_enabled=False)
     return write_prepared(payload, output_root)
@@ -114,10 +116,11 @@ def write_prepared(payload, output_root):
         if not candidates_only:
             explanations = {v['id']: dict(en_explanation=v['en_explanation'], review_note='') for v in vocab_entries(lesson)}
             blocks.append(written_lesson(lesson, explanations))
-            plans.extend(make_plan(lesson, explanations))
+            plans.extend(prepared_plan(lesson, payload['profile']))
     if not candidates_only:
         (output / 'written.txt').write_text('\n---\n\n'.join(blocks), encoding='utf-8')
         write_json(output / 'speech-plan.json', dict(units=plans))
+        (output / 'speech-script.txt').write_text(speech_script(plans), encoding='utf-8')
     write_json(output / 'preparation.json', dict(content_sha256=identity, content=payload))
     return output
 
@@ -151,12 +154,15 @@ def load_prepared(path):
                     validate_definition(v['en_explanation'], v['target'], v['lemma'])
         explanations = {v['id']: dict(en_explanation=v['en_explanation'], review_note='') for v in entries}
         blocks.append(written_lesson(lesson, explanations))
-        plans.extend(make_plan(lesson, explanations))
+        plans.extend(prepared_plan(lesson, payload['profile']))
     # Media must use exactly the text and speech plan that were presented for review.
     if (path / 'written.txt').read_text(encoding='utf-8') != '\n---\n\n'.join(blocks):
         raise ValueError('Review text changed; prepare and review a new bundle before media')
     if json.loads((path / 'speech-plan.json').read_text(encoding='utf-8')) != dict(units=plans):
         raise ValueError('Review speech plan changed')
+    script = path / 'speech-script.txt'
+    if ('speech' in payload['profile'] or script.exists()) and script.read_text(encoding='utf-8') != speech_script(plans):
+        raise ValueError('Review speech script changed')
     return payload
 
 

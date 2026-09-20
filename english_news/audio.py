@@ -25,9 +25,12 @@ def synthesize_plan(plan, output: Path, *, voice, client, instructions):
 
     def make(unit):
         texts, order = segment_plan(unit)
+        speeds = unit.get('segment_speeds', [unit['speed']] * len(texts))
+        if len(speeds) != len(texts) or any(type(s) not in (int, float) or not .25 <= s <= 4 for s in speeds):
+            raise ValueError('Invalid segment speeds')
         folder = output / 'speech-parts' / unit['name']
         result = synthesize_speech_units(
-            [TtsTextUnit(name=f'{unit["name"]}.{i}', text=text, speed=unit['speed']) for i, text in enumerate(texts)],
+            [TtsTextUnit(name=f'{unit["name"]}.{i}', text=text, speed=speeds[i]) for i, text in enumerate(texts)],
             folder / 'segment', voice=voice, max_chars=3500, max_units_per_request=1,
             model='gpt-4o-mini-tts', instructions=instructions,
             profile_version='english-single-reading-v1', client=client, resume=True)
@@ -39,7 +42,8 @@ def synthesize_plan(plan, output: Path, *, voice, client, instructions):
         meta_path = folder / 'assembled.request.json'
         metadata = dict(audio_path=str(audio), input_path=str(input_path), metadata_path=str(meta_path),
                         unit_names=[unit['name']], provider='openai_speech', voice=voice,
-                        speed=unit['speed'], source_sha256=hashlib.sha256(unit['text'].encode('utf-8')).hexdigest(),
+                        speed=unit['speed'], segment_speeds=speeds,
+                        source_sha256=hashlib.sha256(unit['text'].encode('utf-8')).hexdigest(),
                         assembly_order=order, assembly_sources=[str(p) for p in sources],
                         segment_requests=result.request_metadata, status='complete')
         write_json(meta_path, metadata)

@@ -10,7 +10,7 @@ import subprocess
 import sys
 from contextlib import contextmanager
 
-from .lesson import digest, make_plan, vocab_entries, write_json, written_lesson
+from .lesson import digest, prepared_plan, speech_script, vocab_entries, write_json, written_lesson
 from .runtime import ROOT, INSTRUCTIONS, client_from_existing_key
 from .prepare import load_prepared
 
@@ -100,7 +100,8 @@ def run(prepared_path, staged, env_file, render=True):
     image_sources = [staged / f'story-{i:02d}-video-image.png' for i in range(1, len(lessons) + 1)]
     image_hashes = [sha(p) for p in image_sources]
     audience_settings = json.loads(Path(__file__).with_name('audience.json').read_text(encoding='utf-8'))
-    profile = dict(version=VERSION, voice='alloy', target_speed=.88, native_speed=1.07,
+    profile = dict(version=VERSION, voice='alloy',
+                   **prepared['profile'].get('speech', dict(target_speed=.88, native_speed=1.07)),
                    preparation_profile=prepared['profile'], audience_settings=audience_settings)
     identity = digest(dict(prepared=prepared, profile=profile, images=image_hashes))
     output = ROOT / 'output/runs' / f'{source_run[:8]}_english_all_{identity[:10]}'
@@ -121,7 +122,7 @@ def run(prepared_path, staged, env_file, render=True):
             folder.mkdir(parents=True, exist_ok=True)
             explanations = {v['id']: dict(en_explanation=v['en_explanation'], review_note='') for v in vocab_entries(lesson)}
             write_json(folder / 'explanations.json', dict(result={'entries': [dict(id=k, **v) for k, v in explanations.items()]}))
-            plan = make_plan(lesson, explanations)
+            plan = prepared_plan(lesson, prepared['profile'])
             write_json(folder / 'lesson-bundle.json', dict(content_sha256=digest(lesson), lesson=lesson))
             write_json(folder / 'speech-plan.json', dict(profile=profile, units=plan))
             block = written_lesson(lesson, explanations)
@@ -150,7 +151,7 @@ def run(prepared_path, staged, env_file, render=True):
         written = output / f'{source_run[:8]}-english-news-written.txt'
         written.write_text('\n---\n\n'.join(written_blocks), encoding='utf-8')
         write_json(output / 'speech-plan.json', dict(profile=profile, units=plans))
-        (output / 'speech-script.txt').write_text('\n\n'.join(u['text'] for u in plans) + '\n', encoding='utf-8')
+        (output / 'speech-script.txt').write_text(speech_script(plans), encoding='utf-8')
         (output / 'vocabulary-review.md').write_text('# Vocabulary review before upload\n\n' + '\n'.join(notes) + '\n', encoding='utf-8')
         write_json(output / 'run.json', dict(run_id=output.name, source_run_id=source_run, audience='english',
                    audience_settings=audience_settings,

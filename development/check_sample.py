@@ -35,6 +35,8 @@ for unit, request in zip(plan, requests):
     record = json.loads(Path(request['metadata_path']).read_text(encoding='utf-8'))
     assert record['source_sha256'] == hashlib.sha256(input_text.encode('utf-8')).hexdigest()
     assert record['speed'] == unit['speed']
+    if 'segment_speeds' in unit:
+        assert record['segment_speeds'] == unit['segment_speeds']
     if 'assembly_order' in record:
         _, expected_order = segment_plan(unit)
         assert record['assembly_order'] == expected_order

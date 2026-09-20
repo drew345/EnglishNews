@@ -101,7 +101,25 @@ def native_gloss(vocab):
     return vocab['ko_gloss'] if 'ko_gloss' in vocab else vocab['word']
 
 
-def make_plan(lesson: dict, explanations: dict, *, target_speed=.88, native_speed=1.07) -> list[dict]:
+CURRENT_SPEECH_PROFILE = dict(target_speed=.8976, native_speed=1.07, vocab_native_speed=.88)
+
+
+def prepared_plan(lesson, profile):
+    explanations = {v['id']: dict(en_explanation=v['en_explanation']) for v in vocab_entries(lesson)}
+    # Existing reviews without a speech profile retain their original rates.
+    return make_plan(lesson, explanations, **profile.get('speech', {}))
+
+
+def speech_script(plan):
+    """Only spoken content, including every assembled repetition."""
+    return '\n\n'.join(u['text'] for u in plan) + '\n'
+
+
+def make_plan(lesson: dict, explanations: dict, *, target_speed=.88, native_speed=1.07,
+              vocab_native_speed=None) -> list[dict]:
+    rates = [target_speed, native_speed] + ([] if vocab_native_speed is None else [vocab_native_speed])
+    if any(type(s) not in (int, float) or not .25 <= s <= 4 for s in rates):
+        raise ValueError('Invalid speech speed')
     units = []
     def add(name, text, speed):
         units.append(dict(name=name, text=text, speed=speed))
@@ -117,6 +135,9 @@ def make_plan(lesson: dict, explanations: dict, *, target_speed=.88, native_spee
             gloss = sentence(target(v))
             add(v['id'], '\n'.join([gloss, gloss, sentence(native_gloss(v)),
                 sentence(explanations[v['id']]['en_explanation']), gloss, gloss]), target_speed)
+            if vocab_native_speed is not None:
+                # Speeds for unique clips: English term, Korean gloss, English definition.
+                units[-1]['segment_speeds'] = [target_speed, vocab_native_speed, target_speed]
         add(f'body{i}_en', '\n'.join([body['en']] * 2), target_speed)
     add('review_label', '전체 요약.', native_speed)
     add('review_en', '\n'.join([h['en']] + [s['en'] for s in lesson['sentences']]), target_speed)

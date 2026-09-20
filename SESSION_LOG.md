@@ -1,5 +1,12 @@
 # English News — session log
 
+## 2026-09-20 — final video approved; resume with supervised upload
+
+- Andrew approved the final continuous-scroll video for today's upload, then paused to travel home. Resume this chat with supervised upload together when he returns; do not upload while he is away and do not rebuild this approved video. Target: English channel @SteadyLanternEnglish, ID UCPvS_o6ypGR8-aA0P2pgtdA.
+- Exact approved file: output/runs/20260920_english_all_3446bd4d60/video/20260920-english-news-lesson.mp4, SHA-256 d7a266a82befc32871788b0357239758f21f291ad8d5175aea9cf76bae9afdba. Title, description, chapters and thumbnail are in that video folder; upload-package.json lists their verified hashes. User approval is now recorded here despite the generated package's earlier awaiting_user_review status. No publication has occurred; automatic publication remains disabled.
+- Future-video request: continue scrolling after narration ends instead of freezing. Checked code: Korean uses one movement across the whole video, including the tail; English intentionally has equal final offsets at audio-end and video-end, causing a static hold. This file has approximately ten seconds after the audio, even though it felt shorter to Andrew. Four or five seconds would be acceptable; the key requirement is continued movement. Record for a future English-only change, preserving Korean behavior and coordinating duration/chapter/QA assumptions if the tail is shortened. No code change or media rebuild for this feedback.
+- Saved locally for shutdown; no sync, upload, background worker, or production adoption started. Next action is upload this exact approved file with Andrew.
+
 ## 2026-09-20 — final continuous-scroll video rebuilt for upload
 
 - Andrew explicitly requested another same-run rebuild as the final upload candidate. Re-rendered output/runs/20260920_english_all_3446bd4d60/video/20260920-english-news-lesson.mp4 using the continuous-scroll renderer (Video Lab 6ed258a). Reused approved speech and images; combined MP3 SHA-256 unchanged. No new model/speech calls or vocabulary changes.

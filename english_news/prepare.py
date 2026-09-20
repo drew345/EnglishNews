@@ -141,7 +141,9 @@ def load_prepared(path):
     blocks, plans = [], []
     for number, (lesson, report) in enumerate(zip(lessons, reports), 1):
         if (lesson.get('source_run_id') != source_run or lesson.get('source_story_number') != number
-                or lesson.get('schema_version') != 2 or lesson.get('vocabulary_profile') != VERSION):
+                or lesson.get('schema_version') != 2
+                or lesson.get('vocabulary_profile') not in {VERSION, 'english-selection-v3'}
+                or lesson.get('vocabulary_profile') != payload['profile'].get('selector')):
             raise ValueError('Invalid prepared lesson order or version')
         entries = vocab_entries(lesson)
         if len({v['id'] for v in entries}) != len(entries) or report.get('selected_count') != len(entries):

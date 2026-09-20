@@ -52,7 +52,8 @@ class EligibilityTests(unittest.TestCase):
         text = 'They started over and took part in local events. She supports herself and will cover their operating costs.'
         report = analyze(lesson(text))
         candidates = {c['target']:c for c in report['candidates']}
-        for surface, key in [('started over','start over'),('took part in','take part in'),
+        self.assertTrue(any(c['target'] == 'started over' and c['reason'] == 'basic_expression' for c in report['rejected']))
+        for surface, key in [('took part in','take part in'),
                              ('supports herself','support oneself'),('cover their operating costs','cover cost')]:
             self.assertIn(surface,candidates)
             self.assertEqual(candidates[surface]['phrase_rule']['key'],key)
@@ -84,13 +85,13 @@ class EligibilityTests(unittest.TestCase):
         self.assertFalse(any(c['target'] in {'commuters','hardships'} for c in report['candidates']))
 
     def test_definition_judgments_can_only_veto_and_never_update_lists(self):
-        source=lesson('They started over.')
+        source=lesson('They took part in local events.')
         report=analyze(source)
-        candidate=next(c for c in report['candidates'] if c['target']=='started over')
+        candidate=next(c for c in report['candidates'] if c['target']=='took part in')
         path=Path(selection.__file__).with_name('easy-overrides.json')
         before=path.read_bytes()
-        for field,reason in [('context_appropriate','wrong_context'),('learning_unit_appropriate','awkward_learning_unit')]:
-            response={'items':[item(candidate,**{field:False})]}
+        for field,reason in [('context_appropriate','wrong_context'),('learning_unit_appropriate','awkward_learning_unit'),('adds_learning_value','too_easy')]:
+            response={'items':[item(candidate,usefulness=5,**{field:False})]}
             selected,audit=apply_selection(source,report,response)
             self.assertEqual(vocab_entries(selected),[])
             self.assertTrue(any(c['decision']==reason for c in audit['decisions']))
@@ -99,3 +100,30 @@ class EligibilityTests(unittest.TestCase):
         del row['context_appropriate']
         with self.assertRaises(ValueError):
             apply_selection(source,report,{'items':[row]})
+        row = item(candidate)
+        del row['adds_learning_value']
+        with self.assertRaisesRegex(ValueError, 'adds_learning_value'):
+            apply_selection(source, report, {'items': [row]})
+
+    def test_confirmed_familiarity_is_enforced_without_raising_cutoff(self):
+        source = lesson('They hope for up to 45 medals. They started over. Tourism brings income.')
+        config = SelectionConfig(include=('up to', 'start over'))
+        report = analyze(source, config)
+        self.assertEqual(report['config']['cutoff'], 3500)
+        for target, reason in [('up to', 'basic_expression'), ('started over', 'basic_expression'), ('Tourism', 'easy_override')]:
+            row = next(c for c in report['rejected'] if c['target'] == target)
+            self.assertEqual(row['reason'], reason)
+            self.assertNotIn(target, [c['target'] for c in report['candidates']])
+            with self.assertRaises(ValueError):
+                apply_selection(source, report, {'items': [item(row)]}, config)
+        tourism = next(c for c in report['rejected'] if c['target'] == 'Tourism')
+        self.assertEqual(tourism['rank'], 4499)
+
+    def test_basic_maximum_rule_does_not_blanket_exclude_other_senses(self):
+        for text in ('They accept up to ten people.', 'They accept up to 45 people.'):
+            report = analyze(lesson(text))
+            self.assertTrue(any(c['target'] == 'up to' and c['reason'] == 'basic_expression' for c in report['rejected']))
+        for text in ('It is up to you.', 'They are up to something.'):
+            report = analyze(lesson(text))
+            self.assertFalse(any(c['target'] == 'up to' and c['reason'] == 'basic_expression' for c in report['rejected']))
+            self.assertTrue(any(c['target'] == 'up to' for c in report['candidates']))

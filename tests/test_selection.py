@@ -17,7 +17,7 @@ def item(candidate, **kwargs):
     return dict(id=candidate['id'], ko_gloss='확대하다', en_explanation='To make something larger or more available.',
                 sense_key='increase availability', usefulness=4, reason='Useful in everyday news',
                 familiar_borrowing=False, borrowing_ko='', borrowing_matches_context=False,
-                context_appropriate=True, learning_unit_appropriate=True,
+                context_appropriate=True, learning_unit_appropriate=True, adds_learning_value=True,
                 is_entity=False, **kwargs) if not kwargs else dict(item(candidate), **kwargs)
 
 

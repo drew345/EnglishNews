@@ -1,5 +1,9 @@
 {
   "version": 1,
+  "basic_senses": {
+    "up to": {"sense": "maximum amount", "context": "following_quantity"},
+    "start over": {"sense": "begin again", "context": "any"}
+  },
   "fixed": ["up to", "at least", "at risk", "in advance", "in charge of", "in spite of", "on behalf of", "on time", "in time", "in turn", "so far", "in the long run", "as well as", "rather than", "due to", "according to"],
   "verb_expressions": ["start over", "take part in", "aim for", "lead to", "depend on", "rely on", "deal with", "cope with", "carry out", "set up", "find out", "give up", "break down", "cut back on", "run out of", "look forward to", "come up with", "put off", "turn down", "bring about", "take over", "pay off", "point out", "call for", "result in", "account for", "take into account", "make ends meet"],
   "reflexive_verbs": ["support", "express", "prepare", "protect"],

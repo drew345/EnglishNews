@@ -1,5 +1,13 @@
 # English News — session log
 
+## 2026-09-20 — familiar vocabulary exclusions and audience learning-value check
+
+- Andrew approved the TTS format, reaffirmed that up to, start over and tourism are too basic for the intended audience, and authorized the proposed software/prompt adjustment. Audience: Korean adults with substantial existing English vocabulary. Keep the single-word cutoff at 3,500; no cutoff increase was authorized or made.
+- Selector v4 adds a separate required adds_learning_value boolean to the same selection/definition response; false becomes too_easy even at usefulness 5. Prompt explicitly distinguishes new vocabulary knowledge from relevance/usefulness and discourages padding. The judgment remains model-based, not a deterministic estimate of learner knowledge.
+- Software exclusions: tourism in the separate easy overlay (original rank 4,499 unchanged); start over and verified inflections in phrase-reference basic_senses; up to before a numeric maximum, including spelled-out numbers. Other senses such as up to you remain eligible. Basic-expression exclusions are audited and cannot be bypassed by include or model output. No blanket rule rejects phrases made of common component words. Existing v3 review bundles remain readable.
+- Fresh current-run text draft: output/text-review/20260920_english_text_69271a0759a5, with 1/6/5 vocabulary items (12 total). All three named items are excluded; the audience prompt also removed nine others. No additions, manual selection edits, or sentence changes. Actual cached responses and provenance are saved alongside written-lesson.md and speech-script.txt. First-story count of one is a material review point, not grounds to silently pad or loosen the agreed criteria.
+- Validation: 54 offline tests pass, including familiar phrases/inflections, numeric versus other up to senses, high-usefulness learning-value veto, required field validation, unchanged rank/cutoff and non-bypassable exclusions. Existing short definitions, approved TTS format and English 0.8976 speed remain active. No audio/video or production changes. Next: review revised selection (particularly sparse story 1); format approval persists.
+
 ## 2026-09-20 — written lesson approved; TTS review and English speed increase
 
 - Andrew approved the shortened-definition lesson and requested the exact TTS script before audio. He also requested English 2% faster. This turn prepares text/settings only; no synthesis, rendering or production adoption.

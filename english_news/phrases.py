@@ -2,12 +2,30 @@
 import json
 from pathlib import Path
 
-VERSION = 'controlled-expressions-v1'
+VERSION = 'controlled-expressions-v2'
 REFLEXIVES = {'myself', 'yourself', 'himself', 'herself', 'itself', 'ourselves', 'yourselves', 'themselves', 'oneself'}
 
 
 def reference():
     return json.loads(Path(__file__).with_name('phrase-reference.json').read_text(encoding='utf-8'))
+
+
+def basic_sense(span, expression, rules):
+    """Conservative context checks for user-confirmed familiar phrase senses."""
+    rule = rules.get('basic_senses', {}).get(expression['key']) if expression else None
+    if not rule:
+        return None
+    if rule['context'] == 'any':
+        return dict(rule)
+    if rule['context'] != 'following_quantity':
+        raise ValueError('Unknown basic-expression context rule')
+    # Numeric maximums only: do not suppress other senses such as "up to you".
+    following = list(span.doc[span.end:span.end + 4])
+    while following and following[0].text.casefold() in {'about', 'around', 'approximately', 'nearly', 'a', 'an', '$', '£', '€'}:
+        following.pop(0)
+    if following and following[0].like_num:
+        return dict(rule)
+    return None
 
 
 def match(span, forms, rules):

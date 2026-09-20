@@ -1,12 +1,20 @@
 # English News — agent context
 
-Last updated: 2026-09-13
+Last updated: 2026-09-20
 
 ## Purpose and boundaries
 
 English News is a companion for Korean-native speakers practicing English through the same news stories. An explicit completed Korean run now produces all three English stories, speech/audio, video and Korean publication sidecars in isolated development worktrees. Routine command and lighter-model handoff instructions are at the top of development/README.md. Automatic daily triggering and upload are not enabled.
 
 Read this file and SESSION_LOG.md first when resuming. FEASIBILITY.md holds the detailed code inventory, architecture, risks and phased plan; do not duplicate it into additional plan files.
+
+## Current direction — 2026-09-20
+
+- Andrew now wants independent vocabulary selection from the actual English lesson, including useful phrases, with a soft target of 8–12 items per story. Use English frequency data; the proposed Korean-rank mapping is superseded. `wordfreq` and an initial 3,500 cutoff are recommendations, not finalized implementation choices.
+- Carry over the Korean methodology's names, cities/geography, organizations, grammar, loanwords, normalization, overrides, repetition and contextual-definition stages with English-specific equivalents. Andrew explicitly wants familiar English loanwords used in Korean excluded even outside the frequency cutoff. The proposed meaning-aware borrowing reference must not blindly invert the existing mixed-purpose Korean blocklist.
+- The same three selected stories feed both audiences. Andrew permits independent wording with the same facts; preserve sentence-pair alignment within each lesson. Proposed stages and branching are in FEASIBILITY.md.
+- Lasting English-specific behavior after the content split belongs in EnglishNews. Avoid copied implementations requiring fixes in two places; genuinely shared speech/video machinery should have one maintained implementation and explicit interfaces. Do not accumulate worktrees or branches as permanent runtime dependencies. Reuse existing development worktrees and plan their retirement; no new repository is required merely for this phase.
+- This is design discussion, not completed implementation or merge authorization. Preserve the Korean desktop workflow. The prototype below still describes the running implementation; older deferrals of independent English vocabulary selection are superseded as planning constraints.
 
 ## Settled first-cut requirements
 

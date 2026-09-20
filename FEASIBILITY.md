@@ -2,6 +2,32 @@
 
 Date: 2026-09-13. Scope: preliminary code and dependency assessment; no production implementation.
 
+## Revised direction — 2026-09-20
+
+The original assessment below records the implemented inversion prototype. Andrew now wants independent English vocabulary selection and lasting ownership in EnglishNews, without parallel copies of shared code. No implementation of this revision has started.
+
+Confirmed: the same three chosen stories and facts; independent natural wording is allowed; English words and useful phrases must occur in the English lesson; soft target 8–12 items per story; direct English frequency data instead of Korean-rank mapping; familiar loanwords used in Korean should be excluded. Initial cutoff 3,500 and `wordfreq` are proposed. Check base-form versus surface-form ranks before fixing the frequency policy. The Korean analyzer currently uses 3,000.
+
+Recommended permanent boundary: freeze selected sources and shared factual content, then branch before audience-specific prose. EnglishNews owns English lesson composition, Korean sentence translations, English selection/rules, explanations, speech sequencing, audience settings, publication content and orchestration. Korean News retains its selection UI/source preparation and Korean lesson. Keep reusable media transport/assembly and renderer mechanics in one maintained implementation accessed through explicit, versioned interfaces; English-specific rendering choices should be passed from EnglishNews. Exact packaging of shared speech utilities remains to be resolved without creating a new repository by default.
+
+Recommended staged implementation:
+
+1. Build the independent selector inside the existing EnglishNews worktree, initially using the available English sentences. Adapt names/geography/organization/grammar filtering, normalization, known-word overrides, deduplication and contextual definition checks. Familiar-borrowing matching needs an English-side reference and contextual meaning checks; do not translate the entire mixed-purpose Korean loanword blocklist into unconditional English bans. Keep English rules outside Korean core lists.
+2. Review text-only output on the next incoming run, including exact sentence occurrence, usefulness, completeness, borrowing exclusions and item counts. Old outputs are offline diagnostic evidence only; do not regenerate their media. Preserve existing audio repetition and presentation work.
+3. Introduce a structured content handoff before Korean vocabulary/audio and then audience-specific English composition from the shared facts. Both lesson branches keep internally aligned sentence translations. Avoid requiring completed Korean media or inheriting a Korean duration-driven story omission.
+4. Replace sibling `sys.path` imports and the renderer's linked-worktree requirement with supported shared interfaces. The Korean News prototype branch currently contains only AGENTS.md changes; its worktree supplies speech utilities, not English feature edits. Video Lab contains reusable English audience support that can be consolidated into its maintained renderer after regression/review, while English-specific content/configuration belongs in EnglishNews.
+5. Adopt accepted EnglishNews code into EnglishNews main and accepted shared changes into their owning repositories' stable branches. Preserve unrelated changes, required ignored media and environments before retiring temporary worktrees/branches. Exit criterion: the supported EnglishNews command works from Projects/EnglishNews with documented stable dependencies and no Worktrees path or experimental branch requirement. No merge/removal has been performed or approved in this discussion.
+
+### Safe Korean News integration and checkpoint
+
+Andrew requested publication of the current affected state before implementation. Back up both stable and existing prototype branches; a backup push does not adopt experimental code into main. Reuse the current Korean News branch/worktree rather than adding another permanent checkout. Its main code baseline is `93efff6`; the existing prototype `4be82ed` differs only in worktree instructions.
+
+Proposed first production-facing change: an optional, versioned, atomic content handoff with stable story IDs and source provenance. Keep English processing in an independent EnglishNews worker; handoff/English failures must not fail or block Korean lesson generation. Initially leave the handoff disabled by default and do not add English generation, credentials, cleanup or publishing to the Korean generation call. Source/fact sharing must preserve the current Korean prompt and selection behavior until a separate comparison justifies a change.
+
+Before adoption, compare deterministic Korean written/speech outputs against frozen baselines and test handoff enabled/disabled, write failure, interrupted export, repeated consumption and missing English worker. Verify separate output/state paths and the unchanged desktop-launcher behavior. No historical media regeneration; listening/video review uses the next incoming run. Publish development progress to the existing prototype branch. Present the tested change for review before merging into main, with the optional integration switch as the immediate disable path. Retire the temporary checkout after stable adoption and artifact preservation.
+
+## Original first-cut assessment — 2026-09-13
+
 **Verdict: feasible, with targeted refactoring.** The existing pipeline already produces aligned English/Korean sentences and vocabulary definitions. Those can feed a second lesson without another news-selection, summarization, or vocabulary-selection pass. The updated first cut adds short English vocabulary explanations through an English-side enrichment call. Audio and video must be produced separately because the spoken content, duration, timing, and audience change.
 
 Confirmed preferences: preserve all current output types, including video; reverse existing vocabulary first, adding a short English explanation in place of the Korean explanation; use a separate YouTube channel with Korean titles and descriptions. Independent English vocabulary selection rules and study tips are a later phase.

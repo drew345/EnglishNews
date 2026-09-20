@@ -1,5 +1,32 @@
 # English News — session log
 
+## 2026-09-20 — pre-implementation GitHub checkpoint
+
+- Andrew requested backup of affected current work before changes and asked how Korean News integration will be isolated. Recommended reusing the existing `codex/english-news-prototype` branch/worktree, publishing progress there and reviewing tested integration before main adoption; no new checkout or merge made.
+- Reviewed pending changes: EnglishNews planning documents and September 18–19 run notes only. Fresh remote inspection found Korean News main `93efff6` / prototype `4be82ed`, Video Lab main `e6cbd24` / prototype `c8a8b60`, and Korean core main `759ddb3` already published. Loanwords local main `2e5c5db` is already contained in remote main `9b92480` (newer automated harvest); no pull or data change required for this backup.
+- FEASIBILITY.md now describes an optional atomic handoff, independent English processing, Korean failure isolation, regression/review requirements, default-disabled introduction and worktree retirement. This checkpoint publishes documentation on the existing EnglishNews branches; no implementation, generated media, credentials, routine sync/control changes or production-code adoption is included.
+
+## 2026-09-20 — English selection redesign and permanent ownership
+
+- Reviewed Korean selection code, definition prompts, recent vocabulary notes and current worktree dependencies. Text-only occurrence audit found 18/58 retained entries matched their associated English sentence verbatim on September 18 and 12/41 on September 19; these are not error counts because inflection/dictionary-form differences also fail strict matching. The Korean generator already creates bilingual pairs from English source material in one call.
+- Andrew selected independent wording with shared story facts, words plus useful phrases, direct English frequency data (superseding Korean-rank mapping), a soft 8–12 items per story, and a familiar-loanword exclusion stage. Recommended cutoff 3,500 remains unconfirmed; actual Korean rules use 3,000. Do not blindly invert the mixed-purpose loanword list; contextual exceptions and English normalization need explicit rules.
+- Andrew wants lasting English behavior in EnglishNews and no accumulation of permanent experimental branches/worktrees or copied shared implementations. Dependency check: Korean News prototype branch has only AGENTS.md changes; EnglishNews imports its speech utilities. Video Lab holds English audience support, and the current English render wrapper explicitly requires its linked worktree. These are temporary dependencies to retire through stable shared interfaces, not duplicate code copies.
+- Updated AGENTS.md and the existing FEASIBILITY.md with confirmed constraints, proposed ownership, staged selection/content-handoff work, and a retirement exit criterion. No source edits, model calls, media generation, merge, branch/worktree creation/removal, sync or publication. Existing September 18–19 uncommitted log entries preserved. Next: resolve remaining proposed defaults and begin the agreed coding scope in the existing development checkout.
+
+## 2026-09-19 — current three-story English run
+
+- Used only the newest completed Korean source run `20260919_132154_89f4c8f9`; its three staged story images were verified. The development wrapper produced `20260919_english_all_981ccda524` with three stories, 41 retained vocabulary entries, 92 speech units, and 1,128.120 seconds of audio.
+- Audio decode and full MP4 audio/video decode passed. The MP4 is 1,139.08 seconds and `workflow-status.json` is `ready_for_review`; upload-package status is `awaiting_user_review` with publication disabled.
+- Generated Korean title, description, chapters, thumbnail and upload sidecars for `뉴스로 배우는 영어` / `@SteadyLanternEnglish`. Opened the MP4 for Andrew and visually checked opening, story-two/story-three transitions, vocabulary frames, full-review tail, final frame and thumbnail. No upload or publication occurred.
+- Three vocabulary items remain for human review: `flight operation / 운항` is imprecise in the boat context, `activation / 활성` is awkward, and `asparagine / 아스파` should likely use the standard term `아스파라긴`. Human listening is still required before publication.
+
+## 2026-09-18 — current three-story English run
+
+- Used only the newest completed Korean source run `20260918_142208_d04e525d`; its three staged story images were verified. The development wrapper produced `20260918_english_all_65f74b7ccd` with three stories, 58 retained vocabulary entries, 109 speech units, and 1,374.936 seconds of audio.
+- Audio decode and full MP4 audio/video decode passed. The MP4 is 1,385.83 seconds and `workflow-status.json` is `ready_for_review`; upload-package status is `awaiting_user_review` with publication disabled.
+- Generated Korean title, description, chapters, thumbnail and upload sidecars for `뉴스로 배우는 영어` / `@SteadyLanternEnglish`. Opened the MP4 for Andrew and visually checked opening, story-two/story-three transitions, vocabulary frames, full-review tail, final frame and thumbnail. No upload or publication occurred.
+- Seven vocabulary items remain for human review: royal shrine / 종묘, Joseon royal tombs / 조선왕릉, historic palace / 창덕궁, advance reservation / 사전, historic palace / 경복궁, to enforce / 단속하다, and raising / 제기. Human listening is still required before publication.
+
 ## 2026-09-17 — prototype branches published for Seoul transfer
 
 - Published the EnglishNews planning `main` records and created matching GitHub `codex/english-news-prototype` branches for EnglishNews, korean-news, and KoreanLessonVideoLab. Each development worktree now tracks its remote branch; production branches were not merged or changed.

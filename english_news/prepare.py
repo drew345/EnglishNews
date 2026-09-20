@@ -10,6 +10,7 @@ from .content import (load_content_run, content_lesson, apply_composition, valid
                       COMPOSITION_INSTRUCTIONS, GROUNDING_INSTRUCTIONS)
 from .lesson import digest, write_json, written_lesson, make_plan, vocab_entries, import_story
 from .selection import analyze, apply_selection, SelectionConfig, SELECTION_INSTRUCTIONS, VERSION
+from .definitions import VERSION as DEFINITION_VERSION, validate_definition
 
 PREPARATION_VERSION = 'english-text-preparation-v1'
 
@@ -93,14 +94,21 @@ def prepare_lessons(lessons, output_root, *, config=SelectionConfig(), model='gp
         prepared.append(lesson)
         reports.append(report)
     profile = dict(version=PREPARATION_VERSION, selector=VERSION, config=asdict(config), model=model,
-                   rewrite=rewrite, candidates_only=candidates_only)
+                   rewrite=rewrite, candidates_only=candidates_only, definitions=DEFINITION_VERSION)
     payload = dict(source_run_id=source_run, lessons=prepared, reports=reports, profile=profile,
                    status='candidates_only' if candidates_only else 'text_ready_for_review', publication_enabled=False)
+    return write_prepared(payload, output_root)
+
+
+def write_prepared(payload, output_root):
+    """Render a new content-addressed text bundle without changing previous reviews."""
+    source_run = payload['source_run_id']
+    candidates_only = payload['status'] == 'candidates_only'
     identity = digest(payload)
     output = Path(output_root) / f'{source_run[:8]}_english_text_{identity[:12]}'
     output.mkdir(parents=True, exist_ok=True)
     blocks, plans = [], []
-    for lesson, report in zip(prepared, reports):
+    for lesson, report in zip(payload['lessons'], payload['reports']):
         number = lesson['source_story_number']
         write_json(output / f'story-{number:02d}-selection.json', report)
         if not candidates_only:
@@ -139,6 +147,8 @@ def load_prepared(path):
             for v in body['vocab']:
                 if v['sentence_index'] != i or body['en'][v['start']:v['end']] != v['target']:
                     raise ValueError('Prepared vocabulary source changed')
+                if payload['profile'].get('definitions') == DEFINITION_VERSION:
+                    validate_definition(v['en_explanation'], v['target'], v['lemma'])
         explanations = {v['id']: dict(en_explanation=v['en_explanation'], review_note='') for v in entries}
         blocks.append(written_lesson(lesson, explanations))
         plans.extend(make_plan(lesson, explanations))

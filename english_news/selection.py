@@ -11,6 +11,7 @@ from .lesson import digest
 from .vocabulary import COUNTRIES, normalize
 from .morphology import token_form, VERSION as MORPHOLOGY_VERSION
 from .phrases import reference as phrase_reference, match as match_phrase, VERSION as PHRASE_VERSION
+from .definitions import INSTRUCTIONS as DEFINITION_INSTRUCTIONS, validate_definition
 
 VERSION = 'english-selection-v3'
 NLP_MODEL = 'en_core_web_sm'
@@ -179,7 +180,7 @@ Prefer general usefulness and help understanding the story over sheer rarity.
 Teach the exact source form; do not substitute a dictionary form or synonym.
 Return JSON {"items": [...], "rejections": [...]}.
 Each item: id, ko_gloss (short natural Korean equivalent in this context),
-en_explanation (6–18 simple English words), sense_key (short lowercase English
+en_explanation (one short phrase following the definition rules below), sense_key (short lowercase English
 meaning label), usefulness (integer 1–5), reason (brief justification),
 familiar_borrowing (boolean), borrowing_ko (Korean borrowing or empty),
 borrowing_matches_context (boolean), is_entity (boolean),
@@ -188,7 +189,8 @@ For selected entries the borrowing fields must still be assessed truthfully.
 Rejections may list candidate id and reason: familiar_loanword, entity,
 specialist_term, not_useful, arbitrary_phrase, wrong_context, awkward_learning_unit
 or too_easy. Never invent or repeat an ID. These judgments never update rule lists.
-Prefer earliest occurrence of the same word/meaning and avoid overlapping items.'''
+Prefer earliest occurrence of the same word/meaning and avoid overlapping items.
+''' + DEFINITION_INSTRUCTIONS
 
 
 def _text(value, label, max_length=240):
@@ -222,11 +224,11 @@ def apply_selection(lesson, analysis, response, config=SelectionConfig(), *, run
             if type(row.get(field)) is not bool:
                 raise ValueError(f'Missing boolean {field}')
         ko = _text(row.get('ko_gloss'), 'Korean gloss', 100)
-        explanation = _text(row.get('en_explanation'), 'English explanation')
+        explanation = validate_definition(row.get('en_explanation'), c['target'], c['lemma'])
         sense = _text(row.get('sense_key'), 'sense key', 80).casefold()
         reason = _text(row.get('reason'), 'selection reason')
-        if not re.search('[가-힣]', ko) or re.search('[가-힣]', explanation) or not 3 <= len(explanation.split()) <= 30:
-            raise ValueError('Invalid vocabulary definition languages or length')
+        if not re.search('[가-힣]', ko):
+            raise ValueError('Invalid Korean gloss language')
         if type(row.get('usefulness')) is not int or not 1 <= row['usefulness'] <= 5:
             raise ValueError('Invalid usefulness score')
         if row['is_entity']:

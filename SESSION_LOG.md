@@ -1,5 +1,19 @@
 # English News — session log
 
+## 2026-09-20 — concise English definitions implemented and refreshed
+
+- Andrew approved prompt/code changes after comparison: Korean definition averages on September 18/19/20 were 3.6/3.9/4.1 spaced units; English averages were 8.2/8.4/10.1 words. These units are not directly comparable across languages. Korean core requests one dictionary phrase with soft anti-circularity guidance; the English prompt had drifted to 6–18 words with a permissive 30-word validator.
+- EnglishNews now shares definition policy v2 between routine selection and explicit definition-only revision: normally 4–8 simple words, shorter allowed, maximum 10. One general dictionary phrase for the contextual sense, no padding, lists or story retelling; preserve essential meaning. Narrow software checks reject excessive length, exact target/base repetition and target-plus-generic-label definitions, while permitting meaningful related-form reuse. Existing corrective retry handles failures; no automatic truncation or extra routine model call.
+- Added `python -m english_news.definitions --prepared-run ...` for authorized same-run text revisions. It validates exact entry IDs and accepts only explanation changes, records parent/prompt/response checksums and actual response, and writes a separate preparation using the canonical writer. Original selection audits and prior review bundles stay intact.
+- Fresh API revision of all 24 approved items is output/text-review/20260920_english_text_69f2def3b90e. Explanations average 5.8 words (range 4–8); vocabulary counts remain 6/7/11. Exact comparison confirms all other lesson fields and selection audits unchanged. written-lesson.md is an exact view copy. A preliminary refresh ed64a9278e05 is superseded: its profitability explanation blurred profit with covering costs, leading to stronger general meaning-preservation guidance before this final refresh. No hand-edited model definitions.
+- Validation: 50 offline English tests pass, including length/circularity, meaningful word reuse, corrective retries, fixed-selection revision integrity and immutable prior text. Production code, Korean core, audio/video and publication remain unchanged. Next: Andrew reviews the shorter definitions in the full written lesson; media/adoption still await review.
+
+## 2026-09-20 — revised vocabulary approved; full written lesson review
+
+- Andrew likes the revised English term choices. He accepts occasionally longer Korean meanings because they are spoken once, while the English term is spoken four times.
+- English explanations sometimes feel too long. Shortening or omitting them remains a consideration, not an approved change; retain the current explanations and speech sequence for now.
+- Next review is the complete three-story written lesson from 20260920_english_text_26d4238eef86. written-lesson.md is an exact Markdown-view copy of written.txt; canonical preparation artifacts remain unchanged. No new selection, audio/video, or production change.
+
 ## 2026-09-20 — software eligibility safeguards and revised current-run draft
 
 - Andrew approved software solutions for the three flagged choices, an optional separate easy/rank overlay, and contextual vetoes within the existing definition call. He explicitly authorized rerunning text selection on the same current run; no need to wait for another news run for this revision.

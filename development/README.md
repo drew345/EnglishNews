@@ -37,6 +37,18 @@ Only phrases recognized by `english_news/phrase-reference.json` reach the model.
 
 The existing selection/definition call must return boolean `context_appropriate` and `learning_unit_appropriate` for each proposed item, alongside the borrowing assessment. False values are enforced as exclusions. No second review-model call is added. The request contains only eligible candidates; rejected spans remain in the local audit. Counts below eight remain valid. Software eligibility does not guarantee every surviving word is pedagogically useful; the same-call contextual review remains necessary.
 
+## Short English definitions
+
+`english_news/definitions.py` owns the shared English definition prompt and validator. Routine selection uses these instructions within its existing request: one dictionary-style phrase, normally 4–8 simple words, shorter when sufficient, maximum 10. Explain the contextual sense in general terms without retelling the story, listing alternatives, or losing essential meaning. Avoid circular headword reuse, but allow meaningful compounds/related forms. Software enforces the length ceiling and narrow exact-headword/headword-plus-generic-label checks; it does not claim to establish semantic accuracy. Invalid responses use the existing single corrective retry, never mechanical truncation. Prompt contents participate in cache identity; new preparations record definition policy v2. Historical bundles remain readable under their original policy.
+
+To revise definitions in an already selected lesson without reselecting vocabulary (only when a same-run text revision is authorized):
+
+```powershell
+.venv/Scripts/python.exe -X utf8 -m english_news.definitions --prepared-run output/text-review/EXISTING_ID --allow-model --env-file C:/AI/Codex/Projects/korean-news/.env
+```
+
+This explicit revision batches only the English explanations into one request, with one corrective retry if needed. It rejects missing/duplicate/unknown IDs and attempts to return other fields. It creates a new review bundle, retaining source sentences, Korean glosses, vocabulary selections and original selection audits exactly. Parent checksum, model, prompt checksum and actual response are saved in the preparation. It makes no audio/video. `--responses FILE` permits offline replay; without `--allow-model`, only a validated cache or replay can be used. Routine generation does not gain an extra definition request.
+
 ## Optional development content handoff
 
 The Korean hook runs after the existing bilingual summary and before Korean vocabulary. The original English publisher summary/article and selected bilingual facts are exported; English composition can reword those facts and provide its own Korean translations. The Korean summary prompt is unchanged. Moving shared fact extraction ahead of both audience prose generators remains a later architectural step, not something this implementation claims to have done.

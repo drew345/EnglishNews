@@ -1,5 +1,11 @@
 # English News — session log
 
+## 2026-09-20 — rebuilt video accepted for readability; continuous scroll corrected
+
+- Completed the user-requested rebuild at output/runs/20260920_english_all_3446bd4d60 from text preparation 8da79538915d: English Headline labels at ordinary English speed, 44px vocabulary/body, wider text column. MP4 698.17 seconds; audio/video decode and preparation checks passed, ready_for_review with publication disabled. Vocabulary remains 1/6/5; pentathlon remains omitted. Andrew approved size, spacing and margins after viewing.
+- Andrew then identified abrupt clearing between stories. Compared actual Korean/English transition frames and fixed the development Video Lab renderer to scroll one connected text column, with two blank body rows between stories and headline positions tied to narration boundaries. Previous summary remains visible as the next headline enters. Story rates may differ, but boundary positions match; card changes and ending hold are preserved.
+- Validation: 30 renderer tests pass, including transition continuity; Korean ASS byte-identical to production. Inspected both boundary pairs and ending stills in .local/qa/20260920-continuous-scroll. The reviewed full MP4 has not been replaced by this subsequent scroll change. No new speech, full video, publication or production changes. Next authorized media build uses continuous scrolling.
+
 ## 2026-09-20 — video review corrections: labels, vocabulary size and width
 
 - Andrew requested English Headline N instead of Korean 헤드라인 N. After learning it is a separate audio call, he clarified that it should use the ordinary English speed (0.8976), not a special Korean-speed exception. Written and spoken labels now follow the saved speech profile; historical reviews keep their original labels. Korean 어휘/전체 요약 remain unchanged.

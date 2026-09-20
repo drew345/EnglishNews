@@ -112,4 +112,3 @@ class PreparationTests(unittest.TestCase):
             write_json(cached, data)
             with self.assertRaisesRegex(ValueError, 'Corrupted'):
                 model_response('Review', {'text': 'one'}, 'model', directory, validate_grounding)
-

@@ -1,5 +1,13 @@
 # English News — session log
 
+## 2026-09-20 — supervised upload started in in-app browser
+
+- Andrew returned and requested step-by-step upload, confirming settings and saving the procedure for future automation. Uploaded the exact approved MP4 after verifying all upload-package hashes, to the verified English channel. YouTube draft video ID is s5nbFctXMOA (https://youtu.be/s5nbFctXMOA); uploaded privately, not published. Resume this draft, never start a duplicate upload.
+- In-app browser tab 1 is now on https://studio.youtube.com/video/s5nbFctXMOA/edit and is marked for handoff. Prepared title/description pasted and checked; dated thumbnail uploaded. Not made for kids, no paid promotion, and AI use No selected. Andrew reaffirmed the AI disclosure interpretation; current YouTube guidance was checked. Generic narration/illustrative cards assessed as outside the realistic-event/impersonation examples; description still discloses AI narration.
+- Andrew explicitly approved English video language and Korean title/description language; both are now set and saved. Separate metadata language is absent in the upload modal but available on the underlying full Video details > Show more after saving/closing the draft.
+- Andrew confirmed Education for this and future uploads; selected and saved. Optional academic fields remain unset. HD processing completed; copyright checks report no issues. No final visibility selection or publication yet. Next: Edit draft, review remaining steps/visibility together, then publish after Andrew confirms the concrete final settings.
+- Saved reproducible steps and confirmed versus pending choices in development/youtube-upload.md. Automatic publication remains disabled. Today's approved video is unchanged; future ending-scroll feedback remains pending.
+
 ## 2026-09-20 — final video approved; resume with supervised upload
 
 - Andrew approved the final continuous-scroll video for today's upload, then paused to travel home. Resume this chat with supervised upload together when he returns; do not upload while he is away and do not rebuild this approved video. Target: English channel @SteadyLanternEnglish, ID UCPvS_o6ypGR8-aA0P2pgtdA.

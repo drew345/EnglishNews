@@ -1,5 +1,22 @@
 # English News — session log
 
+## 2026-09-20 — end-of-day handoff; next incoming run tomorrow
+
+- Andrew is finished for today. Tomorrow he will first complete his normal Korean News generation using the existing production workflow, then return to this chat. Use that new completed run for the next English lesson; do not reuse or rebuild today's published video.
+- Aim for fewer steps by reusing today's confirmed vocabulary, definition, speech, layout and upload settings. Keep meaningful review points and the user-controlled Public/Publish handoff; do not repeat settled settings questions. Progress toward full automation gradually, without enabling background triggers or unattended publication yet.
+- Today's publication and comments navigation are complete: https://www.youtube.com/watch?v=s5nbFctXMOA. Future English ending motion should continue through the post-narration buffer; 4–5 seconds is acceptable. Implement/check that for a future build, not today's media. No further work, sync or scheduled automation requested tonight.
+
+## 2026-09-20 — published and comments handoff completed
+
+- Andrew selected Public and published today's approved video himself. Verified Studio Visibility Public and the public watch page's exact title, @SteadyLanternEnglish channel, and 11:38 duration: https://www.youtube.com/watch?v=s5nbFctXMOA. Recorded published state/video ID/verification time in run.json, video/render-status.json and upload-package.json for run 20260920_english_all_3446bd4d60. No duplicate upload or media regeneration.
+- Opened the canonical public video at #comments, paused playback, turned autoplay off, and verified Add a comment visible. In-app browser tab 1 retained for Andrew. Drafted Korean wording announcing improved direct English vocabulary selection from today onward; no comment typed or submitted by the agent.
+- Upload task is complete. The standing handoff remains Andrew chooses Public/Publish, followed by agent opening the verified video's comments. Future ending-scroll adjustment and production adoption remain separate pending work.
+
+## 2026-09-20 — final Visibility handoff ready
+
+- Andrew clarified that he wants the same handoff as his Korean uploads: agent completes preparation through Visibility; Andrew chooses Public and clicks Publish himself, with Instant Premiere off. Draft save was only to set the separate Korean metadata language, not the intended stopping point.
+- Resumed existing video s5nbFctXMOA, advanced through Video elements and Checks (no issues) to Visibility. Left Public unselected for Andrew, Instant Premiere unchecked, and both controls visible in in-app tab 1. Final button currently reads Save and will become Publish when Andrew chooses Public. Tab marked for handoff; no publication action performed. Verify publication when Andrew reports completion, then record public status/link and perform the comments-page handoff.
+
 ## 2026-09-20 — supervised upload started in in-app browser
 
 - Andrew returned and requested step-by-step upload, confirming settings and saving the procedure for future automation. Uploaded the exact approved MP4 after verifying all upload-package hashes, to the verified English channel. YouTube draft video ID is s5nbFctXMOA (https://youtu.be/s5nbFctXMOA); uploaded privately, not published. Resume this draft, never start a duplicate upload.

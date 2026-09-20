@@ -5,6 +5,14 @@ procedure; do not copy Korean channel defaults blindly or enable unattended
 publication without Andrew's authorization. Andrew wants to confirm settings
 step by step while establishing future automation.
 
+Andrew's clarified handoff: take the upload all the way to Visibility, with
+Public and the unchecked Instant Premiere control visible. Andrew selects
+Public and clicks Publish himself. Do not stop at the draft/details screen or
+publish on his behalf unless he later explicitly changes this instruction.
+The temporary save/close step above was needed to set the separate Korean
+metadata language; it is not the final handoff. Resume the same draft via
+Edit draft > Next (Video elements) > Next (Checks) > Next (Visibility).
+
 ## Approved choices
 
 - Channel: 뉴스로 배우는 영어 / @SteadyLanternEnglish,

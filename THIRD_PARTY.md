@@ -1,0 +1,7 @@
+# English vocabulary data and models
+
+- [wordfreq](https://github.com/rspeer/wordfreq), version 3.1.1, by Robyn Speer and contributors. Code is Apache-2.0; bundled frequency data is CC BY-SA 4.0 with upstream source credits in its repository and installed distribution. We query `top_n_list('en', 6000)` in memory and retain candidate ranks in lesson audits; we do not export or redistribute a standalone word list. Its multilingual data ends in 2021. This is a surface-token frequency source, not a curated learner syllabus or 6,000 unique lemmas.
+- [spaCy](https://spacy.io), version 3.8.16, and [en_core_web_sm](https://spacy.io/models/en), version 3.8.0, by Explosion and contributors, MIT. Tokenization, contextual lemmas, parts of speech and named entities are provisional linguistic annotations. Contextual selection still reviews missed entities and usefulness.
+- `english-borrowings.json` is an EnglishNews-maintained starting set of Korean borrowing hints, not an imported blacklist or evidence that every sense is familiar. The selection prompt checks familiarity and contextual meaning even when no hint exists. Do not populate it by translating the mixed-purpose Korean ignore list.
+
+The frequency cutoff defaults to 3,500, taking the more common rank of the exact form and contextual lemma. Words outside the top 6,000 are labelled unranked, not automatically educational. Phrases receive independent contextual assessment.

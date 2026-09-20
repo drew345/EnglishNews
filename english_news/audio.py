@@ -20,8 +20,8 @@ def segment_plan(unit: dict) -> tuple[list[str], list[int]]:
 
 
 def synthesize_plan(plan, output: Path, *, voice, client, instructions):
-    from src.openai_speech_tts import synthesize_speech_units
-    from src.tts_common import TtsTextUnit, concatenate_mp3
+    from korean_news_media.openai_speech_tts import synthesize_speech_units
+    from korean_news_media.tts_common import TtsTextUnit, concatenate_mp3
 
     def make(unit):
         texts, order = segment_plan(unit)

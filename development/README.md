@@ -1,170 +1,82 @@
-# English News development setup
+# English News development runbook
 
-## Routine three-story run (Windows ASUS)
+Updated 2026-09-20. The implementation plan and ownership/merge sequence are in [FEASIBILITY.md](../FEASIBILITY.md). Work only in the existing development checkouts until review. No production setting, launcher, environment or main branch has been changed.
 
-Vocabulary update: the command now removes English glosses containing whole-word
-“name” or exactly matching the checked-in country-name/alias list before
-explanation/speech generation. See vocabulary-filter.json in each new output.
-The country check also matches the Korean vocabulary word, so 태국 is removed
-even when the English gloss is “Southeast Asian country.”
-Generic place descriptions, sentence-occurrence checks and grammatical variants
-are saved for next time. Effectiveness checks for these rules are text-only:
-do not run this media-building command merely to test a vocabulary change.
+## Prepare the next incoming lesson as text
 
-Work in `C:/AI/Codex/Worktrees/english-news/EnglishNews`. Andrew runs the original
-Korean News desktop icon first, then tells the assistant the new run is ready.
-Use only that next incoming run. Do not regenerate an earlier reviewed video
-unless he specifically asks. No GPT model needs to reconstruct the pipeline.
+English vocabulary is chosen from English sentence candidates. Korean vocabulary and its glosses are discarded. The selector uses wordfreq 3.1.1, spaCy 3.8.16/en_core_web_sm 3.8.0, cutoff 3,500, contextual borrowing/usefulness checks and a soft target of 8–12. See THIRD_PARTY.md for data provenance and limitations.
 
-1. Find the new run ID in `C:/AI/Codex/Projects/korean-news/output/runs/`.
-   Read its `run.json`: require `status=completed` and three stories. Confirm
-   the same ID has three images in the production Video Lab
-   `inputs/korean-news/<ID>/` folder. If multiple new runs are plausible, ask
-   Andrew which one; never silently use an older run.
-2. Execute one command from this worktree:
+1. Use only the next incoming news run for a new lesson. Historical runs may be inspected with the offline diagnostic below, but must not be turned into new samples or media.
+2. If the development Korean API produced a structured handoff, prepare independent English wording from the same facts:
 
    ```powershell
-   ./development/make-english-news.ps1 -SourceRun NEW_RUN_ID
+   .venv/Scripts/python.exe -X utf8 -m english_news.prepare --content-run output/content/NEW_SOURCE_RUN_ID --rewrite --allow-model --env-file C:/AI/Codex/Projects/korean-news/.env
    ```
 
-3. Wait for exit code 0 and `READY FOR REVIEW`. Read
-   `output/runs/<English ID>/workflow-status.json` (`ready_for_review`),
-   `audio-qa.json`, `video-qa.json`, `vocabulary-review.md`, and
-   `upload-package.json`. The package lists exact video, Korean title,
-   description, thumbnail and chapters paths with checksums. Open the MP4
-   for Andrew, inspect the start, transition and end frames, and mention
-   outstanding vocabulary concerns. Automated checks do not replace listening.
-4. Stop at local review. Do not upload, start a watcher, create an upload task,
-   or change production. The intended channel is 뉴스로 배우는 영어 /
-   @SteadyLanternEnglish (`UCPvS_o6ypGR8-aA0P2pgtdA`). Upload requires Andrew's
-   subsequent request after reviewing this video.
+   While production is unchanged and has no export hook, the next completed production run can supply its English sentence pairs without using its vocabulary:
 
-The command snapshots and verifies source text/metadata/images, prepares all
-three lessons using Alloy (English 0.88, Korean 1.07), generates or resumes
-cached speech, concatenates story audio, checks exact repetition assembly,
-renders story-timed scrolling, validates the complete media and sidecars,
-and leaves publication disabled. Source folders are read-only inputs.
-An OS lock prevents simultaneous builds and releases on process exit.
+   ```powershell
+   .venv/Scripts/python.exe -X utf8 -m english_news.prepare --legacy-written C:/AI/Codex/Projects/korean-news/output/runs/NEW_SOURCE_RUN_ID/DATE-news-written.txt --source-run-id NEW_SOURCE_RUN_ID --allow-model --env-file C:/AI/Codex/Projects/korean-news/.env
+   ```
 
-On failure, read the error and workflow status. Repeating the **same command
-for the in-progress run** resumes valid speech/explanations. Completed renders
-are reused only when code, input and video checksums match. A failed render
-restarts rendering; it does not need another speech synthesis. Do not delete
-caches, alter source snapshots, or run the Korean desktop launcher from these
-worktrees. Input corruption, missing keys, malformed lesson text or missing
-staged images should be reported and resolved explicitly.
+   The legacy adapter retains existing English wording. It cannot independently rewrite without structured shared facts. Do not silently claim that this fallback exercises the new composition stage.
+3. Review `output/text-review/<ID>/written.txt`, `speech-plan.json`, and each `story-NN-selection.json`. The latter records candidate forms, lemmas, ranks, names/grammar/common-word exclusions, contextual decisions, definitions and omissions. Fewer than eight suitable items is allowed. Check loanword meanings and phrase usefulness; neither frequency nor NER establishes learner value by itself.
+4. Stop at text review during the current coding exercise. Media and production adoption await Andrew's review. Edit a response replay or source input and prepare again to revise selection; manually editing written.txt does not update the structured lesson and will block media.
 
-The wrapper uses the existing Korean News `.env` without copying it. Its ASUS
-Projects root is explicit in the script; review that path after a device move.
-The enrichment model is already `gpt-5.6-luna`. Running the procedure with a
-lighter Codex model is the next operational handoff test, not yet demonstrated.
+Text preparation makes paid requests only with `--allow-model`. Omit it for validated-cache reuse; use `--responses reviewed-responses.json` for offline replay. Response format is a dictionary keyed by story number, each containing `selection` and optionally `composition`/`grounding`; tests/test_prepare.py provides examples. `--candidates-only` needs no key and cannot produce a media-ready bundle. `--cutoff 4000` or `4500` changes the common-word gate. `--overrides overrides.json` accepts `include`/`exclude` arrays of words or lemmas: include bypasses the frequency gate, not entity or loanword review. Exclude blocks exact forms/lemmas, not every phrase containing a familiar component.
 
-Current review: `20260914_english_all_7bffe0766f`, based on source
-`20260914_105639_ba258775`. Three stories, 31 vocabulary entries, 80 speech units.
-The MP4 is in sibling Video Lab `outputs/<English ID>/` (about 16m38s).
-This supersedes the one-story commands below for routine work.
+Validated response caches include complete input text, rules, model, frequency/NLP versions and overrides in their identity. Corruption fails visibly. Independent composition includes a separate grounding/translation review. A run ID/content checksum identifies the prepared lesson; all selected vocabulary has source offsets and contextual explanations. These are integrity checks on direct source selection, not the retired translated-gloss occurrence filter.
 
-Created on ASUS, 2026-09-13. All three repositories use branch
-`codex/english-news-prototype` in linked worktrees under
-`C:/AI/Codex/Worktrees/english-news/`:
+## Optional development content handoff
 
-- `EnglishNews`: English worker development and these setup records.
-- `korean-news`: future lesson-export changes.
-- `KoreanLessonVideoLab`: future audience-aware rendering changes.
+The Korean hook runs after the existing bilingual summary and before Korean vocabulary. The original English publisher summary/article and selected bilingual facts are exported; English composition can reword those facts and provide its own Korean translations. The Korean summary prompt is unchanged. Moving shared fact extraction ahead of both audience prose generators remains a later architectural step, not something this implementation claims to have done.
 
-Each worktree has its own `.venv`. The original folders under
-`C:/AI/Codex/Projects/` remain on `main`, with the existing desktop shortcut,
-production environments and complete run-to-upload workflow intact.
-A branch is the line of development; a worktree gives that branch its own
-folder so production and development can stay checked out simultaneously.
+Set `NEWS_CONTENT_EXPORT_DIR` only in the development process, to this EnglishNews checkout's `output/content`, then use `development/start-api.ps1` (port 8010). Its `-Check` mode checks paths without starting a server. Export is disabled by default. The API launcher never starts cleanup, renderer watchers, staging or publication. Never run a production desktop launcher from a worktree.
 
-## Running development
+A complete `news-content-v1` handoff contains `story-01.content.json` through the declared count, atomically published with SHA-256 envelopes. The English consumer rejects missing/changed/mixed stories. Retries are idempotent. Export errors are logged and leave Korean generation running. This initial hook supports up to three selected stories, which Korean duration preflight never trims; larger runs are skipped to avoid divergent lineups. No automatic English watcher or daily trigger is enabled.
 
-Use `development/start-api.ps1` from this worktree to start the development
-Korean News API on port 8010. `-Check` validates paths without starting it.
-This launcher disables API cleanup and does not start the desktop supervisor,
-staging, Voice Inbox cleanup, render watchers or upload handoff. Do not use
-the copied production desktop launchers or `start_local_workflow.py` to run
-development: they retain production cleanup/publication behavior.
+## Media after text review
 
-Output and runtime state resolve inside the development worktrees. Video Lab
-is explicitly selected by the development launcher and also retains the
-expected sibling folder name. Render commands must use development input and
-output paths. No server or worker is started by setup.
-
-No credentials or production `.env` files were copied. The prototype can read
-the existing key using an explicit `--env-file` argument; it keeps the key in
-process memory. Offline tests need no credentials.
-
-## Dependencies and baseline
-
-The two lock files capture the production package versions at setup.
-EnglishNews provisionally uses the Korean News lock for prototype work.
-Production Korean News uses editable Korean core from the sibling repository;
-development installs its clean commit `1d3e870ace54b31d87c93d8c15a43d9dd394acd0`
-as a non-editable package. No core worktree or shared-core edits are needed.
-
-Today's frozen source run, staged input, and rendered output are copied under
-`.local/baselines/20260913_122823_97cda690/` in this EnglishNews worktree.
-`manifest.json` records SHA-256 checksums and original paths. These copies
-are outside production cleanup locations and excluded from Git. Original
-manifests retain production path strings for evidence; never pass them to
-tools that write through those paths. Create a separate working fixture and
-remap paths before replaying anything.
-
-The baseline contains written lessons, speech inputs/request metadata, audio,
-story illustrations, the MP4 and publication/QA sidecars. This is a preserved
-comparison baseline, not an English prototype or a completed listening review.
-
-## Portability
-
-Worktree directories, `.venv` folders and frozen media are local. Existing
-routine sync covers the main repository folders; it must not be assumed to
-carry development branches or these ignored artifacts. Before a device move,
-commit/push development changes and recreate the worktrees/environments on the
-other device. Baseline media needs separate transport if it is needed there.
-Do not add worktrees as independent repositories to routine sync.
-
-## One-story prototype
-
-The previously reviewed sample is `20260913_english_s1_e4644bf4a9`: source story 1,
-four body sentences, 18 existing vocabulary entries, and an English full review.
-The EnglishNews `output/runs/<id>/` folder contains the structured historical
-bundle, cached explanations, written lesson, speech plan/script, segment audio,
-assembled MP3, run metadata and audio QA. The sibling Video Lab
-`outputs/<id>/` contains the MP4, Korean title/description/thumbnail and QA frames.
-One-story samples intentionally omit YouTube chapters (which need three entries).
-
-From this EnglishNews worktree, using its `.venv/Scripts/python.exe`:
+For the next incoming run, when Andrew has authorized media, use the exact reviewed preparation and matching original story images:
 
 ```powershell
-.venv/Scripts/python.exe -X utf8 -m english_news.prototype --baseline .local/baselines/NEW_RUN_ID --env-file C:/AI/Codex/Projects/korean-news/.env --audio
-.venv/Scripts/python.exe -X utf8 -m english_news.render output/runs/NEW_ENGLISH_RUN_ID
-.venv/Scripts/python.exe -X utf8 -m unittest discover tests
-.venv/Scripts/python.exe -X utf8 development/check_korean_baseline.py
-.venv/Scripts/python.exe -X utf8 development/check_sample.py output/runs/20260913_english_s1_e4644bf4a9
+./development/make-english-news.ps1 -PreparedRun output/text-review/NEW_ENGLISH_TEXT_ID -StagedRun C:/AI/Codex/Projects/KoreanLessonVideoLab/inputs/korean-news/NEW_SOURCE_RUN_ID -VideoLab C:/AI/Codex/Worktrees/english-news/KoreanLessonVideoLab -EnvFile C:/AI/Codex/Projects/korean-news/.env -ReviewedText
 ```
 
-This is an explicit local historical importer, not a live export hook or daily
-worker integration. It rejects mismatched Korean review content before making
-API requests. New runs use content/profile identities and cache explanations;
-speech transport resumes validated segment requests. Each vocabulary entry
-synthesizes its English gloss, Korean word and English explanation separately,
-then assembles indices `[0, 0, 1, 2, 0, 0]`. English sentence audio is duplicated
-in software too. This avoids model omissions of repeated speech.
+The explicit review flag records the operator's review decision; it does not solicit a second confirmation after authorization. The wrapper has no SourceRun mode that can reuse Korean vocabulary. It synthesizes the selected words/phrases with the existing cadence: English twice, Korean gloss, English explanation, English twice. Voice Alloy; English 0.88, Korean sentences/section labels 1.07. Body English is repeated twice and the full review is English. Vocabulary stays attached to its own body sentence.
 
-As of September 14, always use the next incoming run for new samples. Replace
-the NEW_RUN_ID placeholders above only after receiving that run. Do not rerender
-old samples unless Andrew explicitly requests it. The interrupted old-run v3
-render `20260913_english_s1_a50ff43638` is not a review deliverable.
+Audio and video outputs now remain under EnglishNews `output/runs/<ID>/`; video and publication sidecars are in its `video/` subfolder. Images are copied and checked by hash. Video Lab runs through its CLI with explicit paths, without cross-project sys.path imports or a requirement that .git be a worktree file. It never runs a publication watcher. `english_news/audience.json` owns English labels and description/thumbnail copy; the renderer preserves defaults for older manifests.
 
-Alloy, English 0.88 and Korean sentences 1.07 were confirmed for this sample;
-vocabulary blocks and the English review use 0.88. Branding is provisional.
-The initial v1 diagnostic sample (`e60a7d8774`) is superseded: one checked
-vocabulary clip omitted its last repetition. Use the v2 sample above.
+Require workflow-status.json `ready_for_review`, audio-qa.json, video-qa.json and upload-package.json, inspect QA frames and listen before adoption. Publication stays disabled; the channel is 뉴스로 배우는 영어 / @SteadyLanternEnglish, ID UCPvS_o6ypGR8-aA0P2pgtdA. Repeat the same media command to resume valid cached speech/render work. Do not rebuild old videos merely to test selection. The historical prototype.py and vocabulary.py remain only for old regression fixtures, not routine generation.
 
-Three inherited glossary entries are flagged in `vocabulary-review.md`:
-Baudeogi as “traditional performer,” “to occupy” for winning a prize, and
-“souvenir” as part of a store name. They are preserved for this agreed initial
-inversion and need review before publication. No channel is configured and no
-publication, watcher, production cleanup or daily workflow integration runs here.
+## Install and test
+
+Each development checkout has its own .venv. EnglishNews no longer needs an editable Korean core or sibling src imports. From this checkout:
+
+```powershell
+.venv/Scripts/python.exe -m pip install --no-deps ../korean-news
+.venv/Scripts/python.exe -m pip install -e .
+.venv/Scripts/python.exe -m pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl
+.venv/Scripts/python.exe -m pip check
+.venv/Scripts/python.exe -m unittest discover -s tests
+```
+
+The first command builds `korean-news-media==0.1.0` from the reviewed development checkout. It packages the existing speech source under `korean_news_media`; it does not copy implementations into EnglishNews. Public speech modules are tts_common, openai_speech_tts and tts_transcription. Reinstall after shared source changes. Before adoption, pin the reviewed Korean commit/wheel; do not install the current unchanged production checkout, which lacks this package. The English optional `media` extra describes the version requirement. Media imports work from an ordinary checkout, so development folders can be retired after merging. `ENGLISH_NEWS_HOME` may explicitly select the EnglishNews checkout; source/editable installs default to their own checkout. Renderer dependencies stay in Video Lab's environment.
+
+`english-news-requirements.lock.txt` captures the validated English development environment. The older Korean/Video Lab locks record the initial September 13 setup. Offline tests use mocks/replays; they do not synthesize or render real media. Run both sibling suites with their own .venv when changing a shared interface.
+
+Offline diagnostic example (historical text is permitted here):
+
+```powershell
+.venv/Scripts/python.exe -X utf8 -m english_news.diagnostics --legacy-written PATH_TO_WRITTEN --source-run-id SOURCE_RUN_ID --output .local/diagnostics/SOURCE_RUN_ID
+```
+
+This compares 3,500/4,000/4,500 candidate pools. It does not make semantic selections or a new lesson. Frequency data is queried in memory, not copied into a standalone list.
+
+## Checkouts, adoption and portability
+
+Use the existing three `codex/english-news-prototype` worktrees under C:/AI/Codex/Worktrees/english-news. No new branches or worktrees are needed. Production remains under C:/AI/Codex/Projects on main. Shared Korean core and loanword repositories are unchanged.
+
+After text and next-run media review: reconcile each development branch with its own main; merge the small Korean export/package change and compatible Video Lab interface; pin those reviewed dependencies in EnglishNews and merge its application; test ordinary checkout paths; then retire the three worktrees after preserving needed ignored outputs. English logic remains in EnglishNews and shared media fixes have one owner. Never fold independent copies of Korean code into EnglishNews.
+
+Worktrees, environments and generated media do not travel with normal main-branch sync. Commit/push development branches separately before a device move; transport wanted ignored artifacts separately. Keep keys outside Git. No credential has been copied or provisioned by this change. Historical setup/sample details remain in SESSION_LOG.md and Git history; they are not current run instructions.

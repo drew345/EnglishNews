@@ -2,11 +2,13 @@
 import argparse
 from datetime import datetime, timezone
 import json
+import os
 from pathlib import Path
+import subprocess
 import sys
 
 from .lesson import write_json
-from .prototype import ROOT
+from .runtime import ROOT
 from .review import file_hash
 from .lesson import digest
 
@@ -18,23 +20,30 @@ def render_fingerprint(run, metadata, lab):
     if any(not p.resolve().is_relative_to(run.resolve()) for p in inputs):
         raise ValueError('Render input escapes English run directory')
     inputs.extend(sorted((lab / 'scripts').glob('*.py')))
+    inputs.extend(sorted(p for p in (lab / 'assets').rglob('*') if p.is_file()))
     return digest([(str(p), file_hash(p)) for p in inputs])
 
 
-def render_run(run):
+def render_run(run, lab=None, python=None):
     run = run.resolve()
     if not run.is_relative_to((ROOT / 'output/runs').resolve()):
-        raise ValueError('Render only runs inside this EnglishNews development worktree')
+        raise ValueError('Render only runs inside this EnglishNews output directory')
     metadata = json.loads((run / 'run.json').read_text(encoding='utf-8'))
     if metadata.get('audience') != 'english' or metadata.get('status') != 'completed':
         raise ValueError('Expected a completed English audio run')
     for key in ('combined_audio_path', 'combined_written_path'):
         if not Path(metadata[key]).resolve().is_relative_to(run):
             raise ValueError(f'Artifact escapes the English run: {key}')
-    lab = ROOT.parent / 'KoreanLessonVideoLab'
-    if not (lab / '.git').is_file():
-        raise ValueError('Expected a linked Video Lab worktree')
-    out = lab / 'outputs' / run.name
+    configured_lab = lab or os.environ.get('ENGLISH_NEWS_VIDEO_LAB')
+    if not configured_lab:
+        raise ValueError('Set ENGLISH_NEWS_VIDEO_LAB to the maintained renderer checkout')
+    lab = Path(configured_lab).resolve()
+    entry = lab / 'scripts/make_teleprompter_video.py'
+    if not entry.is_file():
+        raise ValueError('Video Lab renderer entry point is missing')
+    python = str(python or os.environ.get('ENGLISH_NEWS_VIDEO_PYTHON') or sys.executable)
+    out = run / 'video'
+    out.mkdir(parents=True, exist_ok=True)
     status_path = out / 'render-status.json'
     fingerprint = render_fingerprint(run, metadata, lab)
     if status_path.exists():
@@ -50,11 +59,12 @@ def render_run(run):
             print(f'Reusing completed render: {previous["video_path"]}', flush=True)
             return Path(previous['video_path'])
     write_json(status_path, dict(status='rendering', audience='english', publication_enabled=False))
-    sys.path.insert(0, str(lab))
-    from scripts.make_teleprompter_video import build_video
     print('Rendering video; this can take several minutes.', flush=True)
     try:
-        video = build_video(run, out)
+        subprocess.run([python, str(entry), str(run), '--out-dir', str(out)], check=True, cwd=lab)
+        video = out / f"{run.name[:8]}-english-news-lesson.mp4"
+        if not video.is_file():
+            raise ValueError('Renderer did not produce the expected English video')
     except (Exception, SystemExit) as exc:
         write_json(status_path, dict(status='failed', error=str(exc), publication_enabled=False))
         raise

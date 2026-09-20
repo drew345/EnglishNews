@@ -1,0 +1,15 @@
+{
+  "bus": ["버스"], "taxi": ["택시"], "ferry": ["페리"],
+  "computer": ["컴퓨터"], "internet": ["인터넷"], "smartphone": ["스마트폰"],
+  "camera": ["카메라"], "radio": ["라디오"], "television": ["텔레비전"],
+  "coffee": ["커피"], "chocolate": ["초콜릿"], "banana": ["바나나"],
+  "golf": ["골프"], "tennis": ["테니스"],
+  "festival": ["페스티벌"], "event": ["이벤트"], "concert": ["콘서트"],
+  "hotel": ["호텔"], "restaurant": ["레스토랑"], "apartment": ["아파트"],
+  "digital": ["디지털"], "online": ["온라인"], "network": ["네트워크"],
+  "marketing": ["마케팅"], "design": ["디자인"], "brand": ["브랜드"],
+  "service": ["서비스"], "meeting": ["미팅"], "sign": ["사인"],
+  "diet": ["다이어트"], "fitness": ["피트니스"], "fashion": ["패션"],
+  "trend": ["트렌드"], "cosplay": ["코스프레"], "webtoon": ["웹툰"],
+  "protein": ["프로틴"], "vitamin": ["비타민"], "mineral": ["미네랄"]
+}

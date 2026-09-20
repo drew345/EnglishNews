@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import tempfile
 from pathlib import Path
 
 
@@ -12,9 +13,15 @@ def digest(value) -> str:
 
 def write_json(path: Path, value) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_suffix(path.suffix + '.tmp')
-    temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    temporary.replace(path)
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(mode='w', encoding='utf-8', dir=path.parent, suffix='.tmp', delete=False) as stream:
+            temporary = Path(stream.name)
+            stream.write(json.dumps(value, ensure_ascii=False, indent=2) + '\n')
+        temporary.replace(path)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
 
 
 def import_story(text: str, source_run_id: str, story_number: int = 1) -> dict:
@@ -86,6 +93,14 @@ def sentence(text: str) -> str:
     return text if text[-1:] in '.!?。' else text + '.'
 
 
+def target(vocab):
+    return vocab['target'] if 'target' in vocab else vocab['en_def']
+
+
+def native_gloss(vocab):
+    return vocab['ko_gloss'] if 'ko_gloss' in vocab else vocab['word']
+
+
 def make_plan(lesson: dict, explanations: dict, *, target_speed=.88, native_speed=1.07) -> list[dict]:
     units = []
     def add(name, text, speed):
@@ -99,8 +114,8 @@ def make_plan(lesson: dict, explanations: dict, *, target_speed=.88, native_spee
         if body['vocab']:
             add(f'body{i}_vocab_label', '어휘.', native_speed)
         for v in body['vocab']:
-            gloss = sentence(v['en_def'])
-            add(v['id'], '\n'.join([gloss, gloss, sentence(v['word']),
+            gloss = sentence(target(v))
+            add(v['id'], '\n'.join([gloss, gloss, sentence(native_gloss(v)),
                 sentence(explanations[v['id']]['en_explanation']), gloss, gloss]), target_speed)
         add(f'body{i}_en', '\n'.join([body['en']] * 2), target_speed)
     add('review_label', '전체 요약.', native_speed)
@@ -116,7 +131,7 @@ def written_lesson(lesson: dict, explanations: dict) -> str:
         if body['vocab']:
             lines.append('### 어휘:')
         for v in body['vocab']:
-            lines.append(f"- {v['en_def']}: {v['word']}: {explanations[v['id']]['en_explanation']}")
+            lines.append(f"- {target(v)}: {native_gloss(v)}: {explanations[v['id']]['en_explanation']}")
         lines.extend(['', body['en'], ''])
     lines.extend(['## 전체 요약', '', h['en'], '', ' '.join(s['en'] for s in lesson['sentences']), ''])
     return '\n'.join(lines)

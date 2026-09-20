@@ -9,11 +9,10 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT.parent / 'korean-news'))
 from english_news.lesson import write_json
 from english_news.audio import segment_plan
-from english_news.prototype import client_from_existing_key
-from src.tts_transcription import transcribe_audio
+from english_news.runtime import client_from_existing_key
+from korean_news_media.tts_transcription import transcribe_audio
 from mutagen.mp3 import MP3
 import imageio_ffmpeg
 

@@ -3,8 +3,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import logging
-import os
 from pathlib import Path
 import shutil
 import sys
@@ -12,26 +10,8 @@ import sys
 from .lesson import digest, import_story, make_plan, validate_explanations, vocab_entries, write_json, written_lesson
 from .vocabulary import filter_vocabulary, VERSION as VOCAB_FILTER_VERSION
 
-ROOT = Path(__file__).resolve().parents[1]
-NEWS = ROOT.parent / 'korean-news'
+from .runtime import ROOT, INSTRUCTIONS, client_from_existing_key
 PROMPT_VERSION = 'english-explanations-v1'
-INSTRUCTIONS = ('Read this bilingual English-learning script exactly as written. Korean is the learner native language; '
-                'English is the target language. Pronounce each language naturally. Preserve every repetition, '
-                'including all four English vocabulary readings and both English sentence readings. '
-                'Do not translate, summarize, omit, add introductions, or read punctuation aloud. '
-                'Pause briefly between lines. Keep a clear, calm teaching voice.')
-
-
-def client_from_existing_key(env_file: Path | None):
-    from openai import OpenAI
-    key = os.environ.get('OPENAI_API_KEY')
-    if not key and env_file:
-        from dotenv import dotenv_values
-        logging.getLogger('dotenv.main').setLevel(logging.ERROR)
-        key = dotenv_values(env_file, encoding='utf-8-sig').get('OPENAI_API_KEY')
-    if not key:
-        raise ValueError('OPENAI_API_KEY is missing; specify an existing --env-file or process environment')
-    return OpenAI(api_key=key, timeout=300)
 
 
 def enrich(lesson, path, client, model):
@@ -104,9 +84,8 @@ def main():
     if not args.audio:
         return
     # Reuse only the stable transport helpers, never the Korean API application or supervisor.
-    sys.path.insert(0, str(NEWS))
     from .audio import synthesize_plan
-    from src.tts_common import concatenate_mp3
+    from korean_news_media.tts_common import concatenate_mp3
     from mutagen.mp3 import MP3
     audio_paths, requests = synthesize_plan(plan, output, voice=args.voice, client=client, instructions=INSTRUCTIONS)
     combined = output / f'{source_run[:8]}-english-news.mp3'

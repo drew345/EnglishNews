@@ -1,4 +1,4 @@
-"""Build all stories from an explicit completed Korean run. Local review only."""
+"""Build media from explicitly reviewed English text. Local review only."""
 from __future__ import annotations
 
 import argparse
@@ -10,11 +10,11 @@ import subprocess
 import sys
 from contextlib import contextmanager
 
-from .lesson import digest, import_story, make_plan, vocab_entries, write_json, written_lesson
-from .prototype import ROOT, NEWS, INSTRUCTIONS, PROMPT_VERSION, client_from_existing_key, enrich
-from .vocabulary import filter_vocabulary, VERSION as VOCAB_FILTER_VERSION
+from .lesson import digest, make_plan, vocab_entries, write_json, written_lesson
+from .runtime import ROOT, INSTRUCTIONS, client_from_existing_key
+from .prepare import load_prepared
 
-VERSION = 'english-full-run-v1'
+VERSION = 'english-prepared-media-v2'
 CHANNEL = 'UCPvS_o6ypGR8-aA0P2pgtdA'
 
 
@@ -88,39 +88,39 @@ def timeline(stories):
     return result
 
 
-def run(source, staged, env_file, render=True):
-    baseline = ROOT / '.local/baselines' / source.name
-    original = snapshot(source, staged, baseline)
-    source_run = original['run_id']
-    text = (baseline / 'source' / f'{source_run[:8]}-news-written.txt').read_text(encoding='utf-8')
-    lessons = [import_story(text, source_run, i) for i in range(1, len(original['stories']) + 1)]
-    filtered = [filter_vocabulary(lesson) for lesson in lessons]
-    lessons = [lesson for lesson, report in filtered]
+def run(prepared_path, staged, env_file, render=True):
+    prepared = load_prepared(prepared_path)
+    source_run = prepared['source_run_id']
+    lessons = prepared['lessons']
     if len(lessons) != 3:
         raise ValueError('This workflow expects exactly three stories')
+    staged_metadata = json.loads((staged / 'run.json').read_text(encoding='utf-8'))
+    if staged_metadata.get('run_id') != source_run:
+        raise ValueError('Images belong to another source run')
+    image_sources = [staged / f'story-{i:02d}-video-image.png' for i in range(1, len(lessons) + 1)]
+    image_hashes = [sha(p) for p in image_sources]
+    audience_settings = json.loads(Path(__file__).with_name('audience.json').read_text(encoding='utf-8'))
     profile = dict(version=VERSION, voice='alloy', target_speed=.88, native_speed=1.07,
-                   vocabulary_filter=VOCAB_FILTER_VERSION,
-                   explanation_model='gpt-5.6-luna', explanation_prompt=PROMPT_VERSION)
-    identity = digest(dict(lessons=lessons, profile=profile, inputs=json.loads((baseline / 'manifest.json').read_text(encoding='utf-8'))))
+                   preparation_profile=prepared['profile'], audience_settings=audience_settings)
+    identity = digest(dict(prepared=prepared, profile=profile, images=image_hashes))
     output = ROOT / 'output/runs' / f'{source_run[:8]}_english_all_{identity[:10]}'
     output.mkdir(parents=True, exist_ok=True)
-    write_json(output / 'vocabulary-filter.json', dict(stories=[report for lesson, report in filtered]))
+    write_json(output / 'vocabulary-filter.json', dict(stories=prepared['reports']))
+    write_json(output / 'preparation.json', dict(content=prepared, content_sha256=digest(prepared)))
     state = output / 'workflow-status.json'
     write_json(state, dict(status='building_audio', source_run_id=source_run, publication_enabled=False))
     print(f'English output: {output}', flush=True)
     client = client_from_existing_key(env_file)
-    sys.path.insert(0, str(NEWS))
     from .audio import synthesize_plan
-    from src.tts_common import concatenate_mp3
+    from korean_news_media.tts_common import concatenate_mp3
     from mutagen.mp3 import MP3
     stories, plans, images, audios, written_blocks, notes = [], [], [], [], [], []
     try:
         for i, lesson in enumerate(lessons, 1):
             folder = output / 'stories' / f'{i:02d}'
             folder.mkdir(parents=True, exist_ok=True)
-            cache = ROOT / '.local/explanation-cache' / f'{digest(dict(lesson=lesson, model=profile["explanation_model"], prompt=PROMPT_VERSION))}.json'
-            explanations = enrich(lesson, cache, client, profile['explanation_model'])
-            shutil.copyfile(cache, folder / 'explanations.json')
+            explanations = {v['id']: dict(en_explanation=v['en_explanation'], review_note='') for v in vocab_entries(lesson)}
+            write_json(folder / 'explanations.json', dict(result={'entries': [dict(id=k, **v) for k, v in explanations.items()]}))
             plan = make_plan(lesson, explanations)
             write_json(folder / 'lesson-bundle.json', dict(content_sha256=digest(lesson), lesson=lesson))
             write_json(folder / 'speech-plan.json', dict(profile=profile, units=plan))
@@ -133,14 +133,18 @@ def run(source, staged, env_file, render=True):
             concatenate_mp3(paths, audio)
             audios.append(audio)
             image = output / f'story-{i:02d}-video-image.png'
-            shutil.copyfile(baseline / 'staged' / image.name, image)
+            shutil.copyfile(image_sources[i - 1], image)
+            if sha(image) != image_hashes[i - 1]:
+                raise ValueError('Image changed during media build')
             images.append(dict(story_index=i, path=str(image)))
             stories.append(dict(title_en=lesson['headline']['en'], title_ko=lesson['headline']['natural_ko'],
                                 duration=MP3(audio).info.length, audio_requests=requests, written_path=str(written_path)))
             plans.extend(plan)
             written_blocks.append(block)
-            notes.extend(f"- Story {i}, {v['en_def']} / {v['word']}: {explanations[v['id']]['review_note']}"
-                         for v in vocab_entries(lesson) if explanations[v['id']]['review_note'])
+            if prepared['reports'][i - 1].get('below_soft_target'):
+                notes.append(f'- Story {i}: fewer than eight suitable vocabulary items; no padding added.')
+            if prepared['reports'][i - 1].get('above_soft_target'):
+                notes.append(f'- Story {i}: more than twelve selected items; review whether all are worth teaching.')
         combined = output / f'{source_run[:8]}-english-news.mp3'
         concatenate_mp3(audios, combined)
         written = output / f'{source_run[:8]}-english-news-written.txt'
@@ -149,6 +153,7 @@ def run(source, staged, env_file, render=True):
         (output / 'speech-script.txt').write_text('\n\n'.join(u['text'] for u in plans) + '\n', encoding='utf-8')
         (output / 'vocabulary-review.md').write_text('# Vocabulary review before upload\n\n' + '\n'.join(notes) + '\n', encoding='utf-8')
         write_json(output / 'run.json', dict(run_id=output.name, source_run_id=source_run, audience='english',
+                   audience_settings=audience_settings,
                    status='completed', profile=profile, combined_audio_path=str(combined), combined_written_path=str(written),
                    stories=timeline(stories), video_story_images=images,
                    youtube_publication=dict(status='awaiting_user_review', channel_id=CHANNEL, enabled=False)))
@@ -170,15 +175,16 @@ def run(source, staged, env_file, render=True):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--source-run', type=Path, required=True)
+    parser.add_argument('--prepared-run', type=Path, required=True)
     parser.add_argument('--staged-run', type=Path, required=True)
     parser.add_argument('--env-file', type=Path)
     parser.add_argument('--audio-only', action='store_true')
+    parser.add_argument('--reviewed-text', action='store_true', help='Confirm this exact text preparation has been reviewed')
     args = parser.parse_args()
-    if not (ROOT / '.git').is_file():
-        raise ValueError('Run only from the isolated EnglishNews worktree')
+    if not args.reviewed_text:
+        parser.error('Review the text first, then pass --reviewed-text to generate media')
     with workflow_lock():
-        run(args.source_run.resolve(), args.staged_run.resolve(), args.env_file, not args.audio_only)
+        run(args.prepared_run.resolve(), args.staged_run.resolve(), args.env_file, not args.audio_only)
 
 
 if __name__ == '__main__':

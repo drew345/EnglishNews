@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "english-news"
+version = "0.2.0"
+requires-python = ">=3.11"
+dependencies = ["openai>=2.20", "python-dotenv>=1", "wordfreq==3.1.1", "spacy==3.8.16", "mutagen>=1.47", "imageio-ffmpeg>=0.6"]
+
+[project.optional-dependencies]
+media = ["korean-news-media==0.1.0"]
+
+[project.scripts]
+english-news-prepare = "english_news.prepare:main"
+
+[tool.setuptools]
+packages = ["english_news"]
+
+[tool.setuptools.package-data]
+english_news = ["*.json", "*.txt", "*.md"]

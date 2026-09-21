@@ -2,8 +2,10 @@
 
 Recorded from the September 20, 2026 upload session. This is an EnglishNews
 procedure; do not copy Korean channel defaults blindly or enable unattended
-publication without Andrew's authorization. Andrew wants to confirm settings
-step by step while establishing future automation.
+publication without Andrew's authorization. On September 21 Andrew requested
+fewer manual steps: reuse the confirmed settings, perform routine content and
+media checks, and handle upload preparation without repeating settled questions.
+Stop for material content problems or new choices. Preserve the final handoff below.
 
 Andrew's clarified handoff: take the upload all the way to Visibility, with
 Public and the unchecked Instant Premiere control visible. Andrew selects

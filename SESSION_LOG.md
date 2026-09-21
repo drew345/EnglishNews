@@ -1,5 +1,13 @@
 # English News — session log
 
+## 2026-09-21 — streamlined next-run preparation
+
+- Uploaded the checked MP4 to the verified English channel: draft video UBDx3M_oYHA (https://youtu.be/UBDx3M_oYHA). Resume this exact draft; never start a duplicate. Settings are saved and YouTube processing/checks completed with no issues. Final Visibility screen is open in in-app tab 1: Public unselected and Instant Premiere unchecked, both visible. Andrew selects Public and Publish; no publication performed.
+- Finished MP4 is 820.33 seconds (13:40), SHA-256 b857be8cfe4049610e895e4734331ad76a2cec183068168c1f3ed44dac233230. Full video/audio decode passed, all five upload hashes verified, and speech script matches preparation exactly. Inspected all three middle frames, transition pair and tail pair; legible layout, connected text, and continued ending motion confirmed.
+- Andrew completed his regular Korean run and requested fewer manual steps. Used completed source 20260921_105553_db216923 and its matching staged images; prepared 20260921_english_text_571ea67a6638. Reviewed the complete written lesson and short definitions: 18 vocabulary items (4/10/4); no material issue requiring Andrew's decision. Preserved source sentence pairs and agreed speech settings.
+- Media run 20260921_english_all_aa57768fb3: all 66 speech units generated; 809.352-second audio passed full decode and assembly checks. Full video completed and checked. Reused settled upload choices and finish at Visibility for Andrew to choose Public/Publish; no unattended publication or production adoption.
+- Implemented continued English scrolling during the existing ten-second post-narration buffer in Video Lab development commit 91b99b3. All 30 renderer and 54 English tests passed; today's Korean ASS is byte-identical to production. Actual final-frame pair confirms continued tail scrolling. Production code and yesterday's published video are untouched.
+
 
 ## 2026-09-20 — Portable NewsHistory exports
 

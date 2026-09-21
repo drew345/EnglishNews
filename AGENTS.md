@@ -1,6 +1,6 @@
 # English News — agent context
 
-Last updated: 2026-09-20
+Last updated: 2026-09-21
 
 ## Purpose and boundaries
 
@@ -12,7 +12,8 @@ NewsHistory: the canonical preparation/media writers archive written lessons and
 
 ## Current direction — 2026-09-20
 
-- Immediate handoff: September 20 video 20260920_english_all_3446bd4d60 is published at https://www.youtube.com/watch?v=s5nbFctXMOA; comments navigation completed. Tomorrow Andrew will complete the regular production Korean News run first, then return here. Use that new run, reuse settled settings to reduce steps, and preserve his Public/Publish handoff. No unattended publication or daily trigger is enabled. Future videos should keep scrolling after speech ends; a 4–5-second tail is acceptable. This ending-motion change is recorded but not implemented.
+- Immediate handoff: September 21 run 20260921_english_all_aa57768fb3 has passed text/audio/video and visual checks and is uploaded as draft UBDx3M_oYHA. Settings are saved; YouTube checks show no issues. In-app tab 1 is on final Visibility, with Public unselected and Instant Premiere off; Andrew chooses Public and Publish. Verify publication when he reports completion. Do not duplicate the upload. The ending-scroll fix is implemented and visually confirmed in this video.
+- Streamlined supervised workflow: Andrew requested fewer manual steps on September 21. Perform routine text/definition and media checks yourself and reuse confirmed settings; ask only about material content issues or new decisions. Prepare the upload through Visibility while preserving his Public/Publish handoff. No unattended publication, daily trigger or production adoption is enabled.
 
 - Andrew now wants independent vocabulary selection from the actual English lesson, including useful phrases, with a soft target of 8–12 items per story. Use English frequency data; the proposed Korean-rank mapping is superseded. The implementation uses wordfreq 3.1.1 top-6,000 surface-token ranks with configurable cutoff 3,500, taking the more common of surface/dictionary-resolved base rank. LemmInflect 0.2.3 dictionary-only round-trip checks resolve inflections; unknown or ambiguous inflected forms are omitted. Only expressions/patterns in phrase-reference.json are eligible, followed by contextual assessment.
 - Carry over the Korean methodology's names, cities/geography, organizations, grammar, loanwords, normalization, overrides, repetition and contextual-definition stages with English-specific equivalents. Andrew explicitly wants familiar English loanwords used in Korean excluded even outside the frequency cutoff. The meaning-aware borrowing reference must not blindly invert the existing mixed-purpose Korean blocklist.

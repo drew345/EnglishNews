@@ -4,6 +4,7 @@ import hashlib
 from pathlib import Path
 
 from .lesson import write_json
+from .audio_signal import inspect_audio_signal
 
 
 def segment_plan(unit: dict) -> tuple[list[str], list[int]]:
@@ -34,7 +35,28 @@ def synthesize_plan(plan, output: Path, *, voice, client, instructions):
             folder / 'segment', voice=voice, max_chars=3500, max_units_per_request=1,
             model='gpt-4o-mini-tts', instructions=instructions,
             profile_version='english-single-reading-v1', client=client, resume=True)
-        sources = [result.audio_paths[i] for i in order]
+        paths = list(result.audio_paths)
+        segment_requests = list(result.request_metadata)
+        signal_checks = []
+        for i, path in enumerate(paths):
+            for attempt in range(3):
+                check = dict(segment=i, attempt=attempt, **inspect_audio_signal(path))
+                signal_checks.append(check)
+                write_json(folder / 'signal-qa.json', dict(checks=signal_checks))
+                if check['passed']:
+                    break
+                if attempt == 2:
+                    raise ValueError(f'No audible speech in {unit["name"]} segment {i}; two retries failed')
+                print(f'Retrying near-silent speech: {unit["name"]} segment {i}', flush=True)
+                retry = synthesize_speech_units(
+                    [TtsTextUnit(name=f'{unit["name"]}.{i}', text=texts[i], speed=speeds[i])],
+                    folder / f'segment_{i}_retry{attempt + 1}', voice=voice, max_chars=3500,
+                    max_units_per_request=1, model='gpt-4o-mini-tts', instructions=instructions,
+                    profile_version='english-single-reading-v1', client=client, resume=True)
+                path = retry.audio_paths[0]
+                paths[i] = path
+                segment_requests[i] = retry.request_metadata[0]
+        sources = [paths[i] for i in order]
         audio = folder / 'assembled.mp3'
         concatenate_mp3(sources, audio)
         input_path = folder / 'assembled.input.txt'
@@ -45,7 +67,7 @@ def synthesize_plan(plan, output: Path, *, voice, client, instructions):
                         speed=unit['speed'], segment_speeds=speeds,
                         source_sha256=hashlib.sha256(unit['text'].encode('utf-8')).hexdigest(),
                         assembly_order=order, assembly_sources=[str(p) for p in sources],
-                        segment_requests=result.request_metadata, status='complete')
+                        segment_requests=segment_requests, signal_checks=signal_checks, status='complete')
         write_json(meta_path, metadata)
         print(f'Completed speech unit: {unit["name"]}', flush=True)
         return metadata

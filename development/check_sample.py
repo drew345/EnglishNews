@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from english_news.lesson import write_json
 from english_news.audio import segment_plan
+from english_news.audio_signal import inspect_audio_signal
 from english_news.runtime import client_from_existing_key
 from korean_news_media.tts_transcription import transcribe_audio
 from mutagen.mp3 import MP3
@@ -27,6 +28,7 @@ plan = json.loads((run / 'speech-plan.json').read_text(encoding='utf-8'))['units
 requests = [request for story in metadata['stories'] for request in story['audio_requests']]
 assert len(requests) == len(plan)
 checks = []
+signal_checks = {}
 for unit, request in zip(plan, requests):
     path = Path(request['audio_path'])
     assert path.resolve().is_relative_to(run)
@@ -40,6 +42,10 @@ for unit, request in zip(plan, requests):
     if 'assembly_order' in record:
         _, expected_order = segment_plan(unit)
         assert record['assembly_order'] == expected_order
+        for source in record['assembly_sources']:
+            if source not in signal_checks:
+                signal_checks[source] = inspect_audio_signal(Path(source))
+            assert signal_checks[source]['passed'], f'Near-silent speech clip: {source}'
         assert abs(MP3(path).info.length - sum(MP3(p).info.length for p in record['assembly_sources'])) < 1
     length = MP3(path).info.length
     assert length > 0
@@ -48,7 +54,7 @@ audio = Path(metadata['combined_audio_path'])
 duration = MP3(audio).info.length
 assert abs(duration - sum(c['seconds'] for c in checks)) < 2
 subprocess.run([imageio_ffmpeg.get_ffmpeg_exe(), '-v', 'error', '-i', str(audio), '-f', 'null', '-'], check=True)
-report = dict(units=checks, audio_seconds=duration, decode='passed')
+report = dict(units=checks, audio_seconds=duration, decode='passed', signal_checks=list(signal_checks.values()))
 if args.transcribe:
     client = client_from_existing_key(args.env_file)
     selected = {'headline_en', 's1.b1.v3', 'body1_en', 'review_en'}

@@ -1,5 +1,12 @@
 # English News — session log
 
+## 2026-09-21 — silent hands-on gloss diagnosed; future audio guard and opening heading
+
+- Andrew spot-checked the published lesson and found the Korean meaning of hands-on missing. Input and deterministic assembly correctly include 직접 체험하는; its separate generated clip is 0.504 seconds with peak 0.00131 full scale and no audible-level samples. Offline scan of all 102 unique clips flags only this clip (the other 17 Korean glosses pass). This is a silent service response that the previous positive-duration/full-decode checks missed, not a missing script line. Evidence: .local/qa/20260921-hands-on/signal-audit.json. No transcription or new synthesis was necessary.
+- Added an offline signal guard on every unique speech clip, including cached clips. Only a failed clip gets up to two separately cached retries; persistent silence stops assembly/build. The final audio checker independently checks assembly sources. This detects near-silence, not incorrect pronunciation or partial omissions. Tests cover quiet speech, silence/clicks, targeted retry, repeated failure and unchanged repetition/speed behavior; all 57 English tests pass. No published media modified.
+- Andrew asked whether Korean production uses larger calls: verified today's openai_speech run and story1_audio_part06.input.txt. Korean uses one learning-block call containing Vocab, all entries for a sentence (both languages), and that Korean sentence twice. English intentionally uses three unique calls per vocab item (target, Korean meaning, explanation), with target clip reused four times; introduced September 13 after a dropped repetition. Keep current grouping for now; guard adds no routine model calls.
+- Added producer-owned scroll_title = Korean News Lesson with YYYY-MM-DD date, displayed above Headline 1 and excluded from TTS. Video Lab uses negative preamble row positions so all existing story rows/timing stay identical. Checked an opening still in .local/qa/20260921-scroll-heading; all 30 renderer tests pass. Apply both changes to next incoming run; no full video rebuilt or production code changed.
+
 ## 2026-09-21 — published; repeat streamlined procedure next incoming run
 
 - Verified Studio Visibility Public for UBDx3M_oYHA and the public watch page's exact September 21 title, English channel and 13:40 duration. Opened https://www.youtube.com/watch?v=UBDx3M_oYHA#comments, paused playback and left Add a comment visible. No comment entered or posted by the agent.

@@ -38,10 +38,11 @@ class SpeechReviewTests(unittest.TestCase):
         def transport(units, prefix, **kwargs):
             prefix.parent.mkdir(parents=True, exist_ok=True)
             captured.extend((u.text, u.speed) for u in units)
-            return SimpleNamespace(audio_paths=[prefix.parent / f'{i}.mp3' for i in range(len(units))], request_metadata=[])
+            return SimpleNamespace(audio_paths=[prefix.parent / f'{i}.mp3' for i in range(len(units))], request_metadata=[{} for _ in units])
         with tempfile.TemporaryDirectory() as directory, \
              patch('korean_news_media.openai_speech_tts.synthesize_speech_units', side_effect=transport), \
-             patch('korean_news_media.tts_common.concatenate_mp3'):
+             patch('korean_news_media.tts_common.concatenate_mp3'), \
+             patch('english_news.audio.inspect_audio_signal', return_value={'passed': True}):
             synthesize_plan(plan, Path(directory), voice='alloy', client=None, instructions='test')
         self.assertCountEqual(captured, expected)
 

@@ -1,5 +1,11 @@
 # English News — session log
 
+## 2026-09-21 — published; repeat streamlined procedure next incoming run
+
+- Verified Studio Visibility Public for UBDx3M_oYHA and the public watch page's exact September 21 title, English channel and 13:40 duration. Opened https://www.youtube.com/watch?v=UBDx3M_oYHA#comments, paused playback and left Add a comment visible. No comment entered or posted by the agent.
+- Andrew approved today's end-to-end procedure and wants the same approach tomorrow after his regular Korean run. Preserve current model choice for now; document explicit steps, evidence gates, restart behavior and exceptions so a simpler model can follow later. Added the concise daily checklist to the existing development/README.md, linking the established upload procedure rather than creating another plan.
+- Next: wait for a new completed Korean run. No rerender, automatic trigger, unattended publication or production adoption requested.
+
 ## 2026-09-21 — streamlined next-run preparation
 
 - Uploaded the checked MP4 to the verified English channel: draft video UBDx3M_oYHA (https://youtu.be/UBDx3M_oYHA). Resume this exact draft; never start a duplicate. Settings are saved and YouTube processing/checks completed with no issues. Final Visibility screen is open in in-app tab 1: Public unselected and Instant Premiere unchecked, both visible. Andrew selects Public and Publish; no publication performed.

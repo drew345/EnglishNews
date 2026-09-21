@@ -1,6 +1,20 @@
 # English News development runbook
 
-Updated 2026-09-20. The implementation plan and ownership/merge sequence are in [FEASIBILITY.md](../FEASIBILITY.md). Work only in the existing development checkouts until review. No production setting, launcher, environment or main branch has been changed.
+Updated 2026-09-21. The implementation plan and ownership/merge sequence are in [FEASIBILITY.md](../FEASIBILITY.md). Work only in the existing development checkouts until review. No production setting, launcher, environment or main branch has been changed.
+
+## Daily supervised procedure
+
+Use this checklist when Andrew says the new Korean run is ready. Read AGENTS.md and the latest SESSION_LOG.md first. September 21 is the verified example; never reuse its IDs for a new day. Andrew wants the same procedure on the next incoming run and explicit instructions that a simpler model can eventually follow; no model change is requested yet.
+
+1. **Identify inputs.** Confirm the new production Korean run is completed and its staged Video Lab images have the same source run ID. Check the session log and existing English run records for prior preparation/upload before starting. If source identity is ambiguous, ask; never mix dates or image runs.
+2. **Prepare text.** Run the legacy-written command below while production export remains unavailable. Use the returned preparation ID, not a guessed latest folder. Keep agreed cutoff, voice and speed settings.
+3. **Review text once.** Read all three stories, selected terms, Korean meanings, English definitions and selection reports. Confirm source wording is preserved in adapter mode; terms have the intended contextual meaning, phrases are natural and useful, and definitions are short and noncircular. Fewer than eight items is allowed. Stop for a material issue; otherwise record assistant review and proceed without another user checkpoint.
+4. **Build media.** Run the media command below with that exact preparation and matching staged input. Resume valid cached work with the same command after an interruption; do not reselect vocabulary or rebuild published media as a recovery shortcut.
+5. **Check results.** Require ready_for_review, passing audio/video QA, and upload-package.json. Compare the final speech script to the reviewed preparation and verify every upload-package hash. Inspect actual frames from all three stories, a story transition, and two times in the ending buffer; check readable wrapping, connected scrolling, and continued ending motion. Inspect the dated thumbnail and title/description/chapter sidecars. Failed QA blocks upload; do not waive it or claim full listening from decode checks.
+6. **Prepare upload.** Follow [youtube-upload.md](youtube-upload.md) in the in-app browser. Verify the English channel, upload the checked MP4 and thumbnail, and apply saved choices. Record the YouTube video ID immediately. A temporary draft save is an internal step for setting Korean metadata language; continue to final Visibility. Do not publish. Leave Public unselected and Instant Premiere unchecked, visibly ready for Andrew.
+7. **Finish after Andrew publishes.** Verify Studio Public, open the exact public video, pause playback and show Add a comment. Suggest a Korean comment if requested; do not post it without instruction. Save publication ID/URL/status in run records and SESSION_LOG.md. Next day starts from a new completed Korean run.
+
+Escalate only new choices, material content concerns, missing/mismatched inputs, authentication obstacles, or failed checks that cannot be resolved within the saved procedure. Do not repeatedly ask about settled settings. No scheduled trigger, unattended publication, main merge, or production launcher change is part of this daily procedure.
 
 ## Prepare the next incoming lesson as text
 

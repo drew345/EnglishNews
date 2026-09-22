@@ -1,5 +1,9 @@
 # English News — session log
 
+## 2026-09-22 — published
+
+- Andrew published caW7gBNv6Sg. Verified Studio Visibility Public and the public watch page with the exact September 22 title and English channel. Opened the video at comments for a proposed Korean first comment; no comment posted by the agent.
+
 ## 2026-09-22 — next supervised daily build
 
 - Uploaded checked MP4 to the verified English channel: caW7gBNv6Sg (https://youtu.be/caW7gBNv6Sg). Resume this exact draft; never duplicate. Title/description, dated thumbnail, English video language, Korean metadata language, Education, not for kids, no age restriction/promotion and contextual AI No saved. HD processing and copyright checks complete with no issues. Final Visibility screen is open in in-app tab 1: Public unselected and Instant Premiere unchecked, both visible. Andrew selects Public and Publish; no publication performed. Run/upload/render records contain ID and handoff evidence.

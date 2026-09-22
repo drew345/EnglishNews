@@ -1,6 +1,6 @@
 # English News — agent context
 
-Last updated: 2026-09-21
+Last updated: 2026-09-22
 
 ## Purpose and boundaries
 
@@ -12,7 +12,7 @@ NewsHistory: the canonical preparation/media writers archive written lessons and
 
 ## Current direction — 2026-09-20
 
-- Immediate handoff: September 21 run 20260921_english_all_aa57768fb3 is published at https://www.youtube.com/watch?v=UBDx3M_oYHA; Studio Public and the public page were verified. Comments are open in the in-app browser, paused with Add a comment visible. Andrew wants the same streamlined procedure for the next incoming Korean run. See the daily checklist in development/README.md. Do not duplicate or rebuild this published video. Ending scrolling is implemented and visually confirmed.
+- Immediate handoff: September 22 run 20260922_english_all_9546311b74 is uploaded as caW7gBNv6Sg (https://youtu.be/caW7gBNv6Sg). Saved settings, HD processing and copyright checks passed. In-app browser is on Visibility with Public unselected and Instant Premiere unchecked; Andrew selects Public and Publish. Do not duplicate or rebuild. After he publishes, verify Public and record it. September 21 UBDx3M_oYHA remains published. See SESSION_LOG.md and the daily checklist in development/README.md. Today includes the written-only opening title/date and the silent-clip guard, which successfully retried one failed anthem clip.
 - Streamlined supervised workflow: Andrew requested fewer manual steps on September 21. Perform routine text/definition and media checks yourself and reuse confirmed settings; ask only about material content issues or new decisions. Prepare the upload through Visibility while preserving his Public/Publish handoff. No unattended publication, daily trigger or production adoption is enabled.
 
 - Andrew now wants independent vocabulary selection from the actual English lesson, including useful phrases, with a soft target of 8–12 items per story. Use English frequency data; the proposed Korean-rank mapping is superseded. The implementation uses wordfreq 3.1.1 top-6,000 surface-token ranks with configurable cutoff 3,500, taking the more common of surface/dictionary-resolved base rank. LemmInflect 0.2.3 dictionary-only round-trip checks resolve inflections; unknown or ambiguous inflected forms are omitted. Only expressions/patterns in phrase-reference.json are eligible, followed by contextual assessment.

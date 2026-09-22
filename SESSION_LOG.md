@@ -1,5 +1,14 @@
 # English News — session log
 
+## 2026-09-22 — next supervised daily build
+
+- Uploaded checked MP4 to the verified English channel: caW7gBNv6Sg (https://youtu.be/caW7gBNv6Sg). Resume this exact draft; never duplicate. Title/description, dated thumbnail, English video language, Korean metadata language, Education, not for kids, no age restriction/promotion and contextual AI No saved. HD processing and copyright checks complete with no issues. Final Visibility screen is open in in-app tab 1: Public unselected and Instant Premiere unchecked, both visible. Andrew selects Public and Publish; no publication performed. Run/upload/render records contain ID and handoff evidence.
+
+- New completed production source: 20260922_090229_01b63e6d with matching staged story images. Prepared 20260922_english_text_e8c452441944 using the retained sentence-pair adapter, independent English vocabulary and unchanged agreed settings. Assistant reviewed all three stories and 13 vocabulary entries (2/5/6); no material content issue requiring a user decision.
+- Completed media run 20260922_english_all_9546311b74: 61 speech units, 87 unique speech clips; audio 760.752 seconds, video 771.67 seconds (12:52). First live use of the signal guard caught a 0.504-second near-silent English anthem clip; its first targeted retry passed. All four repetitions use the replacement. Full audio/video decode and all five upload hashes passed. MP4 SHA-256: 0b2f5ec9e82ba6786087ab9a0fbb6789d187569e8a1d2aa72ae6516a593eb0ad.
+- Visually reviewed the dated thumbnail, actual opening, all three story middle frames, first transition and ending frame pairs. Written-only Korean News Lesson/date heading appears above Headline 1 at its unchanged position and is absent from TTS; connected scrolling, readable layout and continued ending movement confirmed. Speech script matches reviewed preparation exactly.
+- Andrew explicitly left speech-call grouping to agent judgment after confirming costs are manageable. Retain three separate unique vocabulary clips and deterministic repeats with the silence guard. No production changes or unattended publication.
+
 ## 2026-09-21 — silent hands-on gloss diagnosed; future audio guard and opening heading
 
 - Andrew spot-checked the published lesson and found the Korean meaning of hands-on missing. Input and deterministic assembly correctly include 직접 체험하는; its separate generated clip is 0.504 seconds with peak 0.00131 full scale and no audible-level samples. Offline scan of all 102 unique clips flags only this clip (the other 17 Korean glosses pass). This is a silent service response that the previous positive-duration/full-decode checks missed, not a missing script line. Evidence: .local/qa/20260921-hands-on/signal-audit.json. No transcription or new synthesis was necessary.

@@ -1,5 +1,14 @@
 # English News — session log
 
+## 2026-09-20 — publication complete; resume after tomorrow's Korean run
+
+- Today's English lesson is published: https://www.youtube.com/watch?v=s5nbFctXMOA. Andrew is finished for today and will complete his usual Korean News run tomorrow before returning here. Continue in the development EnglishNews worktree; its latest SESSION_LOG.md and development/youtube-upload.md contain current state and confirmed settings. Aim for fewer repeated steps while preserving Andrew's Public/Publish handoff. No sync, scheduled automation or production adoption requested.
+
+## 2026-09-20 — approved English video awaiting supervised upload
+
+- Andrew approved the final development video and is returning home before uploading together in this chat. Continue in C:/AI/Codex/Worktrees/english-news/EnglishNews; its newest SESSION_LOG.md holds the exact approved MP4/hash and upload files. Do not rebuild today's approved video or upload while he is away.
+- Future ending-scroll feedback is recorded in the development log; no code/media change for it yet. No production adoption, publication or session sync occurred.
+
 ## 2026-09-20 — pre-implementation backup scope
 
 - Andrew requested a GitHub checkpoint before implementation. Reviewed EnglishNews main/prototype documentation and verified published Korean News, Video Lab and core baselines; loanwords local main is already contained in its newer automated remote history. Detailed checkpoint anchors and proposed safe Korean News handoff are in the development SESSION_LOG.md / FEASIBILITY.md.

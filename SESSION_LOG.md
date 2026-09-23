@@ -1,5 +1,13 @@
 # English News — session log
 
+## 2026-09-23 — installed and armed for the next incoming run
+
+- Main adoption is complete and published in EnglishNews, korean-news and KoreanLessonVideoLab. Fresh Projects/EnglishNews/.venv installed from the lock; pip check and all 57 English tests pass there. Isolated Python imports resolve English ROOT to Projects/EnglishNews and shared speech to its installed package, with no Worktrees dependency. The production Video Lab environment passes 30 tests and pip check. Korean production uses C:/Python314/python.exe via the existing launcher; its full 296-test suite passed, followed by 12 focused daily-job tests including the added render-identity check.
+- Enabled per-machine config at 2026-09-23T01:07:47.888100+00:00, explicitly excluding all five existing source runs. Live discovery/next checks return no jobs for both audiences. Old pending/publication records are not redispatched or modified.
+- Registered five-minute recovery heartbeats korean-news-daily-job-recovery and english-news-daily-job-recovery on their correct ongoing tasks. Immediate CLI enqueue handles loaded tasks; heartbeats cover dormant tasks/restarts and quiet resume. Keep Codex open and computer awake. No heartbeat status message is requested for no work or unchanged state.
+- The desktop icon still points to Projects/korean-news/launch_korean_news.bat. Its --check worker inventory now contains staging, cleanup, rendering and durable daily handoff, with neither folder opening nor unsent-prompt flags. No production server was started just to test this; use the next normal icon launch and Generate Lesson for live validation. No old video or speech was regenerated and nothing was uploaded/published by this integration task.
+- Remaining: verify both exact-channel uploads reach Publish on the next incoming run, including cross-task account switching, then retire old worktrees after preserving ignored media. If a task requests sign-in, Andrew handles sign-in in its in-app browser.
+
 ## 2026-09-23 — authorized stable adoption and two ongoing daily tasks
 
 - Andrew approved the recommended order: checkpoint GitHub, prove dispatch, fix handoff/tracking, adopt accepted code into main, connect both editions and validate with the next incoming run. He chose ongoing dedicated chats. Both uploads stop at Public selected / Premiere off / Publish ready; Andrew publishes.

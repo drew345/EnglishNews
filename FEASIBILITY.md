@@ -2,6 +2,12 @@
 
 Date: 2026-09-13. Scope: preliminary code and dependency assessment; no production implementation.
 
+## Stable adoption — 2026-09-23
+
+Andrew authorized adopting the accepted implementation into the three existing main branches and using two ongoing dedicated daily tasks. That adoption and the fresh ordinary-checkout English environment are complete. The desktop coordinator creates exact-run jobs after Korean rendering; English retains the accepted sentence-pair adapter, then prepares and checks its own media. Both browser uploads stop before Andrew's Publish click. Shared speech remains installed from a reviewed Korean News commit and rendering stays in Video Lab; no temporary worktree is a runtime dependency. The earlier restrictions on main adoption and automatic upload preparation below are historical.
+
+Offline regression suites pass and eight current Korean presentation artifacts match production byte-for-byte. Next gate: the next incoming three-story run through both Publish handoffs. Keep old worktrees and ignored media until that gate passes, then preserve needed artifacts and retire the temporary checkouts. The operational contract and per-machine activation/recovery procedure are in sibling korean-news/docs/daily-news-workflow.md; this file remains the architecture/history record.
+
 ## Revised direction — 2026-09-20
 
 ### Software eligibility revision — authorized and implemented 2026-09-20

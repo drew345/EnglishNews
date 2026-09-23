@@ -123,6 +123,6 @@ This compares 3,500/4,000/4,500 candidate pools. It does not make semantic selec
 
 ## Checkouts, adoption and portability
 
-Production runs from C:/AI/Codex/Projects/{EnglishNews,korean-news,KoreanLessonVideoLab}, each on main with a separate environment. The optional structured export remains off; daily English keeps the proven sentence-pair adapter. Reusable speech is installed as korean-news-media from a reviewed commit, and Video Lab is invoked through its explicit CLI. No Worktrees runtime path is required.
+Production runs from C:/AI/Codex/Projects/{EnglishNews,korean-news,KoreanLessonVideoLab}, each on main. EnglishNews and Video Lab use their local .venv; Korean News preserves the interpreter chosen by its existing launcher (Python on PATH on this computer). The optional structured export remains off; daily English keeps the proven sentence-pair adapter. Reusable speech is installed as korean-news-media from a reviewed commit, and Video Lab is invoked through its explicit CLI. No Worktrees runtime path is required.
 
 Keep the old development checkouts and ignored media until the next incoming paired run confirms the new launch-to-Publish path. Then preserve wanted media and retire temporary worktrees. Shared Korean core and loanword repositories are unchanged. Routine main sync carries code but not media, credentials, local task IDs or activation state. A different computer needs local environments plus its own two-task workflow setup. No Start/End sync is implied by adoption.

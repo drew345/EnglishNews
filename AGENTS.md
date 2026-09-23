@@ -8,6 +8,8 @@ EnglishNews owns the English edition: independent vocabulary, contextual explana
 
 Andrew authorized main adoption and automatic generation/upload preparation on September 23. The desktop Korean News icon remains the entry point. Two ongoing dedicated Codex tasks consume exact jobs owned by sibling korean-news/docs/daily-news-workflow.md. English starts after the matching Korean render is complete, without waiting for Korean publication. Both tasks select Public, keep Instant Premiere off, and stop at Publish for Andrew. No Explorer folders, unsent prompts, or unattended publication.
 
+Andrew rejected all-day five-minute recovery polling on September 23. Both recovery schedules are paused; do not re-enable them. Use completion-triggered dispatch and wait within an active job if the other upload owns the browser slot. Dormant/interrupted tasks may require explicit resume. Main adoption is already complete; only worktree retirement awaits live validation. A one-time cleanup review reminder is set for September 27 at 09:00 Korea time.
+
 Read this file and SESSION_LOG.md first when resuming. FEASIBILITY.md holds the detailed code inventory, architecture, risks and phased plan; do not duplicate it into additional plan files.
 
 NewsHistory: the canonical preparation/media writers archive written lessons and English vocabulary audits via C:/AI/Codex/Projects/NewsHistory. Its AGENTS.md owns storage and retention; no automatic expiry. Monthly review uses combined history, not only this computer’s output folders.

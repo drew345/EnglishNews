@@ -1,5 +1,11 @@
 # English News — session log
 
+## 2026-09-23 — pause recurring recovery and clarify main adoption
+
+- Andrew questioned all-day five-minute checks. Paused both daily-job-recovery automations; retain completion-triggered CLI dispatch and current-turn waits for a busy upload slot. Dormant/interrupted tasks may need explicit resume. No automatic restart recovery is promised.
+- Both ongoing tasks use Projects: Korean News — daily upload in KoreanLessonVideoLab; English News — daily generation and upload in EnglishNews. All three accepted codebases are already merged and pushed to main; worktrees remain only for fallback/media pending the next live run.
+- Created one-time reminder review-news-worktree-cleanup for September 27 at 09:00 Korea time. Review live results and any subsequent unpublished changes, preserve ignored artifacts, then decide worktree retirement. No deletion authorized by the reminder.
+
 ## 2026-09-23 — installed and armed for the next incoming run
 
 - Main adoption is complete and published in EnglishNews, korean-news and KoreanLessonVideoLab. Fresh Projects/EnglishNews/.venv installed from the lock; pip check and all 57 English tests pass there. Isolated Python imports resolve English ROOT to Projects/EnglishNews and shared speech to its installed package, with no Worktrees dependency. The production Video Lab environment passes 30 tests and pip check. Korean production uses C:/Python314/python.exe via the existing launcher; its full 296-test suite passed, followed by 12 focused daily-job tests including the added render-identity check.

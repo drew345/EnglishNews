@@ -1,6 +1,8 @@
 # English News — session log
 
-## 2026-09-23 — first live main build; ready for Publish
+## 2026-09-23 — first live main build; published
+
+- Andrew published lOFOF10hPJk. Studio Public and public September 23 video/channel verified; durable job set published. Opened paused public video for comments. Suggested Korean first comment only; agent did not post.
 
 - Claimed exact durable English job for completed source 20260923_102032_47bb3931 after coordinating-task recovery of missing CLI dispatch. Used ordinary Projects environments, source and matched staged images; no old run or worktree runtime.
 - Prepared 20260923_english_text_5b7833f981fe; reviewed full written lesson, speech script and selection audits. Nine vocabulary entries (3/2/4), existing source sentence pairs and settled settings preserved. Recorded preparation in the job before media.

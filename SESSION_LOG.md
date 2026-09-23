@@ -1,5 +1,12 @@
 # English News — session log
 
+## 2026-09-23 — first live main build; ready for Publish
+
+- Claimed exact durable English job for completed source 20260923_102032_47bb3931 after coordinating-task recovery of missing CLI dispatch. Used ordinary Projects environments, source and matched staged images; no old run or worktree runtime.
+- Prepared 20260923_english_text_5b7833f981fe; reviewed full written lesson, speech script and selection audits. Nine vocabulary entries (3/2/4), existing source sentence pairs and settled settings preserved. Recorded preparation in the job before media.
+- Completed 20260923_english_all_55473dc69e: 55 speech units, 660.072-second audio, 671-second video. Three near-silent responses (story 2 body2_ko, body3_vocab_label, review_label) passed their targeted retries. Full audio/video decode and upload hashes pass; final speech script is identical to preparation. MP4 SHA-256 11a232da043a1e82c04d999e9a1ab7c2f30b2932a742eb77387cca4677752d6a.
+- Reviewed dated thumbnail, actual opening, three story middle frames, transition pair and ending pair: readable text, title/date, continuous transition and continued tail motion confirmed. Media recorded in durable job. Acquired the shared slot after Korean upload completed, reopened this task's closed in-app browser and verified English name/handle/channel ID. Uploaded draft lOFOF10hPJk and immediately recorded it through the job CLI. Resume this exact draft; no duplicate. Saved title/description, dated thumbnail/chapters, English video language, Korean metadata language, Education and settled disclosures. YouTube processing/copyright checks pass; in-app tab 1 is marked for handoff with Public selected, Premiere unchecked and Publish visibly ready. Job is ready_to_publish, shared upload slot released. Andrew alone publishes. No dispatcher edits or publication.
+
 ## 2026-09-23 — pause recurring recovery and clarify main adoption
 
 - Andrew questioned all-day five-minute checks. Paused both daily-job-recovery automations; retain completion-triggered CLI dispatch and current-turn waits for a busy upload slot. Dormant/interrupted tasks may need explicit resume. No automatic restart recovery is promised.

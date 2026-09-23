@@ -174,6 +174,25 @@
 - Andrew wants lasting English behavior in EnglishNews and no accumulation of permanent experimental branches/worktrees or copied shared implementations. Dependency check: Korean News prototype branch has only AGENTS.md changes; EnglishNews imports its speech utilities. Video Lab holds English audience support, and the current English render wrapper explicitly requires its linked worktree. These are temporary dependencies to retire through stable shared interfaces, not duplicate code copies.
 - Updated AGENTS.md and the existing FEASIBILITY.md with confirmed constraints, proposed ownership, staged selection/content-handoff work, and a retirement exit criterion. No source edits, model calls, media generation, merge, branch/worktree creation/removal, sync or publication. Existing September 18–19 uncommitted log entries preserved. Next: resolve remaining proposed defaults and begin the agreed coding scope in the existing development checkout.
 
+## 2026-09-20 — publication complete; resume after tomorrow's Korean run
+
+- Today's English lesson is published: https://www.youtube.com/watch?v=s5nbFctXMOA. Andrew is finished for today and will complete his usual Korean News run tomorrow before returning here. Continue in the development EnglishNews worktree; its latest SESSION_LOG.md and development/youtube-upload.md contain current state and confirmed settings. Aim for fewer repeated steps while preserving Andrew's Public/Publish handoff. No sync, scheduled automation or production adoption requested.
+
+## 2026-09-20 — approved English video awaiting supervised upload
+
+- Andrew approved the final development video and is returning home before uploading together in this chat. Continue in C:/AI/Codex/Worktrees/english-news/EnglishNews; its newest SESSION_LOG.md holds the exact approved MP4/hash and upload files. Do not rebuild today's approved video or upload while he is away.
+- Future ending-scroll feedback is recorded in the development log; no code/media change for it yet. No production adoption, publication or session sync occurred.
+
+## 2026-09-20 — pre-implementation backup scope
+
+- Andrew requested a GitHub checkpoint before implementation. Reviewed EnglishNews main/prototype documentation and verified published Korean News, Video Lab and core baselines; loanwords local main is already contained in its newer automated remote history. Detailed checkpoint anchors and proposed safe Korean News handoff are in the development SESSION_LOG.md / FEASIBILITY.md.
+- Recommended continued work in the existing prototype branches/worktrees, with optional handoff and Korean regression checks before reviewed main adoption. This checkpoint contains planning/run records only, not a feature merge, media backup or whole-workspace sync.
+
+## 2026-09-20 — vocabulary redesign and lasting project foundation
+
+- Andrew wants direct English vocabulary selection, words plus useful phrases, English frequency data, soft 8–12 items per story and familiar-loanword exclusions; both audiences share facts but may use different wording. English-specific behavior should settle in EnglishNews without copied shared code or permanent experimental worktree dependencies.
+- Detailed investigation and proposed branching, ownership and worktree retirement stages are recorded in the development worktree's FEASIBILITY.md and latest SESSION_LOG.md. Current Korean cutoff is 3,000; proposed English 3,500 remains unconfirmed. Documentation only: no implementation, media, merge, worktree removal or sync occurred.
+
 ## 2026-09-19 — current three-story English run
 
 - Used only the newest completed Korean source run `20260919_132154_89f4c8f9`; its three staged story images were verified. The development wrapper produced `20260919_english_all_981ccda524` with three stories, 41 retained vocabulary entries, 92 speech units, and 1,128.120 seconds of audio.
@@ -256,6 +275,39 @@
 - Began rebuilding the old source before Andrew clarified that every revision must use the next incoming run. New labels/audio were generated locally, but the video render was interrupted immediately after that clarification; no matching rendering processes remain. The partial `20260913_english_s1_a50ff43638` is not a review deliverable. Do not resume it.
 - Standing rule: never remake old videos unless explicitly asked. Keep these code changes ready and wait for the next news run. Frozen historical artifacts may still support offline regression checks. No upload took place.
 
+## 2026-09-14 — Korean country names included in English filter
+
+- Added exact country-name matching on Korean vocabulary words as requested. Last source's text-only check now removes 태국 and 이재명 (31 → 29); 17 tests pass. No LLM calls or media generated. The other three proposed rules remain deferred; implementation and details are in the development worktree.
+
+## 2026-09-14 — first two English vocabulary filters ready
+
+- Development now filters whole-word “name” glosses and exact country-name/alias glosses before explanations/audio. 16 tests pass; offline September 14 check removes one entry (31 → 30). No LLM calls or media generation. Andrew requires text-only effectiveness checks.
+- Deferred three rules: generic place descriptions, matching against actual English sentences, grammatical variants. Full details in development SESSION_LOG.md; next incoming media run uses the first two automatically.
+
+## 2026-09-14 — manual upload; simplified English vocabulary filtering next
+
+- Andrew reports uploading today's English video manually and will review it on YouTube. No URL/visibility supplied; automatic uploads remain disabled.
+- Next task is improving the existing vocabulary inversion shortcut: preferably use software to require the English study word/phrase to occur in the actual English story, removing descriptive placeholders such as “a politician's name.” Reuse existing candidates and defer a complete independent English vocabulary selector. Detailed decisions/open matching questions are in development SESSION_LOG.md. Record only for now; do not remake the uploaded video.
+
+## 2026-09-14 — full English video and repeatable local workflow
+
+- Today's Korean run `20260914_105639_ba258775` now has a three-story English review video, `20260914_english_all_7bffe0766f` (~16m38s), with Korean upload materials. Continue in the development worktree; its development/README.md begins with the one-command runbook and checks for lighter-model handoff. No upload or automatic integration; Andrew reviews first.
+- English channel description and enlarged icon v2 published. Korean channel renamed Learn Korean Through the News / @SteadyLanternKorean. Details and preserved assets/descriptions are in development assets/channel/. Production code and desktop workflow remain untouched.
+
+## 2026-09-14 — English channel icon applied
+
+- Uploaded and published the matching 영어 profile icon after Chrome file-URL access was enabled. Verified the icon and “All changes saved” in English channel Studio. This supersedes the earlier pending-upload note; public avatar propagation may lag. No video publication or Korean channel changes.
+
+## 2026-09-14 — new channel created
+
+- Verified new channel 뉴스로 배우는 영어, `@SteadyLanternEnglish`, ID `UCPvS_o6ypGR8-aA0P2pgtdA`, under the existing Steady Lantern account. Original Korean channel unchanged.
+- Matching 영어 icon saved in development EnglishNews assets/channel/. Upload is pending Chrome extension file-URL permission; instructions were given to Andrew. Full details in development SESSION_LOG.md and assets/channel/README.md. Automatic video publication remains disabled.
+
+## 2026-09-14 — feedback implemented; wait for next run
+
+- Added Korean spoken section labels and compact colon-separated written vocabulary in the development worktrees; 307 tests pass. Details are in the development EnglishNews SESSION_LOG.md.
+- Andrew clarified that all revisions must use the next incoming news run. Interrupted the in-progress old-video render and recorded the durable rule in both AGENTS.md files. Do not resume the partial old sample; wait for the new source run. No publication or production workflow changes.
+
 ## 2026-09-13 — first written/audio/video prototype
 
 - Built the independent English-side historical importer, schema-v1 bundle/ready marker, cached batched explanation enrichment, written/speech plans and audio assembly. Used source story 1 from today's frozen run: 4 body sentences and 18 unchanged vocabulary entries. This imports the saved written format; live structured export and daily worker integration remain future work.
@@ -301,3 +353,9 @@
 5. Build a one-story written/audio/video prototype with the exact corrected vocabulary sequence, then review English explanations, pacing, video language labels and branding before automatic dual production.
 
 Remaining product choices: English voice/speed, series name and destination channel identity. No need to reopen the settled vocabulary repetition question.
+## 2026-09-13 — prototype ready in development worktrees
+
+- Andrew authorized the first frozen-story prototype and confirmed Alloy, English 0.88 and Korean sentences 1.07. Current review sample is `20260913_english_s1_e4644bf4a9` in the EnglishNews and Video Lab development output folders. It includes written lessons, assembled audio and a roughly 7m23s video; no upload or daily integration ran.
+- Detailed implementation, audio repetition repair, QA and open review items are recorded in `C:/AI/Codex/Worktrees/english-news/EnglishNews/SESSION_LOG.md` and `development/README.md`. Continue there, not in this main planning checkout.
+- 305 tests passed; eight Korean rendering/metadata artifacts remained byte-identical to the frozen baseline. Production Korean code, environments and desktop shortcut remain unchanged. Full user listening/review is next. Commits and generated media remain local.
+

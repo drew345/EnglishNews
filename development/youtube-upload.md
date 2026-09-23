@@ -8,8 +8,8 @@ media checks, and handle upload preparation without repeating settled questions.
 Stop for material content problems or new choices. Preserve the final handoff below.
 
 Andrew's clarified handoff: take the upload all the way to Visibility, with
-Public and the unchecked Instant Premiere control visible. Andrew selects
-Public and clicks Publish himself. Do not stop at the draft/details screen or
+Public selected and the unchecked Instant Premiere control visible. As clarified
+September 23, Codex selects Public and Andrew clicks Publish himself. Do not stop at the draft/details screen or
 publish on his behalf unless he later explicitly changes this instruction.
 The temporary save/close step above was needed to set the separate Korean
 metadata language; it is not the final handoff. Resume the same draft via
@@ -40,9 +40,11 @@ Edit draft > Next (Video elements) > Next (Checks) > Next (Visibility).
 1. Use the approved run and compare every upload-package file hash before
    selecting media. Never choose the newest file blindly or regenerate an
    approved final video during upload.
-2. Use the visible Codex in-app browser. Create > Upload videos, select the
-   approved MP4 through the browser file chooser. Save the resulting video ID
-   immediately in SESSION_LOG.md to prevent duplicate uploads on resumption.
+2. Claim the exact daily job using sibling korean-news/docs/daily-news-workflow.md
+   and acquire its upload slot. Use the Codex in-app browser. Create > Upload
+   videos, supply the approved MP4 through the browser file chooser API without
+   Explorer. Save the resulting video ID immediately using the job update command
+   to prevent duplicate uploads on resumption. Resume any already recorded draft.
 3. Clear the filename-derived title completely, then paste the title sidecar.
    Paste the full description including timestamp chapters; verify both fields.
 4. Upload the dated thumbnail, not a QA screenshot. Set the audience and

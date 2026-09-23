@@ -1,20 +1,20 @@
 # English News development runbook
 
-Updated 2026-09-21. The implementation plan and ownership/merge sequence are in [FEASIBILITY.md](../FEASIBILITY.md). Work only in the existing development checkouts until review. No production setting, launcher, environment or main branch has been changed.
+Updated 2026-09-23. The supported checkout is Projects/EnglishNews on main. Andrew authorized stable adoption and two ongoing daily Codex tasks. The architecture remains in FEASIBILITY.md; sibling korean-news/docs/daily-news-workflow.md owns the machine-local jobs, dispatch, browser coordination and exact draft IDs. Automatic upload preparation is allowed; publication remains Andrew's click.
 
 ## Daily supervised procedure
 
-Use this checklist when Andrew says the new Korean run is ready. Read AGENTS.md and the latest SESSION_LOG.md first. September 21 is the verified example; never reuse its IDs for a new day. Andrew wants the same procedure on the next incoming run and explicit instructions that a simpler model can eventually follow; no model change is requested yet.
+Use this checklist for the exact claimed daily job, or when Andrew explicitly supplies a new Korean run. Read AGENTS.md and the latest SESSION_LOG.md first. September 21 is the verified example; never reuse its IDs for a new day. Andrew wants the same procedure on the next incoming run and explicit instructions that a simpler model can eventually follow; no model change is requested yet.
 
 1. **Identify inputs.** Confirm the new production Korean run is completed and its staged Video Lab images have the same source run ID. Check the session log and existing English run records for prior preparation/upload before starting. If source identity is ambiguous, ask; never mix dates or image runs.
 2. **Prepare text.** Run the legacy-written command below while production export remains unavailable. Use the returned preparation ID, not a guessed latest folder. Keep agreed cutoff, voice and speed settings.
 3. **Review text once.** Read all three stories, selected terms, Korean meanings, English definitions and selection reports. Confirm source wording is preserved in adapter mode; terms have the intended contextual meaning, phrases are natural and useful, and definitions are short and noncircular. Fewer than eight items is allowed. Stop for a material issue; otherwise record assistant review and proceed without another user checkpoint.
 4. **Build media.** Run the media command below with that exact preparation and matching staged input. Resume valid cached work with the same command after an interruption; do not reselect vocabulary or rebuild published media as a recovery shortcut.
 5. **Check results.** Require ready_for_review, passing audio/video QA, and upload-package.json. Compare the final speech script to the reviewed preparation and verify every upload-package hash. Inspect actual frames from all three stories, a story transition, and two times in the ending buffer; check readable wrapping, connected scrolling, and continued ending motion. Inspect the dated thumbnail and title/description/chapter sidecars. Failed QA blocks upload; do not waive it or claim full listening from decode checks.
-6. **Prepare upload.** Follow [youtube-upload.md](youtube-upload.md) in the in-app browser. Verify the English channel, upload the checked MP4 and thumbnail, and apply saved choices. Record the YouTube video ID immediately. A temporary draft save is an internal step for setting Korean metadata language; continue to final Visibility. Do not publish. Leave Public unselected and Instant Premiere unchecked, visibly ready for Andrew.
+6. **Prepare upload.** Follow [youtube-upload.md](youtube-upload.md) in the in-app browser. Verify the English channel, upload the checked MP4 and thumbnail, and apply saved choices. Record the YouTube video ID immediately. A temporary draft save is an internal step for setting Korean metadata language; continue to final Visibility. Do not publish. Select Public and leave Instant Premiere unchecked, with Publish visibly ready for Andrew. Record ready_to_publish in the daily job.
 7. **Finish after Andrew publishes.** Verify Studio Public, open the exact public video, pause playback and show Add a comment. Suggest a Korean comment if requested; do not post it without instruction. Save publication ID/URL/status in run records and SESSION_LOG.md. Next day starts from a new completed Korean run.
 
-Escalate only new choices, material content concerns, missing/mismatched inputs, authentication obstacles, or failed checks that cannot be resolved within the saved procedure. Do not repeatedly ask about settled settings. No scheduled trigger, unattended publication, main merge, or production launcher change is part of this daily procedure.
+Escalate only new choices, material content concerns, missing/mismatched inputs, authentication obstacles, or failed checks that cannot be resolved within the saved procedure. Do not repeatedly ask about settled settings. Daily dispatch and stable main adoption were authorized September 23. Never click Publish or change settled lesson content as part of automation.
 
 ## Prepare the next incoming lesson as text
 
@@ -78,7 +78,7 @@ A complete `news-content-v1` handoff contains `story-01.content.json` through th
 For the next incoming run, when Andrew has authorized media, use the exact reviewed preparation and matching original story images:
 
 ```powershell
-./development/make-english-news.ps1 -PreparedRun output/text-review/NEW_ENGLISH_TEXT_ID -StagedRun C:/AI/Codex/Projects/KoreanLessonVideoLab/inputs/korean-news/NEW_SOURCE_RUN_ID -VideoLab C:/AI/Codex/Worktrees/english-news/KoreanLessonVideoLab -EnvFile C:/AI/Codex/Projects/korean-news/.env -ReviewedText
+./development/make-english-news.ps1 -PreparedRun output/text-review/NEW_ENGLISH_TEXT_ID -StagedRun C:/AI/Codex/Projects/KoreanLessonVideoLab/inputs/korean-news/NEW_SOURCE_RUN_ID -VideoLab C:/AI/Codex/Projects/KoreanLessonVideoLab -EnvFile C:/AI/Codex/Projects/korean-news/.env -ReviewedText
 ```
 
 The explicit review flag records the operator's review decision; it does not solicit a second confirmation after authorization. The wrapper has no SourceRun mode that can reuse Korean vocabulary. It synthesizes the selected words/phrases with the existing cadence: English twice, Korean gloss, English explanation, English twice. Voice Alloy; English 0.8976 (a 2% increase from 0.88), Korean sentences/section labels 1.07, Korean vocabulary glosses 0.88. Unique vocabulary clips carry individual speeds. Body English is repeated twice and the full review is English. Vocabulary stays attached to its own body sentence.
@@ -99,7 +99,7 @@ Require workflow-status.json `ready_for_review`, audio-qa.json, video-qa.json an
 
 ## Install and test
 
-Each development checkout has its own .venv. EnglishNews no longer needs an editable Korean core or sibling src imports. From this checkout:
+Each ordinary Projects checkout has its own .venv. EnglishNews no longer needs an editable Korean core or sibling src imports. From this checkout:
 
 ```powershell
 .venv/Scripts/python.exe -m pip install --no-deps ../korean-news
@@ -109,7 +109,7 @@ Each development checkout has its own .venv. EnglishNews no longer needs an edit
 .venv/Scripts/python.exe -m unittest discover -s tests
 ```
 
-The first command builds `korean-news-media==0.1.0` from the reviewed development checkout. It packages the existing speech source under `korean_news_media`; it does not copy implementations into EnglishNews. Public speech modules are tts_common, openai_speech_tts and tts_transcription. Reinstall after shared source changes. Before adoption, pin the reviewed Korean commit/wheel; do not install the current unchanged production checkout, which lacks this package. The English optional `media` extra describes the version requirement. Media imports work from an ordinary checkout, so development folders can be retired after merging. `ENGLISH_NEWS_HOME` may explicitly select the EnglishNews checkout; source/editable installs default to their own checkout. Renderer dependencies stay in Video Lab's environment.
+The first command builds `korean-news-media==0.1.0` from the reviewed main checkout. It packages the existing speech source under `korean_news_media`; it does not copy implementations into EnglishNews. Public speech modules are tts_common, openai_speech_tts and tts_transcription. Reinstall after shared source changes. Before adoption, pin the reviewed Korean commit/wheel; install the adopted main checkout or the pinned commit in the lock. The English optional `media` extra describes the version requirement. Media imports work from an ordinary checkout, so development folders can be retired after merging. `ENGLISH_NEWS_HOME` may explicitly select the EnglishNews checkout; source/editable installs default to their own checkout. Renderer dependencies stay in Video Lab's environment.
 
 `english-news-requirements.lock.txt` captures the validated English development environment. The older Korean/Video Lab locks record the initial September 13 setup. Offline tests use mocks/replays; they do not synthesize or render real media. Run both sibling suites with their own .venv when changing a shared interface.
 
@@ -123,8 +123,6 @@ This compares 3,500/4,000/4,500 candidate pools. It does not make semantic selec
 
 ## Checkouts, adoption and portability
 
-Use the existing three `codex/english-news-prototype` worktrees under C:/AI/Codex/Worktrees/english-news. No new branches or worktrees are needed. Production remains under C:/AI/Codex/Projects on main. Shared Korean core and loanword repositories are unchanged.
+Production runs from C:/AI/Codex/Projects/{EnglishNews,korean-news,KoreanLessonVideoLab}, each on main with a separate environment. The optional structured export remains off; daily English keeps the proven sentence-pair adapter. Reusable speech is installed as korean-news-media from a reviewed commit, and Video Lab is invoked through its explicit CLI. No Worktrees runtime path is required.
 
-After text and next-run media review: reconcile each development branch with its own main; merge the small Korean export/package change and compatible Video Lab interface; pin those reviewed dependencies in EnglishNews and merge its application; test ordinary checkout paths; then retire the three worktrees after preserving needed ignored outputs. English logic remains in EnglishNews and shared media fixes have one owner. Never fold independent copies of Korean code into EnglishNews.
-
-Worktrees, environments and generated media do not travel with normal main-branch sync. Commit/push development branches separately before a device move; transport wanted ignored artifacts separately. Keep keys outside Git. No credential has been copied or provisioned by this change. Historical setup/sample details remain in SESSION_LOG.md and Git history; they are not current run instructions.
+Keep the old development checkouts and ignored media until the next incoming paired run confirms the new launch-to-Publish path. Then preserve wanted media and retire temporary worktrees. Shared Korean core and loanword repositories are unchanged. Routine main sync carries code but not media, credentials, local task IDs or activation state. A different computer needs local environments plus its own two-task workflow setup. No Start/End sync is implied by adoption.

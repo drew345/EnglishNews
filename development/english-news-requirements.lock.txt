@@ -1,6 +1,6 @@
 # EnglishNews dependency closure validated on Windows/Python 3.14, 2026-09-20.
 # Install this file, then pip install -e .; this application is not pinned to a worktree path.
-# Renderer is a separate CLI checkout/environment at reviewed development commit e8ec5e9a58b1111f76f1c077803a25a8ddc58e6c.
+# Renderer is a separate CLI checkout/environment at reviewed main commit 102d56cdceebc9526c0360a049c90be14d8fcdbd.
 # Historical Korean-core/server dependencies in the reused venv are not required here.
 annotated-doc==0.0.4
 annotated-types==0.7.0
@@ -24,7 +24,7 @@ idna==3.18
 imageio-ffmpeg==0.6.0
 jinja2==3.1.6
 jiter==0.15.0
-korean-news-media @ git+https://github.com/drew345/korean-news.git@925c9dd102dd64c9e38c841e95f16777bd8ec019
+korean-news-media @ git+https://github.com/drew345/korean-news.git@d82b2033ef487a4fde3116d1046761b9146cc16b
 langcodes==3.5.1
 lemminflect==0.2.3
 locate==1.1.1

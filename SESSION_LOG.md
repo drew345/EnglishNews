@@ -1,5 +1,11 @@
 # English News — session log
 
+## 2026-09-24 — next-run browser coordination
+
+- Both September 24 durable jobs are published: English GiXE_4rP3vA, Korean twHrLAXMDik. Andrew authorized workflow improvements after completion. No media rebuilt or video changed in this coordination work.
+- Shared job CLI now reserves all YouTube actions, records each task's actual provider-tab identity, holds ownership through Andrew's Publish and verification/comments, and explicitly releases afterward. Busy tasks persist their wait and receive one supervisor-triggered resume; no agent polling schedules. English preparation/media remain independent and its upload may wait for Korean publication. Use the updated daily-news-workflow.md and development/youtube-upload.md.
+- Added local article-page video progress and protected against stale executable paths (earlier September 24 fix). Same dedicated tasks and user-selected model settings; worktrees remain until the cleanup review. Next new run validates the complete sequence; offline coordination tests and a read-only live progress check passed.
+
 ## 2026-09-24 — second live paired run; published
 
 - Claimed exact completed Korean source `20260924_130655_fb5f8392` and matching staged images. Prepared `20260924_english_text_43341c36c7b5`; reviewed all three source-aligned stories, 11 vocabulary items (2/7/2), short definitions, and the current 3,500 cutoff and speech rates. No old media was rebuilt.

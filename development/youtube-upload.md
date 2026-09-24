@@ -45,7 +45,11 @@ Edit draft > Next (Video elements) > Next (Checks) > Next (Visibility).
    selecting media. Never choose the newest file blindly or regenerate an
    approved final video during upload.
 2. Claim the exact daily job using sibling korean-news/docs/daily-news-workflow.md
-   and acquire its upload slot. Use the Codex in-app browser. Create > Upload
+   and acquire its browser reservation with purpose upload. If busy, follow
+   the shared runbook's one-time wake protocol and do not touch YouTube. Use
+   only the task-owned in-app tab returned by acquisition; validate it or create
+   a new tab and register its observed browser/tab IDs with browser-tab before
+   uploading. Never reuse tab 1 merely because it exists. Create > Upload
    videos, supply the approved MP4 through the browser file chooser API without
    Explorer. Save the resulting video ID immediately using the job update command
    to prevent duplicate uploads on resumption. Resume any already recorded draft.
@@ -67,6 +71,13 @@ Edit draft > Next (Video elements) > Next (Checks) > Next (Visibility).
    URL and publication status in the run records, and open the paused public
    video at comments with autoplay off. Do not submit a comment without a
    separate request.
+
+Keep the browser reservation while the Publish screen awaits Andrew. On his
+confirmation, reacquire with purpose publish (same owner), verify publication,
+record published, and complete the paused comments-page handoff before calling
+browser-release. The next task can then start its upload. Later verification or
+comments navigation requires purpose followup and another explicit release.
+These reservations cover the shared YouTube account even with separate tabs.
 
 ## Guidance checked
 

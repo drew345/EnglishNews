@@ -47,9 +47,11 @@ Edit draft > Next (Video elements) > Next (Checks) > Next (Visibility).
 2. Claim the exact daily job using sibling korean-news/docs/daily-news-workflow.md
    and acquire its browser reservation with purpose upload. If busy, follow
    the shared runbook's one-time wake protocol and do not touch YouTube. Use
-   only the task-owned in-app tab returned by acquisition; validate it or create
-   a new tab and register its observed browser/tab IDs with browser-tab before
-   uploading. Never reuse tab 1 merely because it exists. Create > Upload
+   only the task-owned in-app tab returned by acquisition. Reuse it across days,
+   navigating away from an older published video in the same tab. Create/register
+   a tab only if the owned tab is unavailable; close only verified obsolete own
+   published-video tabs under the shared runbook's rules. Never reuse tab 1
+   merely because it exists. Create > Upload
    videos, supply the approved MP4 through the browser file chooser API without
    Explorer. Save the resulting video ID immediately using the job update command
    to prevent duplicate uploads on resumption. Resume any already recorded draft.
@@ -77,6 +79,10 @@ confirmation, reacquire with purpose publish (same owner), verify publication,
 record published, and complete the paused comments-page handoff before calling
 browser-release. The next task can then start its upload. Later verification or
 comments navigation requires purpose followup and another explicit release.
+Release immediately after the browser navigation/inspection, BEFORE drafting
+comment text in chat or waiting for further requests. Text-only drafting needs
+no browser slot. Use the same tab for Studio and the public comments page; leave
+the current video visible and marked for handoff, without an extra comments tab.
 These reservations cover the shared YouTube account even with separate tabs.
 
 ## Guidance checked

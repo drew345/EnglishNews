@@ -1,5 +1,10 @@
 # English News — session log
 
+## 2026-09-24 — persistent current-video tab and comments follow-ups
+
+- Shared and audience runbooks now reuse one owned YouTube tab across days, Studio and public comments, with ownership-checked cleanup only. English inventory found one current tab for GiXE_4rP3vA, distinct from the Korean task's tab; its observed identity is registered for reuse. No obsolete tab was present to close. Shared browser slot released.
+- Release browser access before comment drafting in chat or waiting for further requests. Later text-only work does not reserve the browser. Andrew retains Publish; automatic comment drafting/posting remains disabled. Documentation reviewed; no media or model changes.
+
 ## 2026-09-24 — next-run browser coordination
 
 - Both September 24 durable jobs are published: English GiXE_4rP3vA, Korean twHrLAXMDik. Andrew authorized workflow improvements after completion. No media rebuilt or video changed in this coordination work.

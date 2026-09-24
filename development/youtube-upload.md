@@ -32,6 +32,10 @@ Edit draft > Next (Video elements) > Next (Checks) > Next (Visibility).
   a contextual decision, not a blanket exclusion of all news/educational AI.
   Reassess realistic depictions of events/people or impersonated voices.
   Keep the description's disclosure that the narration is AI-generated.
+  September 24 exception: Andrew chose Yes for a generated, realistic-looking
+  depiction of President Lee in the story card. Inspect each run's actual
+  imagery before reusing the default; do not generalize this exception to every
+  illustrated card.
 - Category: Education, explicitly confirmed for this and future uploads.
   Leave the optional academic subtype/system/level fields unset unless relevant.
 

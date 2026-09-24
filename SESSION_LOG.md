@@ -1,5 +1,12 @@
 # English News — session log
 
+## 2026-09-24 — second live paired run; published
+
+- Claimed exact completed Korean source `20260924_130655_fb5f8392` and matching staged images. Prepared `20260924_english_text_43341c36c7b5`; reviewed all three source-aligned stories, 11 vocabulary items (2/7/2), short definitions, and the current 3,500 cutoff and speech rates. No old media was rebuilt.
+- Completed `20260924_english_all_b5ee79a782`: 57 speech units, 716.976-second audio, 727.83-second video. Audio/video full decode, speech-script equality, and all five upload-package hashes passed. Inspected dated thumbnail, opening, three story middle frames, both connected transitions, and moving ending buffer. MP4 SHA-256: `83b52a1421442d51ef442ebadf5aec0eb93f0f72f4a6bf65e7ae229daf2717e3`.
+- Waited for the Korean task's shared browser slot; its exact draft `twHrLAXMDik` reached ready-to-publish and released the slot. Uploaded the English video to verified `뉴스로 배우는 영어` / `@SteadyLanternEnglish`, immediately recording draft `GiXE_4rP3vA`. Saved title, description and chapters, dated thumbnail, not-made-for-kids, no paid promotion, English video language, Korean title/description language, and Education category. Andrew approved AI-use **Yes** for this run because the generated President Lee image looks realistic; this differs from the usual illustrative-card **No**. Copyright showed no issues.
+- Selected Public with Instant Premiere off and Publish ready. Andrew published the video while HD processing was finishing. Studio then showed Public and HD complete; the durable English job is `published`, with URL `https://www.youtube.com/watch?v=GiXE_4rP3vA`. Opened the paused public video at its comment field and suggested a Korean comment without posting it.
+
 ## 2026-09-23 — first live main build; published
 
 - Andrew published lOFOF10hPJk. Studio Public and public September 23 video/channel verified; durable job set published. Opened paused public video for comments. Suggested Korean first comment only; agent did not post.

@@ -1,5 +1,11 @@
 # English News — session log
 
+## 2026-09-25 — approved Publish and comments simplification
+
+- Andrew approved a single Publish verification followed by saved handoff and immediate turn end, without pending-check/HD waiting when Publish is enabled. Shared browser-start-upload guard refuses another MP4 when a saved video ID or prior submission exists. Recover the existing video if Studio returns to its dashboard.
+- Published (or exact-video publication observed while active) now requests verification and same-tab comments automatically. After visible comments are checked, release promptly and suggest one Korean comment in chat. No composer-focusing loop, posting or assistant Publish click. Existing models and event-triggered English wait/resume retained.
+- Shared workflow regression suite: 28 tests pass. Both tasks acknowledged updated rules; dispatcher reloaded and healthy. Today's media untouched; next incoming run provides live validation.
+
 ## 2026-09-24 — persistent current-video tab and comments follow-ups
 
 - Shared and audience runbooks now reuse one owned YouTube tab across days, Studio and public comments, with ownership-checked cleanup only. English inventory found one current tab for GiXE_4rP3vA, distinct from the Korean task's tab; its observed identity is registered for reuse. No obsolete tab was present to close. Shared browser slot released.

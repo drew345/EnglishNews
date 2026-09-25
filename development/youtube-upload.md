@@ -51,9 +51,11 @@ Edit draft > Next (Video elements) > Next (Checks) > Next (Visibility).
    navigating away from an older published video in the same tab. Create/register
    a tab only if the owned tab is unavailable; close only verified obsolete own
    published-video tabs under the shared runbook's rules. Never reuse tab 1
-   merely because it exists. Create > Upload
-   videos, supply the approved MP4 through the browser file chooser API without
-   Explorer. Save the resulting video ID immediately using the job update command
+   merely because it exists. Before a NEW upload, require the job CLI's
+   browser-start-upload to return upload_once, then submit the approved MP4 ONCE
+   through the browser file chooser API without Explorer. A saved video ID or
+   prior submission authorization blocks another upload. If Studio returns to
+   its dashboard, inspect the saved video's status; never start Create again. Save the resulting video ID immediately using the job update command
    to prevent duplicate uploads on resumption. Resume any already recorded draft.
 3. Clear the filename-derived title completely, then paste the title sidecar.
    Paste the full description including timestamp chapters; verify both fields.
@@ -69,21 +71,37 @@ Edit draft > Next (Video elements) > Next (Checks) > Next (Visibility).
    underlying full details page. September 20 settings are saved; processing
    completed and copyright checks reported no issues. Final visibility and
    publication remain for review with Andrew; do not infer publication approval.
-7. After publication, verify the exact title/channel/video, record its public
-   URL and publication status in the run records, and open the paused public
-   video at comments with autoplay off. Do not submit a comment without a
-   separate request.
+7. Advance through pending YouTube checks to Visibility; do not wait for copyright
+   checks or HD processing when Publish is enabled. Report an actual displayed
+   issue. Verify the exact video/date, Public selected, Premiere off and enabled
+   Publish ONCE. Mark the tab for handoff, record ready_to_publish and immediately
+   END THE TURN. No additional browser inspections/screenshots or routine file
+   rereads after the saved handoff. If Publish is disabled, inspect its visible
+   reason once and report it instead of polling or claiming readiness.
+8. Tell Andrew to reply "Published". This now requests publication verification,
+   the comments page and a Korean suggested comment. If the exact saved video's
+   publication is visibly observed while active, treat it as the expected next
+   phase without asking again. Never click Publish yourself. Acquire purpose
+   publish (also valid from uploading with a saved ID), verify Public and exact
+   video/channel, and record published. If already published, use purpose followup.
+   A missing dialog/dashboard means inspect the saved video, never submit again.
+9. Open the SAME tab at that paused public video with autoplay off. After the
+   page settles and scrolling as needed, verify actual title/channel/video and
+   the visible Add a comment area together. Do not repeatedly focus/click the
+   composer or take redundant screenshots. If identity drifts, reload the exact
+   URL once; report persistent mismatch or unavailable comments. After verified
+   publication, a comments UI problem must not indefinitely hold the next upload.
+10. Mark the tab for handoff and browser-release immediately, before drafting
+    text. Then suggest ONE short, relevant first comment in Korean in chat, based
+    on this run's verified lesson. Andrew authorized this standard step September
+    25; no separate drafting request is needed. Do not enter or post it on YouTube.
 
-Keep the browser reservation while the Publish screen awaits Andrew. On his
-confirmation, reacquire with purpose publish (same owner), verify publication,
-record published, and complete the paused comments-page handoff before calling
-browser-release. The next task can then start its upload. Later verification or
-comments navigation requires purpose followup and another explicit release.
-Release immediately after the browser navigation/inspection, BEFORE drafting
-comment text in chat or waiting for further requests. Text-only drafting needs
-no browser slot. Use the same tab for Studio and the public comments page; leave
-the current video visible and marked for handoff, without an extra comments tab.
-These reservations cover the shared YouTube account even with separate tabs.
+Keep the reservation while Publish awaits Andrew. End the turn without releasing
+that reservation; release after publication verification/comments navigation.
+Later browser work requires purpose followup and another explicit release.
+Text-only drafting does not reserve the browser. These rules coordinate the
+shared account even with separate tabs. Busy tasks say they are queued and will
+resume automatically; no recurring agent polling or model-setting changes.
 
 ## Guidance checked
 

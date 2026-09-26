@@ -16,6 +16,14 @@ Keep one managed YouTube tab in this task, reusing it across days and between St
 
 September 25 handoff: require browser-start-upload to authorize each new MP4 submission once, only after obtaining the dialog's Select files chooser and immediately before setFiles. Menu/chooser failure before setFiles is navigation failure, not a used submission; follow the shared runbook for proven-unused authorizations. Saved video IDs or prior submissions mean reconcile the existing video, never restart Create. Verify Publish once, mark handoff, save ready_to_publish and END THE TURN immediately, retaining the reservation. Do not wait for pending checks/HD when Publish is enabled or keep inspecting afterward. Andrew's "Published", or exact-video publication visibly observed while active, triggers verification and the same-tab comments page without another confirmation. Release promptly, then suggest one Korean comment in chat automatically; never enter/post it or click Publish. A visible comment area is enough; no repeated composer focusing. This supersedes older wording requiring a separate drafting request. Models and paused polling schedules stay unchanged.
 
+September 26: use the shared daily-news-workflow.md **Published follow-up**
+sequence for a bounded comments handoff. Reload only the exact job/reservation
+and missing guidance; no routine source/help/full-runbook rereads. Verify Public
+once; at most two pause attempts and two comments scrolls. Visible Add a comment
+is enough without a textbox-role test or extra screenshot. After verified
+publication, release even if player/comments controls remain unresponsive,
+report the limitation, then draft from the existing lesson. No repeated UI loops.
+
 Read this file and SESSION_LOG.md first when resuming. FEASIBILITY.md holds the detailed code inventory, architecture, risks and phased plan; do not duplicate it into additional plan files.
 
 NewsHistory: the canonical preparation/media writers archive written lessons and English vocabulary audits via C:/AI/Codex/Projects/NewsHistory. Its AGENTS.md owns storage and retention; no automatic expiry. Monthly review uses combined history, not only this computer’s output folders.

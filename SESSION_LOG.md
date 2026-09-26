@@ -1,5 +1,11 @@
 # English News — session log
 
+## 2026-09-26 — bounded post-publication comments handoff
+
+- Andrew approved tightening the follow-up after the Korean task took 7m52s from Published to its comment. Trace showed broad setup rereads, repeated ineffective pause controls, and textbox verification after the comment area was already visible; no browser contention or YouTube checks wait. Korean TL0M2GW4LJo is published; do not repeat its upload or follow-up.
+- Shared Published follow-up now defines minimal context reload, one publication verification, at most two pause attempts/two comments scrolls, visible comment-area acceptance, and prompt release even on player/comments limitations. Audience runbooks and AGENTS point to that sequence. Draft from existing lesson context after release. Models, publication boundary and paused schedules unchanged.
+- Documentation-only change: reviewed shared/audience diffs and whitespace; no media rebuilt or browser actions replayed. The next natural Published follow-up is the live validation.
+
 ## 2026-09-26 — retained sidebar tabs and upload navigation
 
 - English completed/published BntVmATUaIs and Andrew posted the suggested comment. CUA exposed only today's tab, but actual app sidebar showed Sep24/Sep25/Sep26. Integration closed the two dated old English tabs and visually/accessibly verified Sep26 alone; Korean's active tab was untouched. Suspended sidebar tabs were invisible to old provider lookups. Before creating a replacement, inspect/reactivate the existing own sidebar tab, then refresh browser inventory.

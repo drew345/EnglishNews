@@ -93,16 +93,18 @@ Edit draft > Next (Video elements) > Next (Checks) > Next (Visibility).
    publish (also valid from uploading with a saved ID), verify Public and exact
    video/channel, and record published. If already published, use purpose followup.
    A missing dialog/dashboard means inspect the saved video, never submit again.
-9. Open the SAME tab at that paused public video with autoplay off. After the
-   page settles and scrolling as needed, verify actual title/channel/video and
-   the visible Add a comment area together. Do not repeatedly focus/click the
-   composer or take redundant screenshots. If identity drifts, reload the exact
-   URL once; report persistent mismatch or unavailable comments. After verified
-   publication, a comments UI problem must not indefinitely hold the next upload.
+9. Follow **Published follow-up** in sibling
+   `korean-news/docs/daily-news-workflow.md` for the bounded comments handoff.
+   Use the exact job and registered tab; no routine full-runbook/source/help
+   rereads. Verify publication once, navigate the same video, use at most two
+   pause attempts and two comments scrolls. Visible Add a comment is sufficient;
+   no textbox-role hunt or additional proof screenshot. Release even if player
+   or comments controls remain unresponsive after verified publication; report
+   the limitation without marking the published video failed.
 10. Mark the tab for handoff and browser-release immediately, before drafting
     text. Then suggest ONE short, relevant first comment in Korean in chat, based
-    on this run's verified lesson. Andrew authorized this standard step September
-    25; no separate drafting request is needed. Do not enter or post it on YouTube.
+    on this run's verified lesson. No separate drafting request is needed. Do not
+    enter or post it on YouTube or browse again to write it.
 
 Keep the reservation while Publish awaits Andrew. End the turn without releasing
 that reservation; release after publication verification/comments navigation.

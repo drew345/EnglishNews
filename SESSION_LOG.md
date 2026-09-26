@@ -1,5 +1,10 @@
 # English News — session log
 
+## 2026-09-26 — retained sidebar tabs and upload navigation
+
+- English completed/published BntVmATUaIs and Andrew posted the suggested comment. CUA exposed only today's tab, but actual app sidebar showed Sep24/Sep25/Sep26. Integration closed the two dated old English tabs and visually/accessibly verified Sep26 alone; Korean's active tab was untouched. Suspended sidebar tabs were invisible to old provider lookups. Before creating a replacement, inspect/reactivate the existing own sidebar tab, then refresh browser inventory.
+- Shared/audience runbooks now obtain the Select files chooser before recording one-time authorization and calling setFiles. Create/Upload videos navigation failures before setFiles are not submissions. Today's English keyboard Enter recovery supplied the verified pattern; Korean is recovering its same unused authorization separately. No generation/model changes.
+
 ## 2026-09-25 — approved Publish and comments simplification
 
 - Andrew approved a single Publish verification followed by saved handoff and immediate turn end, without pending-check/HD waiting when Publish is enabled. Shared browser-start-upload guard refuses another MP4 when a saved video ID or prior submission exists. Recover the existing video if Studio returns to its dashboard.

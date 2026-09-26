@@ -49,14 +49,22 @@ Edit draft > Next (Video elements) > Next (Checks) > Next (Visibility).
    the shared runbook's one-time wake protocol and do not touch YouTube. Use
    only the task-owned in-app tab returned by acquisition. Reuse it across days,
    navigating away from an older published video in the same tab. Create/register
-   a tab only if the owned tab is unavailable; close only verified obsolete own
+   a tab only after checking the actual sidebar for suspended owned tabs, selecting
+   the existing tab and refreshing CUA. Missing provider IDs alone do not prove
+   closure. Follow the shared runbook; close only verified obsolete own
    published-video tabs under the shared runbook's rules. Never reuse tab 1
-   merely because it exists. Before a NEW upload, require the job CLI's
-   browser-start-upload to return upload_once, then submit the approved MP4 ONCE
+   merely because it exists. For a NEW upload, first open Create > Upload videos
+   to display the upload dialog, then activate Select files to obtain its chooser
+   in a separate call without setFiles. If clicks do nothing, use Enter on the
+   freshly observed button/menuitem. Only with the chooser open, require the
+   job CLI's browser-start-upload to return upload_once, then submit the MP4 ONCE
    through the browser file chooser API without Explorer. A saved video ID or
    prior submission authorization blocks another upload. If Studio returns to
    its dashboard, inspect the saved video's status; never start Create again. Save the resulting video ID immediately using the job update command
    to prevent duplicate uploads on resumption. Resume any already recorded draft.
+   Menu/dialog/chooser errors before setFiles are recoverable navigation failures,
+   not uploads. Follow the shared runbook for proven unused authorizations;
+   never repeat an ambiguous attempted setFiles or clear its marker blindly.
 3. Clear the filename-derived title completely, then paste the title sidecar.
    Paste the full description including timestamp chapters; verify both fields.
 4. Upload the dated thumbnail, not a QA screenshot. Set the audience and

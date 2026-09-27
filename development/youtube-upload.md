@@ -19,7 +19,9 @@ bounded Like/comment sequence; never toggle an existing Like off. Save the prepa
 
 - Channel: 뉴스로 배우는 영어 / @SteadyLanternEnglish,
   UCPvS_o6ypGR8-aA0P2pgtdA. Studio may initially open the Korean channel;
-  use Account > Switch account and verify the English channel before uploading.
+  follow the shared Studio Accounts focus/activation procedure and verify the
+  English dashboard name and channel ID before uploading. Public YouTube's
+  selected channel does not establish Studio's identity.
 - Video language: English. Title/description language: Korean (explicitly
   confirmed September 20). These describe content languages, not country
   targeting. Do not infer older uploads were English merely because no setting

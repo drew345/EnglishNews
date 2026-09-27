@@ -1,5 +1,12 @@
 # English News — session log
 
+## 2026-09-27 — live channel-selection check
+
+- Andrew requested a read-only rehearsal of Korean then English channel selection. With one reserved in-app browser tab and no competing uploader, verified both Studio dashboards by exact channel ID/name and available upload control, then switched back to Korean. No upload, file selection, video edit, Like or comment occurred; diagnostic tab closed and reservation released, with no active pair.
+- Reproduced misdirected account-menu actions in this single chat. Also verified public YouTube showing @SteadyLanternEnglish while Studio root still opened the Korean dashboard. This supports the channel-state concern, but does not establish the exact cause of earlier incidents.
+- Successful route stays inside Studio: focus its observed Switch account item, verify focus, activate with native Space; focus the exact edition card, verify its name/handle, then native Return. Both directions succeeded. The shared runbook records this bounded method and requires the intended Studio ID/name before selecting files. Public channel selection and a completed tool call are insufficient proof.
+- Ignored evidence: korean-news/data/daily-workflow/readiness/channel-selection-check-20260927.json and EnglishNews/.local/channel-selection-check/. Full sequential upload, visible Publish and comments handoffs still require the next incoming pair; keep Sol/xhigh and existing publication guards.
+
 ## 2026-09-27 — authorized main publication and worktree evidence backup
 
 - On ROBERTSLGGRAM17, Andrew approved publishing the current main changes, creating private drew345/NewsIntro, enrolling it in routine sync and preserving prototype evidence while leaving worktrees in place. NewsIntro main 1c960f6 is published and independently verified; its setup remains in that project's README. CodexSync owns the coverage amendment, and MindHub has Start/End and first-clone routing.

@@ -1,5 +1,10 @@
 # English News — session log
 
+## 2026-09-27 — first live intro and explicit daily-job recovery
+
+- Source 20260927_134012_61a27e3d was queued while this daily chat was unloaded. Andrew authorized recovery; an explicit message resumed the existing task without model changes. Prepared 20260927_english_text_788f92e6075e and media 20260927_english_all_2499ebf017 passed QA, including the new 10.7-second intro, and reached upload preparation. Use the exact durable job for current upload/publication state; never duplicate the media or submission.
+- Shared recovery fixes and startup limitations are recorded in korean-news/SESSION_LOG.md and docs/daily-news-workflow.md. Korean currently needs Studio access restored, after English's browser release. Separate tabs share channel session state. Automatic loading of dormant chats remains unresolved; keep paused polling schedules unchanged.
+
 ## 2026-09-26 — bounded post-publication comments handoff
 
 - Andrew approved tightening the follow-up after the Korean task took 7m52s from Published to its comment. Trace showed broad setup rereads, repeated ineffective pause controls, and textbox verification after the comment area was already visible; no browser contention or YouTube checks wait. Korean TL0M2GW4LJo is published; do not repeat its upload or follow-up.

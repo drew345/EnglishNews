@@ -24,6 +24,16 @@ is enough without a textbox-role test or extra screenshot. After verified
 publication, release even if player/comments controls remain unresponsive,
 report the limitation, then draft from the existing lesson. No repeated UI loops.
 
+September 27 upload correction: stay in the upload wizard through Publish.
+Do not close/save a draft just to set Korean title/description language. If that
+separate control is absent, record it as pending in the exact job note and use
+development/youtube-upload.md's bounded post-publication step (only when pending,
+at most two activation attempts/60 seconds, then comments). Actual Korean title
+and description, English video language and the other approved upload settings
+still belong before Publish. Do not visit Google Account settings or repeat
+channel switching without new contradictory evidence. Restore the owned Studio
+tab before the final handoff so an accidental account tab cannot obscure it.
+
 Read this file and SESSION_LOG.md first when resuming. FEASIBILITY.md holds the detailed code inventory, architecture, risks and phased plan; do not duplicate it into additional plan files.
 
 NewsHistory: the canonical preparation/media writers archive written lessons and English vocabulary audits via C:/AI/Codex/Projects/NewsHistory. Its AGENTS.md owns storage and retention; no automatic expiry. Monthly review uses combined history, not only this computer’s output folders.

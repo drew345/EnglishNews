@@ -1,5 +1,11 @@
 # English News — session log
 
+## 2026-09-27 — remove the routine metadata detour before Publish
+
+- Andrew reported an apparent stall on a separate Google Account tab. Direct instruction/trace inspection found the English runbook explicitly required closing the upload wizard to set Korean title/description language. At 14:28:51 KST the task closed it; the saved video's full details then showed a Korean-channel header. It spent repeated actions on channel selection and ambiguous language fields, confirmed the draft in English's content list, and saved ready_to_publish at 14:36:05 for dJv9TSkzfZg. No second submission or publication.
+- Removed the mandatory save/close/full-details detour. Stay in the wizard to Publish; only the separate metadata-language setting may be recorded pending and handled after Andrew publishes, with two activation attempts/60 seconds maximum before continuing to comments. Preserve the approved Korean text, English spoken language and other pre-Publish settings. No Google Account settings visits; restore the registered Studio tab before handoff and close only proven own accidental tabs.
+- Documentation changes reviewed against the recorded actions and current durable job. Today's metadata is already set, so no deferred operation is required for this video. No browser or media operation was replayed while Andrew has the Publish handoff; the next upload validates the revised sequence.
+
 ## 2026-09-27 — first live intro and explicit daily-job recovery
 
 - Source 20260927_134012_61a27e3d was queued while this daily chat was unloaded. Andrew authorized recovery; an explicit message resumed the existing task without model changes. Prepared 20260927_english_text_788f92e6075e and media 20260927_english_all_2499ebf017 passed QA, including the new 10.7-second intro, and reached upload preparation. Use the exact durable job for current upload/publication state; never duplicate the media or submission.

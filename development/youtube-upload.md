@@ -11,9 +11,13 @@ Andrew's clarified handoff: take the upload all the way to Visibility, with
 Public selected and the unchecked Instant Premiere control visible. As clarified
 September 23, Codex selects Public and Andrew clicks Publish himself. Do not stop at the draft/details screen or
 publish on his behalf unless he later explicitly changes this instruction.
-The temporary save/close step above was needed to set the separate Korean
-metadata language; it is not the final handoff. Resume the same draft via
-Edit draft > Next (Video elements) > Next (Checks) > Next (Visibility).
+Keep the upload wizard open through Details > Video elements > Checks >
+Visibility. Do not save/close it solely to reach the separate metadata-language
+field. If that field is unavailable in the wizard, record the pending Korean
+title/description language in the exact job's note and use the bounded
+post-publication step below. This September 27 correction supersedes the old
+routine save/close/full-details detour. If recovering an already-closed wizard,
+resume the SAME draft via Edit draft > Next > Next > Visibility.
 
 ## Approved choices
 
@@ -23,9 +27,10 @@ Edit draft > Next (Video elements) > Next (Checks) > Next (Visibility).
 - Video language: English. Title/description language: Korean (explicitly
   confirmed September 20). These describe content languages, not country
   targeting. Do not infer older uploads were English merely because no setting
-  was selected. The separate metadata-language control is absent in the initial upload
-  dialog: save and close the draft, open its full Video details, expand Show
-  more, select Title and description language > Korean, and Save.
+  was selected. The separate metadata-language control was absent in the
+  observed initial upload dialog. If still absent, defer that setting; the
+  actual Korean title and description must already be correct before Publish.
+  Do not change the spoken Video language to Korean while selecting this field.
 - Audience: not made for kids. Paid promotion: none for this lesson.
 - AI use: No for the current generic narration and illustrative story-card
   format, following Andrew's choice and the listed YouTube examples. This is
@@ -74,11 +79,15 @@ Edit draft > Next (Video elements) > Next (Checks) > Next (Visibility).
    defaults include Standard YouTube License, embedding enabled, subscription
    notification enabled, video/audio remixing allowed, comments on with Basic
    moderation. These are observed defaults, not newly approved standing rules.
-6. Verify the separate title/description language and category in the full
-   Video details. If Edit draft opens the upload modal, close it to use the
-   underlying full details page. September 20 settings are saved; processing
-   completed and copyright checks reported no issues. Final visibility and
-   publication remain for review with Andrew; do not infer publication approval.
+6. Verify English video language and Education category in the upload wizard.
+   Set separate title/description language to Korean only if its control is
+   available there; otherwise append that pending setting to the durable job's
+   note, preserving existing notes, and continue toward Visibility. Do not open
+   full Video details or an account menu merely to finish that setting. If a
+   language control is ambiguous, use its visible field label and position;
+   similar accessible names do not establish which language field it controls.
+   After two supported activation attempts, report the precise unresolved
+   setting instead of repeating clicks, keyboard presses and screenshots.
 7. Advance through pending YouTube checks to Visibility; do not wait for copyright
    checks or HD processing when Publish is enabled. Report an actual displayed
    issue. Verify the exact video/date, Public selected, Premiere off and enabled
@@ -93,6 +102,13 @@ Edit draft > Next (Video elements) > Next (Checks) > Next (Visibility).
    publish (also valid from uploading with a saved ID), verify Public and exact
    video/channel, and record published. If already published, use purpose followup.
    A missing dialog/dashboard means inspect the saved video, never submit again.
+   Only if the job explicitly records deferred title/description language,
+   make one visit to this saved video's full details after verifying publication,
+   set that field to Korean without changing English video language or visibility,
+   and save the metadata. Use at most two activation attempts and 60 seconds of
+   browser work. Do not repeat this step if already completed. If unavailable or
+   ambiguous, preserve the pending note, report it, and proceed to comments;
+   never turn the comments handoff into an account-switch/settings loop.
 9. Follow **Published follow-up** in sibling
    `korean-news/docs/daily-news-workflow.md` for the bounded comments handoff.
    Use the exact job and registered tab; no routine full-runbook/source/help
@@ -112,6 +128,14 @@ Later browser work requires purpose followup and another explicit release.
 Text-only drafting does not reserve the browser. These rules coordinate the
 shared account even with separate tabs. Busy tasks say they are queued and will
 resume automatically; no recurring agent polling or model-setting changes.
+
+Google Account settings (myaccount.google.com) are not part of channel switching
+or upload preparation. Use the observed Switch account control, not Google
+Account/Manage account. If an accidental account-settings tab opens, return to
+the registered Studio tab and close the extra tab only when this turn's observed
+action proves ownership. Restore the registered Studio tab for the final handoff
+so an unrelated account page cannot cover the Publish screen. Do this before the
+single final verification, not by resuming browser work after ready_to_publish.
 
 ## Guidance checked
 

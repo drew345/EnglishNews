@@ -1,23 +1,19 @@
-# English News supervised YouTube upload
+# English News upload settings
 
-Recorded from the September 20, 2026 upload session. This is an EnglishNews
-procedure; do not copy Korean channel defaults blindly or enable unattended
-publication without Andrew's authorization. On September 21 Andrew requested
-fewer manual steps: reuse the confirmed settings, perform routine content and
-media checks, and handle upload preparation without repeating settled questions.
-Stop for material content problems or new choices. Preserve the final handoff below.
+The permanent **Daily News Uploads** chat in korean-news owns both editions and
+one YouTube tab. Follow [the shared daily workflow](../../korean-news/docs/daily-news-workflow.md)
+for pair state, channel switching, file choosers, browser ownership, Publish and
+comments. This file supplies English-specific settings; it does not add another
+upload or recovery procedure. The former independent English upload chat is
+retired from daily routing.
 
-Andrew's clarified handoff: take the upload all the way to Visibility, with
-Public selected and the unchecked Instant Premiere control visible. As clarified
-September 23, Codex selects Public and Andrew clicks Publish himself. Do not stop at the draft/details screen or
-publish on his behalf unless he later explicitly changes this instruction.
-Keep the upload wizard open through Details > Video elements > Checks >
-Visibility. Do not save/close it solely to reach the separate metadata-language
-field. If that field is unavailable in the wizard, record the pending Korean
-title/description language in the exact job's note and use the bounded
-post-publication step below. This September 27 correction supersedes the old
-routine save/close/full-details detour. If recovering an already-closed wizard,
-resume the SAME draft via Edit draft > Next > Next > Visibility.
+Prepare and check English media before uploading Korean. English upload begins
+only after Korean publication, its English-language comment handoff, and Andrew's
+explicit **Next video** recorded in pair state. Andrew clicks Publish himself.
+On English **Published**, including steering while the upload turn is running,
+stop remaining upload checks and verify the saved video. Like it if not already
+liked, open comments, release, and provide a Korean comment. Follow the shared
+bounded Like/comment sequence; never toggle an existing Like off. Save the prepared comment with pair-comment.
 
 ## Approved choices
 
@@ -44,98 +40,57 @@ resume the SAME draft via Edit draft > Next > Next > Visibility.
 - Category: Education, explicitly confirmed for this and future uploads.
   Leave the optional academic subtype/system/level fields unset unless relevant.
 
-## Verified preparation steps
+## Apply the checked package
 
-1. Use the approved run and compare every upload-package file hash before
-   selecting media. Never choose the newest file blindly or regenerate an
-   approved final video during upload.
-2. Claim the exact daily job using sibling korean-news/docs/daily-news-workflow.md
-   and acquire its browser reservation with purpose upload. If busy, follow
-   the shared runbook's one-time wake protocol and do not touch YouTube. Use
-   only the task-owned in-app tab returned by acquisition. Reuse it across days,
-   navigating away from an older published video in the same tab. Create/register
-   a tab only after checking the actual sidebar for suspended owned tabs, selecting
-   the existing tab and refreshing CUA. Missing provider IDs alone do not prove
-   closure. Follow the shared runbook; close only verified obsolete own
-   published-video tabs under the shared runbook's rules. Never reuse tab 1
-   merely because it exists. For a NEW upload, first open Create > Upload videos
-   to display the upload dialog, then activate Select files to obtain its chooser
-   in a separate call without setFiles. If clicks do nothing, use Enter on the
-   freshly observed button/menuitem. Only with the chooser open, require the
-   job CLI's browser-start-upload to return upload_once, then submit the MP4 ONCE
-   through the browser file chooser API without Explorer. A saved video ID or
-   prior submission authorization blocks another upload. If Studio returns to
-   its dashboard, inspect the saved video's status; never start Create again. Save the resulting video ID immediately using the job update command
-   to prevent duplicate uploads on resumption. Resume any already recorded draft.
-   Menu/dialog/chooser errors before setFiles are recoverable navigation failures,
-   not uploads. Follow the shared runbook for proven unused authorizations;
-   never repeat an ambiguous attempted setFiles or clear its marker blindly.
-3. Clear the filename-derived title completely, then paste the title sidecar.
-   Paste the full description including timestamp chapters; verify both fields.
-4. Upload the dated thumbnail, not a QA screenshot. Set the audience and
-   expand Show more. Apply confirmed disclosure and language choices.
-5. Keep other settings unchanged until discussed. Automatic chapters are
-   enabled; manual chapters are supplied in the description. The observed
-   defaults include Standard YouTube License, embedding enabled, subscription
-   notification enabled, video/audio remixing allowed, comments on with Basic
-   moderation. These are observed defaults, not newly approved standing rules.
-6. Verify English video language and Education category in the upload wizard.
-   Set separate title/description language to Korean only if its control is
-   available there; otherwise append that pending setting to the durable job's
-   note, preserving existing notes, and continue toward Visibility. Do not open
-   full Video details or an account menu merely to finish that setting. If a
-   language control is ambiguous, use its visible field label and position;
-   similar accessible names do not establish which language field it controls.
-   After two supported activation attempts, report the precise unresolved
-   setting instead of repeating clicks, keyboard presses and screenshots.
-7. Advance through pending YouTube checks to Visibility; do not wait for copyright
-   checks or HD processing when Publish is enabled. Report an actual displayed
-   issue. Verify the exact video/date, Public selected, Premiere off and enabled
-   Publish ONCE. Mark the tab for handoff, record ready_to_publish and immediately
-   END THE TURN. No additional browser inspections/screenshots or routine file
-   rereads after the saved handoff. If Publish is disabled, inspect its visible
-   reason once and report it instead of polling or claiming readiness.
-8. Tell Andrew to reply "Published". This now requests publication verification,
-   the comments page and a Korean suggested comment. If the exact saved video's
-   publication is visibly observed while active, treat it as the expected next
-   phase without asking again. Never click Publish yourself. Acquire purpose
-   publish (also valid from uploading with a saved ID), verify Public and exact
-   video/channel, and record published. If already published, use purpose followup.
-   A missing dialog/dashboard means inspect the saved video, never submit again.
-   Only if the job explicitly records deferred title/description language,
-   make one visit to this saved video's full details after verifying publication,
-   set that field to Korean without changing English video language or visibility,
-   and save the metadata. Use at most two activation attempts and 60 seconds of
-   browser work. Do not repeat this step if already completed. If unavailable or
-   ambiguous, preserve the pending note, report it, and proceed to comments;
-   never turn the comments handoff into an account-switch/settings loop.
-9. Follow **Published follow-up** in sibling
-   `korean-news/docs/daily-news-workflow.md` for the bounded comments handoff.
-   Use the exact job and registered tab; no routine full-runbook/source/help
-   rereads. Verify publication once, navigate the same video, use at most two
-   pause attempts and two comments scrolls. Visible Add a comment is sufficient;
-   no textbox-role hunt or additional proof screenshot. Release even if player
-   or comments controls remain unresponsive after verified publication; report
-   the limitation without marking the published video failed.
-10. Mark the tab for handoff and browser-release immediately, before drafting
-    text. Then suggest ONE short, relevant first comment in Korean in chat, based
-    on this run's verified lesson. No separate drafting request is needed. Do not
-    enter or post it on YouTube or browse again to write it.
+- Follow development/README.md for English text/media QA. Use the exact job's
+  checked upload-package files and SHA-256 hashes; never select the newest file
+  blindly or regenerate an approved final video during upload.
+- Retrieve named paths and exact UTF-8 text with the shared `upload-inputs`
+  command. Only the MP4 and PNG require an intercepted file chooser. Fill the
+  title/description fields directly with the returned text, without clipboard
+  operations, Explorer or a native file-selection dialog. Use the shared
+  single-tab selection and bounded picker-recovery procedure for both editions.
+- Replace a filename-derived title with the full Korean title sidecar. Use the
+  full Korean description including its manual timestamp chapters and AI narration
+  disclosure. On recovery retain fields that already match.
+- Upload the dated thumbnail from the package, not a QA frame. Inspect actual
+  imagery before choosing the run's disclosure setting.
+- Keep observed defaults unless Andrew changes them: automatic chapters on,
+  Standard YouTube License, embedding and subscription notifications enabled,
+  video/audio remixing allowed, comments on with Basic moderation. These were
+  observed defaults, not additional blanket policy decisions.
+- In the upload wizard, verify English video language and Education category,
+  plus all approved choices above. Keep the same wizard open through Visibility.
+  Select Public, leave Instant Premiere off, perform the shared final visible
+  handoff, save ready_to_publish and end the turn immediately.
 
-Keep the reservation while Publish awaits Andrew. End the turn without releasing
-that reservation; release after publication verification/comments navigation.
-Later browser work requires purpose followup and another explicit release.
-Text-only drafting does not reserve the browser. These rules coordinate the
-shared account even with separate tabs. Busy tasks say they are queued and will
-resume automatically; no recurring agent polling or model-setting changes.
+## Separate title/description language
 
-Google Account settings (myaccount.google.com) are not part of channel switching
-or upload preparation. Use the observed Switch account control, not Google
-Account/Manage account. If an accidental account-settings tab opens, return to
-the registered Studio tab and close the extra tab only when this turn's observed
-action proves ownership. Restore the registered Studio tab for the final handoff
-so an unrelated account page cannot cover the Publish screen. Do this before the
-single final verification, not by resuming browser work after ready_to_publish.
+The actual Korean title and description text belongs before Publish. The separate
+metadata-language control is different from the spoken video-language control.
+If that separate field is available in the wizard, set it to Korean without
+changing English video language. Use the visible field label; ambiguous similar
+accessible names do not identify which field is being edited. Use at most two
+supported activation attempts.
+
+If unavailable, append **Korean title/description language pending** to the exact
+job's note, preserving existing notes, and continue to Visibility. Never close or
+save the wizard as a draft, open full Video details, or visit an account menu
+solely to reach this field. The old draft-detour instruction is superseded in
+both this guide and the generation checklist.
+
+Andrew's latest Published handoff takes priority: verify, Like, comments and
+the suggested comment. Do not delay it to correct this pending field. Report
+the specific pending setting briefly; the actual Korean title/description and
+English spoken-language setting must still be correct.
+
+Only on a later explicit request to finish the pending setting, acquire the
+published video's followup reservation and visit that exact video's details.
+Set title/description language to Korean and save metadata without changing
+video language or visibility. Allow at most two activation attempts and 60
+seconds of browser work, record completion if verified, and release. If
+unavailable or ambiguous, retain the pending note and report the limitation.
+Do not turn this into a channel-switch or account-settings loop.
 
 ## Guidance checked
 

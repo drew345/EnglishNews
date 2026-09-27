@@ -26,6 +26,11 @@ class WorkflowTests(unittest.TestCase):
             run.mkdir(); (lab / 'scripts').mkdir(parents=True)
             paths = [run / n for n in ('run.json', 'audio.mp3', 'written.txt', 'story.txt', 'image.png')]
             paths.append(lab / 'scripts/render.py')
+            intro = root/'NewsIntro'
+            (intro/'scripts').mkdir(parents=True)
+            (intro/'config').mkdir()
+            paths.extend([intro/'scripts/build_intro.py', intro/'config/production.json', intro/'requirements.txt'])
+            (lab/'news-intro.json').write_text(json.dumps(dict(enabled=True, project='../NewsIntro')))
             for path in paths:
                 path.write_bytes(b'original')
             metadata = dict(combined_audio_path=str(paths[1]), combined_written_path=str(paths[2]),

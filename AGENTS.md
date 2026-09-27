@@ -1,38 +1,88 @@
 # English News — agent context
 
-Last updated: 2026-09-23
+Last updated: 2026-09-27
+
+September 27: Andrew approved the NewsIntro v4 opening for both daily editions.
+The shared Video Lab renderer calls Projects/NewsIntro for source dates from
+20260927. Keep that sibling and its .venv installed. This project's media worker
+carries chapter_title_en/ko from staged source stories and fingerprints the
+external intro code/configuration. Video QA uses video-timeline.json for the
+measured lesson onset, not a fixed one-second offset. Review intro-card frames
+and lesson-start-frame.png, then upload the ordinary final lesson MP4. Offline
+integration passed; the next incoming run is live validation. Daily job,
+browser reservation and final Publish rules below remain authoritative.
 
 ## Purpose and boundaries
 
 EnglishNews owns the English edition: independent vocabulary, contextual explanations, deterministic speech repetitions and audience settings. The accepted implementation runs from Projects/EnglishNews on main with a verified local .venv and stable shared speech and renderer dependencies. The September 21/22 videos were accepted; no old media should be rebuilt.
 
-Andrew authorized main adoption and automatic generation/upload preparation on September 23. The desktop Korean News icon remains the entry point. Two ongoing dedicated Codex tasks consume exact jobs owned by sibling korean-news/docs/daily-news-workflow.md. English starts after the matching Korean render is complete, without waiting for Korean publication. Both tasks select Public, keep Instant Premiere off, and stop at Publish for Andrew. No Explorer folders, unsent prompts, or unattended publication.
+## Single daily uploader — approved September 27
 
-Andrew rejected all-day five-minute recovery polling on September 23. Both recovery schedules are paused; do not re-enable them. Use completion-triggered dispatch and the durable browser-wait handoff if the other upload owns the browser slot. Dormant/interrupted tasks may require explicit resume. Main adoption is already complete; only worktree retirement awaits live validation. A one-time cleanup review reminder is set for September 27 at 09:00 Korea time.
+One permanent **Daily News Uploads** chat in korean-news now owns English
+preparation and both YouTube uploads. It prepares and checks English media first,
+then uploads Korean, waits for Andrew's Publish and comment handoff, and uploads
+English only after Andrew explicitly says **Next video**. Both editions use the
+same owned in-app browser tab. The desktop Korean News icon remains the entry
+point. For the first live run, opening the permanent chat once before the icon is
+a recommended reliability precaution, not a prerequisite for Korean generation
+or a requirement to watch continuously. It helps load the chat but does not
+guarantee wake. English preparation and uploads depend on that chat actually
+starting; say Resume there if it remains idle.
 
-September 24 browser coordination supersedes active-turn polling: reserve ALL YouTube actions (including post-publication checks/comments) with the daily job browser-acquire command. Use only this task's registered browser-tab; never assume tab 1. Keep the reservation at ready_to_publish through Andrew's Publish and verification/comments handoff, then browser-release explicitly. If busy, acquisition records the wait; end the turn and the local supervisor queues one resume when free. English generation stays independent; upload may wait for Korean publication. Preserve the existing tasks and Andrew's model settings. After context shortening, reload the exact durable job before acting on historical requests.
+The sole coordination procedure is sibling `korean-news/docs/daily-news-workflow.md`.
+Its paired state and exact edition jobs preserve the current source, stage,
+prepared media, video IDs and explicit English gate across interruptions. Reload
+the exact pair before acting on historical chat requests. The two former upload
+chats are retired from daily routing. Never replay a published run, clear a draft
+ID, or use an old dashboard-only request to abandon the active upload.
 
-Keep one managed YouTube tab in this task, reusing it across days and between Studio and public comments. An older published video does not require a new tab. Close only verified obsolete own published-video tabs; never another task's provider tab or an unknown/unfinished tab. Release the browser reservation after navigation/verification and before drafting comment text or waiting for follow-up requests. Text-only drafting does not reserve the browser. Missing CUA handles can mean suspended sidebar tabs: inspect/reactivate this task's existing dated sidebar tab through supported app UI before creating a replacement; CUA inventory alone cannot prove the sidebar is clear. See the shared runbook for ownership checks.
+Andrew alone clicks Publish and posts comments. Select Public, leave Instant
+Premiere off, retain the open wizard through Visibility, verify Publish once,
+record ready_to_publish and immediately end the turn with the browser reserved.
+On Published, verify that same video, perform the bounded comments handoff,
+release the browser, then provide one comment: English for the Korean lesson,
+Korean for the English lesson. After the Korean comment, wait for Next video;
+browser release alone never authorizes English. On Published, Andrew authorizes
+liking the exact video once if it is not already liked, then opening comments.
+Never toggle an already-liked video off; skip and report an ambiguous Like state.
 
-September 25 handoff: require browser-start-upload to authorize each new MP4 submission once, only after obtaining the dialog's Select files chooser and immediately before setFiles. Menu/chooser failure before setFiles is navigation failure, not a used submission; follow the shared runbook for proven-unused authorizations. Saved video IDs or prior submissions mean reconcile the existing video, never restart Create. Verify Publish once, mark handoff, save ready_to_publish and END THE TURN immediately, retaining the reservation. Do not wait for pending checks/HD when Publish is enabled or keep inspecting afterward. Andrew's "Published", or exact-video publication visibly observed while active, triggers verification and the same-tab comments page without another confirmation. Release promptly, then suggest one Korean comment in chat automatically; never enter/post it or click Publish. A visible comment area is enough; no repeated composer focusing. This supersedes older wording requiring a separate drafting request. Models and paused polling schedules stay unchanged.
+Use the shared CLI reservation and one-submission guard for all YouTube work.
+Use one supported CUA file chooser sequence and the registered owned tab; never
+assume tab 1, use another chat's tab, or open Explorer. Keep correct saved fields.
+Do not close the wizard to set Korean title/description language. If that separate
+control is absent, record it pending; Published still goes directly to Like and
+comments. Correct the separate field only on a later explicit request using
+development/youtube-upload.md's bounded procedure. Actual Korean text, English video language
+and other approved settings remain required before Publish. Google Account
+settings are outside this procedure. A background Publish check does not prove
+the visible tab was handed off; follow the shared runbook's visibility check.
 
-September 26: use the shared daily-news-workflow.md **Published follow-up**
-sequence for a bounded comments handoff. Reload only the exact job/reservation
-and missing guidance; no routine source/help/full-runbook rereads. Verify Public
-once; at most two pause attempts and two comments scrolls. Visible Add a comment
-is enough without a textbox-role test or extra screenshot. After verified
-publication, release even if player/comments controls remain unresponsive,
-report the limitation, then draft from the existing lesson. No repeated UI loops.
+Andrew wants the working browser tab selected while following the uploader,
+and all other browser tabs in that uploader chat closed. Keep one owned tab,
+show/select it before page work and handoff, and restore it after any popup.
+Do not switch him away from unrelated chats/apps or close their tabs. Use the
+shared upload-inputs command for exact verified paths and UTF-8 text. Fill title
+and description directly; no file picker or clipboard is needed for text.
+Intercept the chooser before any MP4/thumbnail button activation; never press
+the button without a live listener, wait before pressing it, or mix browser
+connections. Thumbnail capture and setFiles belong in one call. If a native
+picker unexpectedly appears, cancel that identified dialog promptly through
+supported controls and follow bounded recovery; never leave it blocking Andrew.
 
-September 27 upload correction: stay in the upload wizard through Publish.
-Do not close/save a draft just to set Korean title/description language. If that
-separate control is absent, record it as pending in the exact job note and use
-development/youtube-upload.md's bounded post-publication step (only when pending,
-at most two activation attempts/60 seconds, then comments). Actual Korean title
-and description, English video language and the other approved upload settings
-still belong before Publish. Do not visit Google Account settings or repeat
-channel switching without new contradictory evidence. Restore the owned Studio
-tab before the final handoff so an accidental account tab cannot obscure it.
+The two five-minute recovery schedules stay paused. No recurring agent polling,
+unrequested model changes, old media rebuilds or worktree retirement is part of this repair.
+Andrew selected GPT-6 Sol / Extra High (xhigh) for the new uploader's first live run; a later
+move to GPT-6 Luna / High requires his instruction.
+Today's channel-access and output-folder-focus causes remain unresolved; offline
+checks do not validate live browser behavior. Validate the complete new sequence
+on the next incoming daily run. Main adoption was completed September 23.
+
+**Published is also an in-progress steering command.** If Andrew says it while
+an upload turn is still active, stop remaining upload/settings checks and verify
+the exact saved video immediately, even if ready_to_publish was not recorded.
+Do not require the assistant's final message or another confirmation. Preserve
+the video ID and move to the authorized Like/comments handoff after verification;
+never restart the upload. Still end the normal upload turn promptly at Publish.
 
 Read this file and SESSION_LOG.md first when resuming. FEASIBILITY.md holds the detailed code inventory, architecture, risks and phased plan; do not duplicate it into additional plan files.
 
@@ -94,3 +144,12 @@ identity and icon status. Creation does not enable automatic publication.
 Repository: https://github.com/drew345/EnglishNews.git, branch main. Andrew authorized repository initialization/publication and routine-sync enrollment on 2026-09-13. CodexSync/github-sync.json is the authoritative membership list; MindHub keeps a pointer only. Verify published repository and coordination state when resuming. The local handoff ZIP is ignored by Git; the Markdown source files are the portable record.
 
 The user plans End sync on LG Gram 14 and Start sync on ASUS separately. This memory-save request did not run either operation. Ordinary resumption or a device mention must not trigger sync automatically.
+
+## Historical research
+
+Past TTS evaluations, English/Korean rendering-boundary research, and shared
+capability extraction history are preserved together at
+`C:\GoogleDrive\My Drive\AIDrive\z.retiredProjects\2026\Reference\LearningSystemsHistory\START-HERE.md`.
+Consult that index when revisiting those decisions. The three source projects
+are retired reference collections; their old plans and provider choices are
+historical. Keep new work and memory in the active repository that owns it.

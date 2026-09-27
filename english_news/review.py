@@ -20,6 +20,11 @@ def prepare_review(run: Path, video: Path):
     import imageio_ffmpeg
     from mutagen.mp3 import MP3
     metadata = json.loads((run / 'run.json').read_text(encoding='utf-8'))
+    timing_path = video.parent/'video-timeline.json'
+    timing = json.loads(timing_path.read_text(encoding='utf-8')) if timing_path.is_file() else {}
+    if timing and timing.get('source_run_id') != metadata.get('source_run_id', metadata['run_id']):
+        raise ValueError('Video timing belongs to another source run')
+    lead_in = float(timing.get('lesson_start_seconds', 1))
     ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
     video_hash = file_hash(video)
     report_path = run / 'video-qa.json'
@@ -32,11 +37,12 @@ def prepare_review(run: Path, video: Path):
         hours, minutes, seconds = map(float, match.groups())
         duration = hours * 3600 + minutes * 60 + seconds
         audio_duration = MP3(metadata['combined_audio_path']).info.length
-        if not 9 <= duration - audio_duration <= 13:
+        if not 9 <= duration - audio_duration - lead_in <= 11:
             raise ValueError('Unexpected video duration or missing lesson tail')
         subprocess.run([ffmpeg, '-v', 'error', '-i', str(video), '-map', '0:v:0', '-map', '0:a:0', '-f', 'null', '-'], check=True)
         write_json(report_path, dict(sha256=video_hash, decode='passed', video_seconds=duration,
-                                    audio_seconds=audio_duration, stories=len(metadata['stories'])))
+                                    audio_seconds=audio_duration, lesson_start_seconds=lead_in,
+                                    stories=len(metadata['stories'])))
     date = run.name[:8]
     folder = video.parent
     files = [video, folder / f'{date}-youtube-title.txt', folder / f'{date}-youtube-description.txt',
@@ -55,7 +61,7 @@ def prepare_review(run: Path, video: Path):
     for i, story in enumerate(metadata['stories'], 1):
         frame = folder / f'story-{i:02d}-middle-frame.png'
         if not frame.exists() or previous.get('sha256') != video_hash:
-            timestamp = (story['start_sec'] + story['end_sec']) / 2 + 1
+            timestamp = (story['start_sec'] + story['end_sec']) / 2 + lead_in
             subprocess.run([ffmpeg, '-v', 'error', '-y', '-ss', str(timestamp), '-i', str(video),
                             '-frames:v', '1', '-update', '1', str(frame)], check=True)
         frames.append(str(frame))

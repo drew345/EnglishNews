@@ -104,7 +104,11 @@ def run(prepared_path, staged, env_file, render=True):
     profile = dict(version=VERSION, voice='alloy',
                    **prepared['profile'].get('speech', dict(target_speed=.88, native_speed=1.07)),
                    preparation_profile=prepared['profile'], audience_settings=audience_settings)
-    identity = digest(dict(prepared=prepared, profile=profile, images=image_hashes))
+    intro_titles = [{key: s.get(key, '') for key in ('chapter_title_en', 'chapter_title_ko')}
+                    for s in staged_metadata.get('stories', [])]
+    if len(intro_titles) != len(lessons):
+        raise ValueError('Staged story metadata must match the three English lessons')
+    identity = digest(dict(prepared=prepared, profile=profile, images=image_hashes, intro_titles=intro_titles))
     output = ROOT / 'output/runs' / f'{source_run[:8]}_english_all_{identity[:10]}'
     output.mkdir(parents=True, exist_ok=True)
     write_json(output / 'vocabulary-filter.json', dict(stories=prepared['reports']))
@@ -139,7 +143,9 @@ def run(prepared_path, staged, env_file, render=True):
             if sha(image) != image_hashes[i - 1]:
                 raise ValueError('Image changed during media build')
             images.append(dict(story_index=i, path=str(image)))
+            short_titles = intro_titles[i-1]
             stories.append(dict(title_en=lesson['headline']['en'], title_ko=lesson['headline']['natural_ko'],
+                                **short_titles,
                                 duration=MP3(audio).info.length, audio_requests=requests, written_path=str(written_path)))
             plans.extend(plan)
             written_blocks.append(block)

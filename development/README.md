@@ -1,6 +1,6 @@
 # English News development runbook
 
-Updated 2026-09-23. The supported checkout is Projects/EnglishNews on main. Andrew authorized stable adoption and two ongoing daily Codex tasks. The architecture remains in FEASIBILITY.md; sibling korean-news/docs/daily-news-workflow.md owns the machine-local jobs, dispatch, browser coordination and exact draft IDs. Automatic upload preparation is allowed; publication remains Andrew's click.
+Updated 2026-09-27. The supported checkout is Projects/EnglishNews on main. One permanent Daily News Uploads chat in korean-news prepares the English edition and uploads both editions in sequence. The architecture remains in FEASIBILITY.md; sibling korean-news/docs/daily-news-workflow.md owns the paired jobs, dispatch, explicit Next video gate, browser coordination and exact draft IDs. Automatic upload preparation is allowed; publication remains Andrew's click.
 
 ## Daily supervised procedure
 
@@ -11,8 +11,8 @@ Use this checklist for the exact claimed daily job, or when Andrew explicitly su
 3. **Review text once.** Read all three stories, selected terms, Korean meanings, English definitions and selection reports. Confirm source wording is preserved in adapter mode; terms have the intended contextual meaning, phrases are natural and useful, and definitions are short and noncircular. Fewer than eight items is allowed. Stop for a material issue; otherwise record assistant review and proceed without another user checkpoint.
 4. **Build media.** Run the media command below with that exact preparation and matching staged input. Resume valid cached work with the same command after an interruption; do not reselect vocabulary or rebuild published media as a recovery shortcut.
 5. **Check results.** Require ready_for_review, passing audio/video QA, and upload-package.json. Compare the final speech script to the reviewed preparation and verify every upload-package hash. Inspect actual frames from all three stories, a story transition, and two times in the ending buffer; check readable wrapping, connected scrolling, and continued ending motion. Inspect the dated thumbnail and title/description/chapter sidecars. Failed QA blocks upload; do not waive it or claim full listening from decode checks.
-6. **Prepare upload.** Follow [youtube-upload.md](youtube-upload.md) in the in-app browser. Verify the English channel, upload the checked MP4 and thumbnail, and apply saved choices. Record the YouTube video ID immediately. A temporary draft save is an internal step for setting Korean metadata language; continue to final Visibility. Do not publish. Select Public and leave Instant Premiere unchecked, with Publish visibly ready for Andrew. Record ready_to_publish in the daily job.
-7. **Finish after Andrew publishes.** Verify Studio Public, open the exact public video, pause playback and show Add a comment. Suggest a Korean comment if requested; do not post it without instruction. Save publication ID/URL/status in run records and SESSION_LOG.md. Next day starts from a new completed Korean run.
+6. **Prepare upload when authorized.** English preparation and QA finish before the Korean upload. Wait until the shared pair state records Korean publication, its comment handoff and Andrew's explicit "Next video". Then follow [youtube-upload.md](youtube-upload.md) in the single uploader's in-app browser. Verify the English channel, upload the checked MP4 and thumbnail, and apply saved choices. Record the YouTube video ID immediately in local state and keep the wizard open through Visibility. Do not save/close it to set Korean metadata language; defer that separate field only when unavailable, as the upload guide specifies. Select Public, leave Instant Premiere unchecked, and stop with Publish visibly ready for Andrew. Record ready_to_publish and end the turn.
+7. **Finish after Andrew publishes.** Accept Published even during an active upload turn. Follow the shared bounded verification, Like-if-unliked and comments handoff for the exact saved video; release the browser, then automatically suggest and record one Korean comment with pair-comment. Andrew posts it. Preserve publication ID/URL/status in the exact job. Next day starts from a new completed Korean run.
 
 Escalate only new choices, material content concerns, missing/mismatched inputs, authentication obstacles, or failed checks that cannot be resolved within the saved procedure. Do not repeatedly ask about settled settings. Daily dispatch and stable main adoption were authorized September 23. Never click Publish or change settled lesson content as part of automation.
 
@@ -71,9 +71,19 @@ The Korean hook runs after the existing bilingual summary and before Korean voca
 
 Set `NEWS_CONTENT_EXPORT_DIR` only in the development process, to this EnglishNews checkout's `output/content`, then use `development/start-api.ps1` (port 8010). Its `-Check` mode checks paths without starting a server. Export is disabled by default. The API launcher never starts cleanup, renderer watchers, staging or publication. Never run a production desktop launcher from a worktree.
 
-A complete `news-content-v1` handoff contains `story-01.content.json` through the declared count, atomically published with SHA-256 envelopes. The English consumer rejects missing/changed/mixed stories. Retries are idempotent. Export errors are logged and leave Korean generation running. This initial hook supports up to three selected stories, which Korean duration preflight never trims; larger runs are skipped to avoid divergent lineups. No automatic English watcher or daily trigger is enabled.
+A complete `news-content-v1` handoff contains `story-01.content.json` through the declared count, atomically published with SHA-256 envelopes. The English consumer rejects missing/changed/mixed stories. Retries are idempotent. Export errors are logged and leave Korean generation running. This initial hook supports up to three selected stories, which Korean duration preflight never trims; larger runs are skipped to avoid divergent lineups. This optional export remains disabled; the supported automatic daily workflow uses the established sentence-pair adapter.
 
 ## Media after text review
+
+From source date 2026-09-27, the shared Video Lab CLI calls sibling NewsIntro
+for the approved narrated opening. Keep NewsIntro and its .venv installed
+beside the three workflow projects (see NewsIntro/README.md). The Korean
+generation request supplies compact English/Korean labels once, and this media
+worker copies them by story order. NewsIntro caches speech and renders locally.
+English render fingerprints include NewsIntro code/configuration. Video QA
+reads video-timeline.json for the measured lesson onset, replacing the former
+one-second offset. Include the three intro-card QA frames and lesson-start-frame
+in the ordinary visual review. Do not upload the separate intro.mp4.
 
 For the next incoming run, when Andrew has authorized media, use the exact reviewed preparation and matching original story images:
 
@@ -125,4 +135,4 @@ This compares 3,500/4,000/4,500 candidate pools. It does not make semantic selec
 
 Production runs from C:/AI/Codex/Projects/{EnglishNews,korean-news,KoreanLessonVideoLab}, each on main. EnglishNews and Video Lab use their local .venv; Korean News preserves the interpreter chosen by its existing launcher (Python on PATH on this computer). The optional structured export remains off; daily English keeps the proven sentence-pair adapter. Reusable speech is installed as korean-news-media from a reviewed commit, and Video Lab is invoked through its explicit CLI. No Worktrees runtime path is required.
 
-Keep the old development checkouts and ignored media until the next incoming paired run confirms the new launch-to-Publish path. Then preserve wanted media and retire temporary worktrees. Shared Korean core and loanword repositories are unchanged. Routine main sync carries code but not media, credentials, local task IDs or activation state. A different computer needs local environments plus its own two-task workflow setup. No Start/End sync is implied by adoption.
+Keep the old development checkouts and ignored media until the next incoming paired run confirms the new launch-to-Publish path. Then preserve wanted media and retire temporary worktrees. Shared Korean core and loanword repositories are unchanged. Routine main sync carries code but not media, credentials, local chat IDs or activation state. A different computer needs local environments plus its own single-uploader workflow setup. No Start/End sync is implied by adoption.

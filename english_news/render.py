@@ -21,6 +21,14 @@ def render_fingerprint(run, metadata, lab):
         raise ValueError('Render input escapes English run directory')
     inputs.extend(sorted((lab / 'scripts').glob('*.py')))
     inputs.extend(sorted(p for p in (lab / 'assets').rglob('*') if p.is_file()))
+    integration = lab / 'news-intro.json'
+    if integration.is_file():
+        inputs.append(integration)
+        settings = json.loads(integration.read_text(encoding='utf-8'))
+        intro_root = (lab/settings['project']).resolve()
+        if settings.get('enabled'):
+            inputs.extend(sorted((intro_root/'scripts').glob('*.py')))
+            inputs.extend([intro_root/'config/production.json', intro_root/'requirements.txt'])
     return digest([(str(p), file_hash(p)) for p in inputs])
 
 
@@ -52,6 +60,7 @@ def render_run(run, lab=None, python=None):
         sidecars = [out / f'{run.name[:8]}-youtube-{suffix}' for suffix in ('title.txt', 'description.txt', 'thumbnail.png')]
         if len(metadata['stories']) >= 3:
             sidecars.append(out / f'{run.name[:8]}-youtube-chapters.txt')
+        sidecars.append(out/'video-timeline.json')
         if (previous.get('status') == 'completed' and previous.get('fingerprint') == fingerprint
                 and existing.is_relative_to(out) and existing.is_file()
                 and previous.get('video_sha256') == file_hash(existing)

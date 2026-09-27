@@ -22,7 +22,8 @@ class MediaContractTests(unittest.TestCase):
             root = Path(directory)
             prepared = prepare_lessons(lessons, root / 'text', responses=responses)
             staged = root / 'staged'
-            write_json(staged / 'run.json', dict(run_id='20260920_test'))
+            write_json(staged / 'run.json', dict(run_id='20260920_test',
+                stories=[dict(chapter_title_en=f'Ferry {i}', chapter_title_ko=f'여객선 증편 {i}') for i in range(1, 4)]))
             for n in range(1, 4):
                 (staged / f'story-{n:02d}-video-image.png').write_bytes(b'test image')
             def concat(paths, output):
@@ -38,6 +39,8 @@ class MediaContractTests(unittest.TestCase):
             self.assertEqual(meta['audience_settings']['lesson_title'], '뉴스로 배우는 영어')
             self.assertFalse(meta['youtube_publication']['enabled'])
             self.assertEqual(meta['stories'][-1]['end_sec'], 60)
+            self.assertEqual(meta['stories'][0]['chapter_title_ko'], '여객선 증편 1')
+            self.assertEqual(meta['stories'][2]['chapter_title_en'], 'Ferry 3')
             self.assertNotIn('never import', (output / '20260920-english-news-written.txt').read_text(encoding='utf-8'))
             write_json(staged / 'run.json', dict(run_id='different'))
             with self.assertRaisesRegex(ValueError, 'another source run'), patch('english_news.workflow.client_from_existing_key') as client:

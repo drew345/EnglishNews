@@ -52,6 +52,8 @@ bounded Like/comment sequence; never toggle an existing Like off. Save the prepa
   title/description fields directly with the returned text, without clipboard
   operations, Explorer or a native file-selection dialog. Use the shared
   single-tab selection and bounded picker-recovery procedure for both editions.
+  Ordinary tab selection, visibility checks and chooser timeouts stay in the
+  in-app browser; never invoke desktop Computer Use or activate Codex for them.
 - Replace a filename-derived title with the full Korean title sidecar. Use the
   full Korean description including its manual timestamp chapters and AI narration
   disclosure. On recovery retain fields that already match.

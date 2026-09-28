@@ -1,5 +1,11 @@
 # English News — session log
 
+## 2026-09-28 — prevent upload tab checks from taking the desktop
+
+- Andrew's Chrome interruption is supported by the Korean upload trace: two Sky inspection sequences, including explicit activation of Codex after Public selection. The English upload used no native desktop calls. These were tab-visibility checks, not MP4/thumbnail selection; no desktop click or typing into Chrome was recorded.
+- Corrected the shared procedure and audience pointers: routine uploads and visibility/selection checks stay in CUA's in-app browser. Never enumerate windows, inspect the desktop tabstrip or activate Codex for those checks or an ordinary chooser timeout. Preserve the wizard and give a prompt, truthful handoff when selection cannot be verified. Native cancellation remains only for a positively evidenced accidental blocking picker.
+- Exact call evidence is .local/upload-ui-probe/desktop-focus-20260928.json. Instructions reviewed; no browser/native actions, job changes, generation or uploads ran here. This is an instruction correction, not proof of the next live run's behavior.
+
 ## 2026-09-27 — live channel-selection check
 
 - Andrew requested a read-only rehearsal of Korean then English channel selection. With one reserved in-app browser tab and no competing uploader, verified both Studio dashboards by exact channel ID/name and available upload control, then switched back to Korean. No upload, file selection, video edit, Like or comment occurred; diagnostic tab closed and reservation released, with no active pair.

@@ -1,6 +1,6 @@
 # English News — agent context
 
-Last updated: 2026-09-27
+Last updated: 2026-09-28
 
 September 27: Andrew approved the NewsIntro v4 opening for both daily editions.
 The shared Video Lab renderer calls Projects/NewsIntro for source dates from
@@ -60,14 +60,20 @@ the visible tab was handed off; follow the shared runbook's visibility check.
 Andrew wants the working browser tab selected while following the uploader,
 and all other browser tabs in that uploader chat closed. Keep one owned tab,
 show/select it before page work and handoff, and restore it after any popup.
+Use only supported in-app browser controls for this routine selection/cleanup.
+Never start desktop Computer Use, enumerate windows, inspect the desktop tabstrip
+or activate Codex to prove visibility, including when Andrew is using another app.
+If browser controls cannot verify selection, preserve the wizard, identify the
+owned tab in the handoff and end promptly; do not delay Publish for desktop checks.
 Do not switch him away from unrelated chats/apps or close their tabs. Use the
 shared upload-inputs command for exact verified paths and UTF-8 text. Fill title
 and description directly; no file picker or clipboard is needed for text.
 Intercept the chooser before any MP4/thumbnail button activation; never press
 the button without a live listener, wait before pressing it, or mix browser
 connections. Thumbnail capture and setFiles belong in one call. If a native
-picker unexpectedly appears, cancel that identified dialog promptly through
-supported controls and follow bounded recovery; never leave it blocking Andrew.
+picker is positively evidenced, cancel only that identified blocking dialog
+through the shared bounded recovery; this is the sole native-recovery exception.
+A chooser timeout alone never authorizes desktop inspection or computer takeover.
 
 The two five-minute recovery schedules stay paused. No recurring agent polling,
 unrequested model changes, old media rebuilds or worktree retirement is part of this repair.

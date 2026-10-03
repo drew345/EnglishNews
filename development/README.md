@@ -1,20 +1,36 @@
-# English News development runbook
+# Learn English development runbook
 
-Updated 2026-09-27. The supported checkout is Projects/EnglishNews on main. One permanent Daily News Uploads chat in korean-news prepares the English edition and uploads both editions in sequence. The architecture remains in FEASIBILITY.md; sibling korean-news/docs/daily-news-workflow.md owns the paired jobs, dispatch, explicit Next video gate, browser coordination and exact draft IDs. Automatic upload preparation is allowed; publication remains Andrew's click.
+Updated 2026-09-29. The supported checkout is Projects/EnglishNews on main. One permanent Daily News Uploads chat in korean-news prepares the Learn English edition and uploads both editions in sequence. The architecture remains in FEASIBILITY.md; sibling korean-news/docs/daily-news-workflow.md owns the paired jobs, dispatch, explicit Next video gate, browser coordination and exact draft IDs. Automatic upload preparation is allowed; publication remains Andrew's click.
+
+Use the [shared naming convention](../../korean-news/docs/daily-news-workflow.md)
+in progress updates and handoffs: **Learn English** is for Korean speakers
+learning English (`english`); **Learn Korean** is for English speakers learning
+Korean (`korean`); **Shared news** is common story selection. Keep repository
+names, paths, saved keys and channel branding unchanged. Name the edition at each
+stage: “Learn English text reviewed,” “Learn English video ready,” and
+“Learn English is ready for your Publish click.” Language names in speech and
+metadata settings still mean the actual language.
 
 ## Daily supervised procedure
 
-Use this checklist for the exact claimed daily job, or when Andrew explicitly supplies a new Korean run. Read AGENTS.md and the latest SESSION_LOG.md first. September 21 is the verified example; never reuse its IDs for a new day. Andrew wants the same procedure on the next incoming run and explicit instructions that a simpler model can eventually follow; no model change is requested yet.
+Use this checklist for the exact claimed daily job, or when Andrew explicitly supplies a new Learn Korean source run. Read AGENTS.md and the latest SESSION_LOG.md first. September 21 is the verified example; never reuse its IDs for a new day. Andrew wants the same procedure on the next incoming run and clear, repeatable instructions. Follow the uploader model and reasoning setting selected in the shared daily workflow.
 
-1. **Identify inputs.** Confirm the new production Korean run is completed and its staged Video Lab images have the same source run ID. Check the session log and existing English run records for prior preparation/upload before starting. If source identity is ambiguous, ask; never mix dates or image runs.
+1. **Identify inputs.** Confirm the new production Learn Korean run is completed and its staged Video Lab images have the same source run ID. Check the session log and existing Learn English run records for prior preparation/upload before starting. If source identity is ambiguous, ask; never mix dates or image runs.
 2. **Prepare text.** Run the legacy-written command below while production export remains unavailable. Use the returned preparation ID, not a guessed latest folder. Keep agreed cutoff, voice and speed settings.
 3. **Review text once.** Read all three stories, selected terms, Korean meanings, English definitions and selection reports. Confirm source wording is preserved in adapter mode; terms have the intended contextual meaning, phrases are natural and useful, and definitions are short and noncircular. Fewer than eight items is allowed. Stop for a material issue; otherwise record assistant review and proceed without another user checkpoint.
 4. **Build media.** Run the media command below with that exact preparation and matching staged input. Resume valid cached work with the same command after an interruption; do not reselect vocabulary or rebuild published media as a recovery shortcut.
 5. **Check results.** Require ready_for_review, passing audio/video QA, and upload-package.json. Compare the final speech script to the reviewed preparation and verify every upload-package hash. Inspect actual frames from all three stories, a story transition, and two times in the ending buffer; check readable wrapping, connected scrolling, and continued ending motion. Inspect the dated thumbnail and title/description/chapter sidecars. Failed QA blocks upload; do not waive it or claim full listening from decode checks.
-6. **Prepare upload when authorized.** English preparation and QA finish before the Korean upload. Wait until the shared pair state records Korean publication, its comment handoff and Andrew's explicit "Next video". Then follow [youtube-upload.md](youtube-upload.md) in the single uploader's in-app browser. Verify the English channel, upload the checked MP4 and thumbnail, and apply saved choices. Record the YouTube video ID immediately in local state and keep the wizard open through Visibility. Do not save/close it to set Korean metadata language; defer that separate field only when unavailable, as the upload guide specifies. Select Public, leave Instant Premiere unchecked, and stop with Publish visibly ready for Andrew. Record ready_to_publish and end the turn.
-7. **Finish after Andrew publishes.** Accept Published even during an active upload turn. Follow the shared bounded verification, Like-if-unliked and comments handoff for the exact saved video; release the browser, then automatically suggest and record one Korean comment with pair-comment. Andrew posts it. Preserve publication ID/URL/status in the exact job. Next day starts from a new completed Korean run.
+6. **Prepare upload when authorized.** Learn English preparation and QA finish before the Learn Korean upload. Wait until the shared pair state records Learn Korean publication, its comment handoff and Andrew's explicit "Next video". Then follow [youtube-upload.md](youtube-upload.md) in the single uploader's in-app browser. Verify the Learn English channel, upload the checked MP4 and thumbnail, and apply saved choices. Record the YouTube video ID immediately in local state and keep the wizard open through Visibility. Do not save/close it to set Korean metadata language; defer that separate field only when unavailable, as the upload guide specifies. Select Public, leave Instant Premiere unchecked, and stop with Publish visibly ready for Andrew. Record ready_to_publish and end the turn.
+7. **Finish after Andrew publishes.** Accept Published even during an active upload turn. Follow the shared bounded verification, Like-if-unliked and comments handoff for the exact saved video; release the browser, then automatically suggest and record one Korean comment with pair-comment. Andrew posts it. Preserve publication ID/URL/status in the exact job. Next day starts from a new completed Learn Korean source run.
 
 Escalate only new choices, material content concerns, missing/mismatched inputs, authentication obstacles, or failed checks that cannot be resolved within the saved procedure. Do not repeatedly ask about settled settings. Daily dispatch and stable main adoption were authorized September 23. Never click Publish or change settled lesson content as part of automation.
+
+Andrew prioritizes one-shot generation over exact spoken-text positioning
+(September 28). Keep current scrolling for the next incoming run; approximately
+40% screen height is a preference, not a strict QA threshold. Perform ordinary
+technical/content QA, but do not rerender merely to tune scrolling or introduce
+per-run manual timing adjustments. Any future automatic alignment should be
+calculated before the normal single final render.
 
 ## Prepare the next incoming lesson as text
 
@@ -71,16 +87,16 @@ The Korean hook runs after the existing bilingual summary and before Korean voca
 
 Set `NEWS_CONTENT_EXPORT_DIR` only in the development process, to this EnglishNews checkout's `output/content`, then use `development/start-api.ps1` (port 8010). Its `-Check` mode checks paths without starting a server. Export is disabled by default. The API launcher never starts cleanup, renderer watchers, staging or publication. Never run a production desktop launcher from a worktree.
 
-A complete `news-content-v1` handoff contains `story-01.content.json` through the declared count, atomically published with SHA-256 envelopes. The English consumer rejects missing/changed/mixed stories. Retries are idempotent. Export errors are logged and leave Korean generation running. This initial hook supports up to three selected stories, which Korean duration preflight never trims; larger runs are skipped to avoid divergent lineups. This optional export remains disabled; the supported automatic daily workflow uses the established sentence-pair adapter.
+A complete `news-content-v1` handoff contains `story-01.content.json` through the declared count, atomically published with SHA-256 envelopes. The Learn English consumer rejects missing/changed/mixed stories. Retries are idempotent. Export errors are logged and leave Learn Korean generation running. This initial hook supports up to three selected stories, which Learn Korean duration preflight never trims; larger runs are skipped to avoid divergent lineups. This optional export remains disabled; the supported automatic daily workflow uses the established sentence-pair adapter.
 
 ## Media after text review
 
 From source date 2026-09-27, the shared Video Lab CLI calls sibling NewsIntro
 for the approved narrated opening. Keep NewsIntro and its .venv installed
-beside the three workflow projects (see NewsIntro/README.md). The Korean
+beside the three workflow projects (see NewsIntro/README.md). The Learn Korean
 generation request supplies compact English/Korean labels once, and this media
 worker copies them by story order. NewsIntro caches speech and renders locally.
-English render fingerprints include NewsIntro code/configuration. Video QA
+Learn English render fingerprints include NewsIntro code/configuration. Video QA
 reads video-timeline.json for the measured lesson onset, replacing the former
 one-second offset. Include the three intro-card QA frames and lesson-start-frame
 in the ordinary visual review. Do not upload the separate intro.mp4.
@@ -93,9 +109,9 @@ For the next incoming run, when Andrew has authorized media, use the exact revie
 
 The explicit review flag records the operator's review decision; it does not solicit a second confirmation after authorization. The wrapper has no SourceRun mode that can reuse Korean vocabulary. It synthesizes the selected words/phrases with the existing cadence: English twice, Korean gloss, English explanation, English twice. Voice Alloy; English 0.8976 (a 2% increase from 0.88), Korean sentences/section labels 1.07, Korean vocabulary glosses 0.88. Unique vocabulary clips carry individual speeds. Body English is repeated twice and the full review is English. Vocabulary stays attached to its own body sentence.
 
-Call boundaries differ from production Korean News: English generates three unique clips per vocabulary item (English term, Korean meaning, English explanation) and assembles the order 0,0,1,2,0,0. Production Korean's current OpenAI Speech path sends all vocabulary for a sentence plus the twice-read Korean sentence as one learning block. English's separate calls preserve repetition counts and independent rates, at the cost of more requests.
+Call boundaries differ between editions: Learn English generates three unique clips per vocabulary item (English term, Korean meaning, English explanation) and assembles the order 0,0,1,2,0,0. Learn Korean's current OpenAI Speech path sends all vocabulary for a sentence plus the twice-read Korean sentence as one learning block. Learn English's separate calls preserve repetition counts and independent rates, at the cost of more requests.
 
-Before assembly, each English clip must pass the offline audio-signal guard, including cached clips. A near-silent response retries only that segment, at most twice, under separate cached filenames; persistent failure blocks the build and records signal-qa.json. Normal clips need no additional model request. Final audio QA checks the assembly sources again. This catches silent responses such as September 21 hands-on, but cannot prove spoken-word correctness or detect every partial omission.
+Before assembly, each Learn English clip must pass the offline audio-signal guard, including cached clips. A near-silent response retries only that segment, at most twice, under separate cached filenames; persistent failure blocks the build and records signal-qa.json. Normal clips need no additional model request. Final audio QA checks the assembly sources again. This catches silent responses such as September 21 hands-on, but cannot prove spoken-word correctness or detect every partial omission.
 
 The scroll-only heading comes from audience.json scroll_title (currently the user-requested Korean News Lesson) followed by the run date as YYYY-MM-DD. It occupies space above the existing Headline 1 starting position; it is not in the spoken plan. Existing row positions, story timing, channel title and publication metadata remain unchanged.
 
@@ -103,7 +119,7 @@ Speech settings are saved in the preparation profile and consumed unchanged by m
 
 Current profiles also save `headline_label: Headline`: written and spoken labels use English and the ordinary English speed. The headline label and Korean headline are separate calls; no special rate is needed. Older profiles without that setting retain Korean labels for reproducibility. Applying the current profile can change presentation labels while preserving sentence/vocabulary content. Video vocabulary uses full body size (44px), natural wrapping, and the same wrapping allowance as the established Korean scroll.
 
-Audio and video outputs now remain under EnglishNews `output/runs/<ID>/`; video and publication sidecars are in its `video/` subfolder. Images are copied and checked by hash. Video Lab runs through its CLI with explicit paths, without cross-project sys.path imports or a requirement that .git be a worktree file. It never runs a publication watcher. `english_news/audience.json` owns English labels and description/thumbnail copy; the renderer preserves defaults for older manifests.
+Audio and video outputs now remain under EnglishNews `output/runs/<ID>/`; video and publication sidecars are in its `video/` subfolder. Images are copied and checked by hash. Video Lab runs through its CLI with explicit paths, without cross-project sys.path imports or a requirement that .git be a worktree file. It never runs a publication watcher. `english_news/audience.json` owns English labels, standard description hashtags and description/thumbnail copy; the renderer preserves defaults for older manifests. Future descriptions append topic hashtags from the existing Korean chapter headings under the shared daily workflow rule.
 
 Require workflow-status.json `ready_for_review`, audio-qa.json, video-qa.json and upload-package.json, inspect QA frames and listen before adoption. Publication stays disabled; the channel is 뉴스로 배우는 영어 / @SteadyLanternEnglish, ID UCPvS_o6ypGR8-aA0P2pgtdA. Repeat the same media command to resume valid cached speech/render work. Do not rebuild old videos merely to test selection. The historical prototype.py and vocabulary.py remain only for old regression fixtures, not routine generation.
 
@@ -133,6 +149,6 @@ This compares 3,500/4,000/4,500 candidate pools. It does not make semantic selec
 
 ## Checkouts, adoption and portability
 
-Production runs from C:/AI/Codex/Projects/{EnglishNews,korean-news,KoreanLessonVideoLab}, each on main. EnglishNews and Video Lab use their local .venv; Korean News preserves the interpreter chosen by its existing launcher (Python on PATH on this computer). The optional structured export remains off; daily English keeps the proven sentence-pair adapter. Reusable speech is installed as korean-news-media from a reviewed commit, and Video Lab is invoked through its explicit CLI. No Worktrees runtime path is required.
+Production runs from C:/AI/Codex/Projects/{EnglishNews,korean-news,KoreanLessonVideoLab}, each on main. EnglishNews and Video Lab use their local .venv; Korean News preserves the interpreter chosen by its existing launcher (Python on PATH on this computer). The optional structured export remains off; daily Learn English keeps the proven sentence-pair adapter. Reusable speech is installed as korean-news-media from a reviewed commit, and Video Lab is invoked through its explicit CLI. No Worktrees runtime path is required.
 
 Keep the old development checkouts and ignored media until the next incoming paired run confirms the new launch-to-Publish path. Then preserve wanted media and retire temporary worktrees. Shared Korean core and loanword repositories are unchanged. Routine main sync carries code but not media, credentials, local chat IDs or activation state. A different computer needs local environments plus its own single-uploader workflow setup. No Start/End sync is implied by adoption.

@@ -47,7 +47,7 @@ def synthesize_plan(plan, output: Path, *, voice, client, instructions):
                     break
                 if attempt == 2:
                     raise ValueError(f'No audible speech in {unit["name"]} segment {i}; two retries failed')
-                print(f'Retrying near-silent speech: {unit["name"]} segment {i}', flush=True)
+                print(f'Learn English: retrying near-silent speech: {unit["name"]} segment {i}', flush=True)
                 retry = synthesize_speech_units(
                     [TtsTextUnit(name=f'{unit["name"]}.{i}', text=texts[i], speed=speeds[i])],
                     folder / f'segment_{i}_retry{attempt + 1}', voice=voice, max_chars=3500,
@@ -69,7 +69,7 @@ def synthesize_plan(plan, output: Path, *, voice, client, instructions):
                         assembly_order=order, assembly_sources=[str(p) for p in sources],
                         segment_requests=segment_requests, signal_checks=signal_checks, status='complete')
         write_json(meta_path, metadata)
-        print(f'Completed speech unit: {unit["name"]}', flush=True)
+        print(f'Learn English: completed speech unit: {unit["name"]}', flush=True)
         return metadata
 
     with ThreadPoolExecutor(max_workers=4) as executor:

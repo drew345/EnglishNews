@@ -115,7 +115,7 @@ def run(prepared_path, staged, env_file, render=True):
     write_json(output / 'preparation.json', dict(content=prepared, content_sha256=digest(prepared)))
     state = output / 'workflow-status.json'
     write_json(state, dict(status='building_audio', source_run_id=source_run, publication_enabled=False))
-    print(f'English output: {output}', flush=True)
+    print(f'Learn English output: {output}', flush=True)
     client = client_from_existing_key(env_file)
     from .audio import synthesize_plan
     from korean_news_media.tts_common import concatenate_mp3
@@ -133,7 +133,7 @@ def run(prepared_path, staged, env_file, render=True):
             block = written_lesson(lesson, explanations, headline_label=prepared['profile'].get('speech', {}).get('headline_label', '헤드라인'))
             written_path = folder / 'written.txt'
             written_path.write_text(block, encoding='utf-8')
-            print(f'Story {i}: {len(plan)} speech units, {len(vocab_entries(lesson))} vocabulary entries', flush=True)
+            print(f'Learn English story {i}: {len(plan)} speech units, {len(vocab_entries(lesson))} vocabulary entries', flush=True)
             paths, requests = synthesize_plan(plan, folder, voice=profile['voice'], client=client, instructions=INSTRUCTIONS)
             audio = folder / 'story.mp3'
             concatenate_mp3(paths, audio)
@@ -180,6 +180,7 @@ def run(prepared_path, staged, env_file, render=True):
         raise
     from .runtime import archive_history
     archive_history('archive_run', output)
+    print('Learn English media ready for review.', flush=True)
     print(f'READY FOR REVIEW: {output}', flush=True)
     return output
 

@@ -1,26 +1,35 @@
-# English News upload settings
+# Learn English upload settings
 
 The permanent **Daily News Uploads** chat in korean-news owns both editions and
 one YouTube tab. Follow [the shared daily workflow](../../korean-news/docs/daily-news-workflow.md)
 for pair state, channel switching, file choosers, browser ownership, Publish and
-comments. This file supplies English-specific settings; it does not add another
-upload or recovery procedure. The former independent English upload chat is
-retired from daily routing.
+comments and the naming convention: **Learn English** is for Korean speakers
+learning English (`english`); **Learn Korean** is for English speakers learning
+Korean (`korean`); **Shared news** is common story selection. This file supplies
+Learn English settings; it does not add another upload or recovery procedure.
+Use the edition names in progress updates and Publish/comment handoffs; keep
+saved keys, repository paths and channel branding unchanged. The former
+independent English upload chat is retired from daily routing.
 
-Prepare and check English media before uploading Korean. English upload begins
-only after Korean publication, its English-language comment handoff, and Andrew's
-explicit **Next video** recorded in pair state. Andrew clicks Publish himself.
-On English **Published**, including steering while the upload turn is running,
+Prepare and check Learn English media before uploading Learn Korean. Learn
+English upload begins only after Learn Korean publication, its English-language
+comment handoff, and Andrew's explicit **Next video** recorded in pair state.
+Andrew clicks Publish himself.
+At new-upload startup, follow the shared Studio-first procedure: move a retained
+completed watch page directly to Studio before account work or explicit tab
+selection. Switch channels only inside Studio; preserve any unfinished wizard.
+On Learn English **Published**, including steering while the upload turn is running,
 stop remaining upload checks and verify the saved video. Like it if not already
-liked, open comments, release, and provide a Korean comment. Follow the shared
-bounded Like/comment sequence; never toggle an existing Like off. Save the prepared comment with pair-comment.
+liked, open comments, release, and provide a Learn English comment written in
+Korean. Follow the shared bounded Like/comment sequence; never toggle an existing
+Like off. Save the prepared comment with pair-comment.
 
 ## Approved choices
 
 - Channel: 뉴스로 배우는 영어 / @SteadyLanternEnglish,
-  UCPvS_o6ypGR8-aA0P2pgtdA. Studio may initially open the Korean channel;
+  UCPvS_o6ypGR8-aA0P2pgtdA. Studio may initially open the Learn Korean channel;
   follow the shared Studio Accounts focus/activation procedure and verify the
-  English dashboard name and channel ID before uploading. Public YouTube's
+  Learn English dashboard name and channel ID before uploading. Public YouTube's
   selected channel does not establish Studio's identity.
 - Video language: English. Title/description language: Korean (explicitly
   confirmed September 20). These describe content languages, not country
@@ -44,7 +53,7 @@ bounded Like/comment sequence; never toggle an existing Like off. Save the prepa
 
 ## Apply the checked package
 
-- Follow development/README.md for English text/media QA. Use the exact job's
+- Follow development/README.md for Learn English text/media QA. Use the exact job's
   checked upload-package files and SHA-256 hashes; never select the newest file
   blindly or regenerate an approved final video during upload.
 - Retrieve named paths and exact UTF-8 text with the shared `upload-inputs`
@@ -63,8 +72,9 @@ bounded Like/comment sequence; never toggle an existing Like off. Save the prepa
   Standard YouTube License, embedding and subscription notifications enabled,
   video/audio remixing allowed, comments on with Basic moderation. These were
   observed defaults, not additional blanket policy decisions.
-- In the upload wizard, verify English video language and Education category,
-  plus all approved choices above. Keep the same wizard open through Visibility.
+- In the upload wizard, verify the Learn English video language is set to English
+  and the category is Education, plus all approved choices above. Keep the same
+  wizard open through Visibility.
   Select Public, leave Instant Premiere off, perform the shared final visible
   handoff, save ready_to_publish and end the turn immediately.
 
@@ -73,9 +83,9 @@ bounded Like/comment sequence; never toggle an existing Like off. Save the prepa
 The actual Korean title and description text belongs before Publish. The separate
 metadata-language control is different from the spoken video-language control.
 If that separate field is available in the wizard, set it to Korean without
-changing English video language. Use the visible field label; ambiguous similar
-accessible names do not identify which field is being edited. Use at most two
-supported activation attempts.
+changing the video language from English. Use the visible field label; ambiguous
+similar accessible names do not identify which field is being edited. Use at most
+two supported activation attempts.
 
 If unavailable, append **Korean title/description language pending** to the exact
 job's note, preserving existing notes, and continue to Visibility. Never close or
@@ -85,8 +95,8 @@ both this guide and the generation checklist.
 
 Andrew's latest Published handoff takes priority: verify, Like, comments and
 the suggested comment. Do not delay it to correct this pending field. Report
-the specific pending setting briefly; the actual Korean title/description and
-English spoken-language setting must still be correct.
+the specific pending setting briefly; the actual Korean title/description must
+still be correct and the video's spoken-language setting must still be English.
 
 Only on a later explicit request to finish the pending setting, acquire the
 published video's followup reservation and visit that exact video's details.

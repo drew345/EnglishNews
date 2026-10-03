@@ -1,6 +1,6 @@
 # English News — agent context
 
-Last updated: 2026-09-28
+Last updated: 2026-09-30
 
 September 27: Andrew approved the NewsIntro v4 opening for both daily editions.
 The shared Video Lab renderer calls Projects/NewsIntro for source dates from
@@ -12,26 +12,40 @@ and lesson-start-frame.png, then upload the ordinary final lesson MP4. Offline
 integration passed; the next incoming run is live validation. Daily job,
 browser reservation and final Publish rules below remain authoritative.
 
+September 28: Andrew prioritizes one-shot generation over exact scrolling
+position. Aim for spoken text around 40% down the screen, but do not introduce
+per-run manual timing adjustment or a render/check/remake cycle for cosmetic
+position differences. Keep current scroll settings for the next incoming run;
+ordinary technical/content QA still applies. Any later automatic alignment
+improvement should calculate timing before the normal single final render.
+
 ## Purpose and boundaries
 
-EnglishNews owns the English edition: independent vocabulary, contextual explanations, deterministic speech repetitions and audience settings. The accepted implementation runs from Projects/EnglishNews on main with a verified local .venv and stable shared speech and renderer dependencies. The September 21/22 videos were accepted; no old media should be rebuilt.
+EnglishNews owns the **Learn English** edition for Korean speakers learning English: independent vocabulary, contextual explanations, deterministic speech repetitions and audience settings. The accepted implementation runs from Projects/EnglishNews on main with a verified local .venv and stable shared speech and renderer dependencies. The September 21/22 videos were accepted; no old media should be rebuilt.
+
+Use **Learn English** (legacy key `english`) and **Learn Korean** (English speakers
+learning Korean; legacy key `korean`) in progress updates and handoffs. Use
+**Shared news** for common story selection. The naming convention is maintained
+in sibling `korean-news/docs/daily-news-workflow.md`; repository names, saved keys,
+paths and channel branding stay unchanged. State the edition explicitly, such as
+“Learn English media is ready” or “Learn Korean is ready for your Publish click.”
 
 ## Single daily uploader — approved September 27
 
-One permanent **Daily News Uploads** chat in korean-news now owns English
-preparation and both YouTube uploads. It prepares and checks English media first,
-then uploads Korean, waits for Andrew's Publish and comment handoff, and uploads
-English only after Andrew explicitly says **Next video**. Both editions use the
+One permanent **Daily News Uploads** chat in korean-news now owns Learn English
+preparation and both YouTube uploads. It prepares and checks Learn English media first,
+then uploads Learn Korean, waits for Andrew's Publish and comment handoff, and uploads
+Learn English only after Andrew explicitly says **Next video**. Both editions use the
 same owned in-app browser tab. The desktop Korean News icon remains the entry
 point. For the first live run, opening the permanent chat once before the icon is
-a recommended reliability precaution, not a prerequisite for Korean generation
+a recommended reliability precaution, not a prerequisite for Learn Korean generation
 or a requirement to watch continuously. It helps load the chat but does not
-guarantee wake. English preparation and uploads depend on that chat actually
+guarantee wake. Learn English preparation and uploads depend on that chat actually
 starting; say Resume there if it remains idle.
 
 The sole coordination procedure is sibling `korean-news/docs/daily-news-workflow.md`.
 Its paired state and exact edition jobs preserve the current source, stage,
-prepared media, video IDs and explicit English gate across interruptions. Reload
+prepared media, video IDs and explicit Learn English gate across interruptions. Reload
 the exact pair before acting on historical chat requests. The two former upload
 chats are retired from daily routing. Never replay a published run, clear a draft
 ID, or use an old dashboard-only request to abandon the active upload.
@@ -40,9 +54,9 @@ Andrew alone clicks Publish and posts comments. Select Public, leave Instant
 Premiere off, retain the open wizard through Visibility, verify Publish once,
 record ready_to_publish and immediately end the turn with the browser reserved.
 On Published, verify that same video, perform the bounded comments handoff,
-release the browser, then provide one comment: English for the Korean lesson,
-Korean for the English lesson. After the Korean comment, wait for Next video;
-browser release alone never authorizes English. On Published, Andrew authorizes
+release the browser, then provide one comment: English for Learn Korean,
+Korean for Learn English. After the Learn Korean comment handoff, wait for Next video;
+browser release alone never authorizes Learn English. On Published, Andrew authorizes
 liking the exact video once if it is not already liked, then opening comments.
 Never toggle an already-liked video off; skip and report an ambiguous Like state.
 
@@ -60,6 +74,10 @@ the visible tab was handed off; follow the shared runbook's visibility check.
 Andrew wants the working browser tab selected while following the uploader,
 and all other browser tabs in that uploader chat closed. Keep one owned tab,
 show/select it before page work and handoff, and restore it after any popup.
+For a new upload starting from a completed public watch page, first navigate
+the same tab directly to Studio under the shared startup procedure, then
+show/select it. Never switch channels on that old watch page: it can reload
+and autoplay yesterday's video. Preserve unfinished wizards and saved drafts.
 Use only supported in-app browser controls for this routine selection/cleanup.
 Never start desktop Computer Use, enumerate windows, inspect the desktop tabstrip
 or activate Codex to prove visibility, including when Andrew is using another app.
@@ -77,11 +95,13 @@ A chooser timeout alone never authorizes desktop inspection or computer takeover
 
 The two five-minute recovery schedules stay paused. No recurring agent polling,
 unrequested model changes, old media rebuilds or worktree retirement is part of this repair.
-Andrew selected GPT-6 Sol / Extra High (xhigh) for the new uploader's first live run; a later
-move to GPT-6 Luna / High requires his instruction.
-Today's channel-access and output-folder-focus causes remain unresolved; offline
-checks do not validate live browser behavior. Validate the complete new sequence
-on the next incoming daily run. Main adoption was completed September 23.
+On September 30, Andrew selected GPT-6.1 Sol / Medium for Daily News Uploads,
+replacing GPT-6 Sol / High. Keep GPT-6.1 Sol / Medium for subsequent daily runs
+until he requests another change; do not change models automatically.
+September 29's ASUS paired run completed through both publications and comment
+handoffs, confirmed by Andrew and the saved jobs. The causes of earlier channel
+and output-folder-focus incidents remain unproven. Main adoption was completed
+September 23.
 
 **Published is also an in-progress steering command.** If Andrew says it while
 an upload turn is still active, stop remaining upload/settings checks and verify

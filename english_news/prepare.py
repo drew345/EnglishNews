@@ -206,6 +206,7 @@ def main():
         client = client_from_existing_key(args.env_file)
     output = prepare_lessons(lessons, args.output_root, config=config, model=args.model, contents=contents,
         rewrite=args.rewrite, candidates_only=args.candidates_only, responses=responses, client=client)
+    print('Learn English text preparation complete.')
     print(f'TEXT REVIEW: {output.resolve()}')
 
 

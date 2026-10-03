@@ -65,10 +65,10 @@ def render_run(run, lab=None, python=None):
                 and existing.is_relative_to(out) and existing.is_file()
                 and previous.get('video_sha256') == file_hash(existing)
                 and all(p.is_file() and p.stat().st_size > 0 for p in sidecars)):
-            print(f'Reusing completed render: {previous["video_path"]}', flush=True)
+            print(f'Learn English: reusing completed render: {previous["video_path"]}', flush=True)
             return Path(previous['video_path'])
     write_json(status_path, dict(status='rendering', audience='english', publication_enabled=False))
-    print('Rendering video; this can take several minutes.', flush=True)
+    print('Learn English: rendering video; this can take several minutes.', flush=True)
     try:
         subprocess.run([python, str(entry), str(run), '--out-dir', str(out)], check=True, cwd=lab)
         video = out / f"{run.name[:8]}-english-news-lesson.mp4"
@@ -82,6 +82,7 @@ def render_run(run, lab=None, python=None):
                                 fingerprint=fingerprint,
                                 video_sha256=file_hash(video),
                                 completed_at=datetime.now(timezone.utc).isoformat()))
+    print('Learn English video ready.')
     print(video)
     return video
 
